@@ -213,5 +213,13 @@
     "holderNameError": "Đặt tên chủ tài khoản",
     "accountColorError": "Đặt tên màu tài khoản",
     "emptySelectedAccountsInfo": "Chọn tài khoản ở trên để bắt đầu",
-    "emptyrecommendedAccountsInfo": "Không còn tài khoản nào để thêm"
+    "emptyrecommendedAccountsInfo": "Không còn tài khoản nào để thêm",
+    "pickColorAccountDesc": "Chọn màu cho tài khoản của bạn",
+    "transferCategorySubtitle": "Cho phép chuyển tiền giữa các tài khoản",
+    "currencySelectorError": "Vui lòng chọn loại tiền tệ",
+    "justBlackText": "Chỉ hiện chữ màu đen",
+    "dateAndTime": "Ngày & giờ",
+    "goals": "Mục tiêu",
+    "addGoalTooltip": "Thêm mục tiêu",
+    "customize": "Tùy chỉnh"
 }
