@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:paisa/config/routes.dart';
 
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/card_type.dart';
@@ -20,95 +20,87 @@ class AccountCardV2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme =
-        ColorScheme.fromSeed(seedColor: Color(account.color!));
+        ColorScheme.fromSeed(seedColor: Color(account.color));
     final color = colorScheme.primaryContainer;
     final onPrimary = colorScheme.onPrimaryContainer;
     final String expense = expenses.totalExpense.toFormateCurrency(context);
     final String income = expenses.totalIncome.toFormateCurrency(context);
     final String totalBalance =
-        (account.initialAmount + expenses.fullTotal).toFormateCurrency(context);
-    return Padding(
+        (account.amount + expenses.fullTotal).toFormateCurrency(context);
+    return Container(
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        height: 226,
-        child: PaisaFilledCard(
-          color: color,
-          child: InkWell(
-            onTap: () {
-              /*  GoRouter.of(context).pushNamed(
-                accountTransactionName,
-                pathParameters: <String, String>{
-                  'aid': account.superId.toString()
-                },
-              ); */
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ListTile(
-                  horizontalTitleGap: 0,
-                  trailing: Icon(
-                    account.cardType == null
-                        ? CardType.bank.icon
-                        : account.cardType!.icon,
+      height: 242,
+      child: PaisaFilledCard(
+        color: color,
+        child: InkWell(
+          onTap: () {
+            TransactionsByAccountPageData(accountId: account.superId!)
+                .push(context);
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ListTile(
+                horizontalTitleGap: 0,
+                trailing: Icon(
+                  account.cardType.icon,
+                  color: onPrimary,
+                ),
+                title: Text(
+                  account.name,
+                  style: context.bodyMedium?.copyWith(
                     color: onPrimary,
                   ),
-                  title: Text(
-                    account.name ?? '',
-                    style: context.bodyMedium?.copyWith(
+                ),
+                subtitle: Text(
+                  account.bankName,
+                  style: context.bodyMedium?.copyWith(
+                    color: onPrimary.withOpacity(0.5),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  totalBalance,
+                  style: context.headlineSmall?.copyWith(
+                    color: onPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  context.loc.thisMonth,
+                  style: context.titleMedium?.copyWith(
+                    color: onPrimary,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: ThisMonthTransactionWidget(
+                      title: context.loc.income,
+                      content: income,
                       color: onPrimary,
                     ),
                   ),
-                  subtitle: Text(
-                    account.bankName ?? '',
-                    style: context.bodyMedium?.copyWith(
-                      color: onPrimary.withOpacity(0.5),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(
-                    totalBalance,
-                    style: context.headlineSmall?.copyWith(
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: ThisMonthTransactionWidget(
+                      title: context.loc.expense,
                       color: onPrimary,
-                      fontWeight: FontWeight.bold,
+                      content: expense,
                     ),
                   ),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(
-                    context.loc.thisMonth,
-                    style: context.titleMedium?.copyWith(
-                      color: onPrimary,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ThisMonthTransactionWidget(
-                        title: context.loc.income,
-                        content: income,
-                        color: onPrimary,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: ThisMonthTransactionWidget(
-                        title: context.loc.expense,
-                        color: onPrimary,
-                        content: expense,
-                      ),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-              ],
-            ),
+                ],
+              ),
+              const Spacer(),
+            ],
           ),
         ),
       ),
@@ -144,7 +136,7 @@ class ThisMonthTransactionWidget extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             content,
-            style: context.titleLarge?.copyWith(
+            style: context.titleMedium?.copyWith(
               color: color,
             ),
           ),
