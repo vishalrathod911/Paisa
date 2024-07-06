@@ -25,7 +25,7 @@ abstract class TransactionRepository {
 
   List<TransactionEntity> transactions({int? accountId});
 
-  List<TransactionEntity> fetchExpensesFromAccountId(int accountId);
+  List<TransactionEntity> fetchExpensesFromAccountId(int? accountId);
 
   List<TransactionEntity> fetchExpensesFromCategoryId(int accountId);
 

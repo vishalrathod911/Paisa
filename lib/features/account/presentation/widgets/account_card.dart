@@ -4,71 +4,71 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Package imports:
 import 'package:glassmorphism/glassmorphism.dart';
+import 'package:paisa/features/account/domain/entities/account_entity.dart';
+import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 // Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 
-class AccountCard extends StatefulWidget {
+class AccountCard extends StatelessWidget {
   const AccountCard({
     super.key,
-    required this.totalBalance,
-    required this.cardHolder,
-    required this.bankName,
-    required this.cardType,
-    required this.income,
-    required this.expense,
     this.onDelete,
     this.onTap,
+    required this.account,
+    required this.transactions,
   });
 
-  final String bankName;
-  final String cardHolder;
-  final CardType cardType;
-  final String income, expense;
+  final AccountEntity account;
   final VoidCallback? onDelete;
   final VoidCallback? onTap;
-  final String totalBalance;
+  final List<TransactionEntity> transactions;
 
-  @override
-  State<AccountCard> createState() => _AccountCardState();
-}
-
-class _AccountCardState extends State<AccountCard>
-    with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    final String bankName = account.bankName;
+    final String cardHolder = account.name;
+    final CardType cardType = account.cardType;
+    final double totalExpense =
+        transactions.totalAccountExpense(account.superId!);
+    final double totalIncome =
+        transactions.totalAccountIncome(account.superId!);
+    final double balance = ((totalIncome - totalExpense) + account.amount);
+    final String income = totalIncome.toFormateCurrency(context),
+        expense = totalExpense.toFormateCurrency(context),
+        totalBalance = balance.toFormateCurrency(context);
     return ScreenTypeLayout.builder(
       mobile: (p0) => MobileAccountCard(
-        bankName: widget.bankName,
-        cardHolder: widget.cardHolder,
-        totalBalance: widget.totalBalance,
-        cardType: widget.cardType,
-        onDelete: widget.onDelete,
-        onTap: widget.onTap,
-        expense: widget.expense,
-        income: widget.income,
+        bankName: bankName,
+        cardHolder: cardHolder,
+        totalBalance: totalBalance,
+        cardType: cardType,
+        onDelete: onDelete,
+        onTap: onTap,
+        expense: expense,
+        income: income,
       ),
       tablet: (p0) => TabletAccountCard(
-        bankName: widget.bankName,
-        cardHolder: widget.cardHolder,
-        cardNumber: widget.totalBalance,
-        cardType: widget.cardType,
-        onDelete: widget.onDelete,
-        onTap: widget.onTap,
-        expense: widget.expense,
-        income: widget.income,
+        bankName: bankName,
+        cardHolder: cardHolder,
+        cardNumber: totalBalance,
+        cardType: cardType,
+        onDelete: onDelete,
+        onTap: onTap,
+        expense: expense,
+        income: income,
       ),
       desktop: (p0) => DesktopAccountCard(
-        bankName: widget.bankName,
-        cardHolder: widget.cardHolder,
-        cardNumber: widget.totalBalance,
-        cardType: widget.cardType,
-        onDelete: widget.onDelete,
-        onTap: widget.onTap,
-        expense: widget.expense,
-        income: widget.income,
+        bankName: bankName,
+        cardHolder: cardHolder,
+        cardNumber: totalBalance,
+        cardType: cardType,
+        onDelete: onDelete,
+        onTap: onTap,
+        expense: expense,
+        income: income,
       ),
     );
   }
@@ -96,7 +96,7 @@ class MobileAccountCard extends StatelessWidget {
   final String totalBalance;
 
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -191,7 +191,7 @@ class AccountSummaryTail extends StatelessWidget {
   final String title;
 
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
     return ListTile(
       dense: true,
       title: Text(
@@ -235,7 +235,7 @@ class TabletAccountCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -390,7 +390,7 @@ class DesktopAccountCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   @override
-  Widget build(BuildContext context) {
+  build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(

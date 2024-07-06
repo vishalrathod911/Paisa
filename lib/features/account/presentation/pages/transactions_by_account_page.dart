@@ -97,22 +97,7 @@ class TransactionsByAccountPage extends StatelessWidget {
                   itemCount: transactions.length,
                   itemBuilder: (context, index) {
                     final TransactionEntity transaction = transactions[index];
-                    final CategoryEntity? category =
-                        BlocProvider.of<HomeCubit>(context)
-                            .fetchCategoryFromId(transaction.categoryId);
-                    final AccountEntity? account =
-                        BlocProvider.of<HomeCubit>(context)
-                            .fetchAccountFromId(transaction.accountId);
-                    if (category == null || account == null) {
-                      return CorruptedItemWidget(
-                          transactionEntity: transaction);
-                    } else {
-                      return TransactionItemWidget(
-                        expense: transaction,
-                        account: account,
-                        category: category,
-                      );
-                    }
+                    return TransactionItemWidget(transaction: transaction);
                   },
                 ),
               );

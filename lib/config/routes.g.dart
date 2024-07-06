@@ -148,6 +148,12 @@ RouteBase get $landingPageData => GoRouteData.$route(
         GoRouteData.$route(
           path: 'debit',
           factory: $DebitPageDataExtension._fromState,
+          routes: [
+            GoRouteData.$route(
+              path: 'calculator',
+              factory: $CalculatorPageDataExtension._fromState,
+            ),
+          ],
         ),
         GoRouteData.$route(
           path: 'transaction',
@@ -250,6 +256,29 @@ extension $DebitPageDataExtension on DebitPageData {
         '/landing/debit',
         queryParams: {
           if (debtId != null) 'debt-id': debtId!.toString(),
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $CalculatorPageDataExtension on CalculatorPageData {
+  static CalculatorPageData _fromState(GoRouterState state) =>
+      CalculatorPageData(
+        initialValue: state.uri.queryParameters['initial-value'] ?? '',
+      );
+
+  String get location => GoRouteData.$location(
+        '/landing/debit/calculator',
+        queryParams: {
+          if (initialValue != '') 'initial-value': initialValue,
         },
       );
 

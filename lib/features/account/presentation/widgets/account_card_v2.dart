@@ -11,22 +11,26 @@ class AccountCardV2 extends StatelessWidget {
   const AccountCardV2({
     super.key,
     required this.account,
-    required this.expenses,
+    required this.transactions,
+    this.onDelete,
+    this.onTap,
   });
 
   final AccountEntity account;
-  final List<TransactionEntity> expenses;
+  final List<TransactionEntity> transactions;
+  final VoidCallback? onDelete;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme =
         ColorScheme.fromSeed(seedColor: Color(account.color));
-    final color = colorScheme.primaryContainer;
-    final onPrimary = colorScheme.onPrimaryContainer;
-    final String expense = expenses.totalExpense.toFormateCurrency(context);
-    final String income = expenses.totalIncome.toFormateCurrency(context);
+    final Color color = colorScheme.primaryContainer;
+    final Color onPrimary = colorScheme.onPrimaryContainer;
+    final String expense = transactions.totalExpense.toFormateCurrency(context);
+    final String income = transactions.totalIncome.toFormateCurrency(context);
     final String totalBalance =
-        (account.amount + expenses.fullTotal).toFormateCurrency(context);
+        (account.amount + transactions.fullTotal).toFormateCurrency(context);
     return Container(
       padding: const EdgeInsets.all(8.0),
       height: 242,

@@ -79,9 +79,7 @@ void _addDummyData() async {
     );
   }
   final random = Random();
-  final startDate = DateTime(
-    2024,
-  );
+  final startDate = DateTime(2024);
   final endDate = DateTime.now();
 
   for (int i = 0; i < 1000; i++) {

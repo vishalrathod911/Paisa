@@ -14,9 +14,7 @@ import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
-import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
-import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_list_widget.dart';
 import 'package:paisa/features/search/presentation/cubit/search_cubit.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/main.dart';
@@ -140,21 +138,7 @@ class _SearchPageState extends State<SearchPage> {
                   itemCount: expenses.length,
                   itemBuilder: (_, index) {
                     final TransactionEntity expense = expenses[index];
-                    final AccountEntity? account =
-                        BlocProvider.of<HomeCubit>(context)
-                            .fetchAccountFromId(expense.accountId);
-                    final CategoryEntity? category =
-                        BlocProvider.of<HomeCubit>(context)
-                            .fetchCategoryFromId(expense.categoryId);
-                    if (account == null || category == null) {
-                      return CorruptedItemWidget(transactionEntity: expense);
-                    } else {
-                      return TransactionItemWidget(
-                        expense: expense,
-                        account: account,
-                        category: category,
-                      );
-                    }
+                    return TransactionItemWidget(transaction: expense);
                   },
                 )
               ],

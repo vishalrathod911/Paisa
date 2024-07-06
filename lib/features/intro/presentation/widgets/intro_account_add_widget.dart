@@ -77,7 +77,7 @@ class _IntroAccountAddWidgetState extends State<IntroAccountAddWidget>
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 200,
+                          maxCrossAxisExtent: 250,
                           childAspectRatio: 2,
                         ),
                         physics: const NeverScrollableScrollPhysics(),

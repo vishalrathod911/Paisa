@@ -84,7 +84,7 @@ class ExpenseRepositoryImpl extends TransactionRepository {
   }
 
   @override
-  List<TransactionEntity> fetchExpensesFromAccountId(int accountId) {
+  List<TransactionEntity> fetchExpensesFromAccountId(int? accountId) {
     return dataSource.findByAccountId(accountId).toEntities();
   }
 

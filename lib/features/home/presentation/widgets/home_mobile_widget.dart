@@ -12,7 +12,6 @@ import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
 import 'package:paisa/features/home/presentation/pages/home/home_page.dart';
 import 'package:paisa/features/home/presentation/widgets/content_widget.dart';
 import 'package:paisa/features/home/presentation/widgets/paisa_search_button.dart';
-import 'package:paisa/features/profile/presentation/pages/paisa_user_widget.dart';
 
 final GlobalKey<ScaffoldState> _scaffoldStateKey = GlobalKey<ScaffoldState>();
 

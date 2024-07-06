@@ -31,8 +31,8 @@ class TransactionTotalWidget extends StatelessWidget {
         getIt<Box<AccountModel>>().totalAccountInitialAmount;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
-      child: PaisaCard(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: PaisaFilledCard(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(

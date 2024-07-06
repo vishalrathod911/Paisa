@@ -1,17 +1,17 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:paisa/config/routes.dart';
 
 // Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/transaction/presentation/bloc/transaction_bloc.dart';
 
-class TransactionAmountWidget extends StatelessWidget {
+class TransactionAmountWidget extends StatefulWidget {
   const TransactionAmountWidget({
     super.key,
     required this.controller,
@@ -20,15 +20,37 @@ class TransactionAmountWidget extends StatelessWidget {
   final TextEditingController controller;
 
   @override
+  State<TransactionAmountWidget> createState() =>
+      _TransactionAmountWidgetState();
+}
+
+class _TransactionAmountWidgetState extends State<TransactionAmountWidget> {
+  Future<void> _openCalculator() async {
+    final String? result = await CalculatorPageData(
+      initialValue: widget.controller.text,
+    ).push(context);
+
+    if (result != null) {
+      setState(() {
+        widget.controller.text = result;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: PaisaTextFormField(
-        controller: controller,
+        controller: widget.controller,
         hintText: context.loc.amount,
         maxLength: 13,
         maxLines: 1,
         counterText: '',
+        suffixIcon: IconButton(
+          onPressed: _openCalculator,
+          icon: const Icon(Icons.calculate),
+        ),
         keyboardType: const TextInputType.numberWithOptions(
           decimal: true,
           signed: true,

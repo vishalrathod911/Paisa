@@ -28,7 +28,7 @@ abstract class TransactionDataSource {
 
   Future<void> deleteByCategoryId(int categoryId);
 
-  List<TransactionModel> findByAccountId(int accountId);
+  List<TransactionModel> findByAccountId(int? accountId);
 
   List<TransactionModel> findByCategoryId(int category);
 
@@ -101,9 +101,13 @@ class LocalTransactionManagerImpl implements TransactionDataSource {
   }
 
   @override
-  List<TransactionModel> findByAccountId(int accountId) => transactionBox.values
+  List<TransactionModel> findByAccountId(int? accountId) => transactionBox
+      .values
       .where((element) => element.accountId != -1 && element.categoryId != -1)
-      .where((element) => element.accountId == accountId)
+      .where((element) =>
+          element.accountId == accountId ||
+          element.fromAccountId == accountId ||
+              element.toAccountId == accountId)
       .toList();
 
   @override
