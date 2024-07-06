@@ -36,7 +36,7 @@ class SummaryPage extends StatelessWidget {
           total: transactions.total.toFormateCurrency(context),
         ); */
         return ScreenTypeLayout.builder(
-          mobile: (p0) => SummaryMobileWidget(expenses: transactions),
+          mobile: (p0) => SummaryMobileWidget(transactions: transactions),
           tablet: (p0) => SummaryTabletWidget(expenses: transactions),
           desktop: (p0) => SummaryDesktopWidget(expenses: transactions),
         );

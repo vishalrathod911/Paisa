@@ -21,13 +21,6 @@ class TransactionTotalForMonthWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          context.loc.total,
-          style: context.titleMedium?.copyWith(
-            color: context.onPrimaryContainer.withOpacity(0.85),
-          ),
-        ),
-        SizedBox(height: 8.h),
         Row(
           children: [
             Expanded(

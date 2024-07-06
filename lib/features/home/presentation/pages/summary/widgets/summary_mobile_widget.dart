@@ -6,6 +6,7 @@ import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/filter_expense.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/core/widgets/section_list_view/sectioned_list_view.dart';
+import 'package:paisa/features/account/presentation/widgets/account_summary_widget.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_total_widget.dart';
@@ -17,10 +18,10 @@ import 'package:provider/provider.dart';
 class SummaryMobileWidget extends StatelessWidget {
   const SummaryMobileWidget({
     super.key,
-    required this.expenses,
+    required this.transactions,
   });
 
-  final List<TransactionEntity> expenses;
+  final List<TransactionEntity> transactions;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,10 @@ class SummaryMobileWidget extends StatelessWidget {
           delegate: SliverChildListDelegate(
             [
               const WelcomeNameWidget(),
-              TransactionTotalWidget(expenses: expenses),
+              TransactionTotalWidget(transactions: transactions),
+              AccountSummaryWidget(
+                expenses: transactions,
+              ),
               ListTile(
                 title: Text(
                   context.loc.transactions,
@@ -56,7 +60,7 @@ class SummaryMobileWidget extends StatelessWidget {
               Provider.of<SummaryController>(context).notifyFilterExpense,
           builder: (context, value, child) {
             return SliverGroupedListView(
-              elements: expenses,
+              elements: transactions,
               groupBy: (element) => element.time.formatted(value),
               separator: const PaisaDivider(),
               sort: false,

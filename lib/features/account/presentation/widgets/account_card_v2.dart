@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:paisa/config/routes.dart';
 
 import 'package:paisa/core/common.dart';
-import 'package:paisa/core/enum/card_type.dart';
+import 'package:paisa/core/common_enum.dart';
+import 'package:paisa/core/theme/custom_color.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
@@ -88,7 +89,7 @@ class AccountCardV2 extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ThisMonthTransactionWidget(
-                      title: context.loc.income,
+                      type: TransactionType.income,
                       content: income,
                       color: onPrimary,
                     ),
@@ -96,7 +97,7 @@ class AccountCardV2 extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: ThisMonthTransactionWidget(
-                      title: context.loc.expense,
+                      type: TransactionType.expense,
                       color: onPrimary,
                       content: expense,
                     ),
@@ -115,14 +116,14 @@ class AccountCardV2 extends StatelessWidget {
 class ThisMonthTransactionWidget extends StatelessWidget {
   const ThisMonthTransactionWidget({
     super.key,
-    required this.title,
+    required this.type,
     required this.content,
     required this.color,
   });
 
   final Color color;
   final String content;
-  final String title;
+  final TransactionType type;
 
   @override
   Widget build(BuildContext context) {
@@ -131,10 +132,24 @@ class ThisMonthTransactionWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: TextStyle(
-              color: color.withOpacity(0.75),
+          RichText(
+            text: TextSpan(
+              text: type == TransactionType.income ? '▼' : '▲',
+              style: context.bodyMedium?.copyWith(
+                color: type == TransactionType.income
+                    ? Theme.of(context).extension<CustomColors>()!.green
+                    : Theme.of(context).extension<CustomColors>()!.red,
+              ),
+              children: [
+                TextSpan(
+                  text: type == TransactionType.expense
+                      ? context.loc.expense
+                      : context.loc.income,
+                  style: context.bodyMedium?.copyWith(
+                    color: context.bodyMedium?.color?.withOpacity(0.85),
+                  ),
+                )
+              ],
             ),
           ),
           const SizedBox(height: 6),

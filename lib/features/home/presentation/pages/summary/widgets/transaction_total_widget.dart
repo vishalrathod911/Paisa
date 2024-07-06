@@ -17,16 +17,16 @@ import 'package:paisa/main.dart';
 class TransactionTotalWidget extends StatelessWidget {
   const TransactionTotalWidget({
     super.key,
-    required this.expenses,
+    required this.transactions,
   });
 
-  final List<TransactionEntity> expenses;
+  final List<TransactionEntity> transactions;
 
   @override
   Widget build(BuildContext context) {
-    final double totalExpenseBalance = expenses.fullTotal;
-    final double totalExpenses = expenses.totalExpense;
-    final double totalIncome = expenses.totalIncome;
+    final double totalExpenseBalance = transactions.fullTotal;
+    final double totalExpenses = transactions.totalExpense;
+    final double totalIncome = transactions.totalIncome;
     final double totalAccountBalance =
         getIt<Box<AccountModel>>().totalAccountInitialAmount;
 

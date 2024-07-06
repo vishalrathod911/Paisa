@@ -30,7 +30,7 @@ class SummaryDesktopWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     const WelcomeNameWidget(),
-                    TransactionTotalWidget(expenses: expenses),
+                    TransactionTotalWidget(transactions: expenses),
                   ],
                 ),
               ),

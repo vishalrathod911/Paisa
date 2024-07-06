@@ -21,30 +21,33 @@ class OverViewBarChartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PaisaFilledCard(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      context.loc.statistics,
-                      style: context.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: PaisaFilledCard(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        context.loc.statistics,
+                        style: context.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  const FilterDropDown()
-                ],
+                    const FilterDropDown()
+                  ],
+                ),
               ),
-            ),
-            BarChartSample(groupedTransactions: groupedTransactions),
-          ],
+              BarChartSample(groupedTransactions: groupedTransactions),
+            ],
+          ),
         ),
       ),
     );

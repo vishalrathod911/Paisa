@@ -188,7 +188,7 @@ class PaisaButton extends StatelessWidget {
       case ButtonSize.medium:
         return EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h);
       case ButtonSize.large:
-        return EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h);
+        return EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h);
     }
   }
 
@@ -210,7 +210,7 @@ class PaisaButton extends StatelessWidget {
       case ButtonSize.medium:
         return context.bodyMedium?.fontSize;
       case ButtonSize.large:
-        return context.bodyLarge?.fontSize;
+        return context.titleLarge?.fontSize;
     }
   }
 

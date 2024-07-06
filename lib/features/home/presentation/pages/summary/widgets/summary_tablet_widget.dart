@@ -29,7 +29,7 @@ class SummaryTabletWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const WelcomeNameWidget(),
-              TransactionTotalWidget(expenses: expenses),
+              TransactionTotalWidget(transactions: expenses),
             ],
           ),
         ),
