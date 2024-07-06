@@ -67,7 +67,8 @@ class AccountsHorizontalMobilePage extends StatelessWidget {
                         .read<HomeCubit>()
                         .fetchCategoryFromId(transaction.categoryId);
                     if (account == null || category == null) {
-                      return const SizedBox.shrink();
+                      return CorruptedItemWidget(
+                          transactionEntity: transaction);
                     }
                     return TransactionItemWidget(
                       expense: transaction,

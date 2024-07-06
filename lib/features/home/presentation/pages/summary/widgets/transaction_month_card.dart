@@ -56,17 +56,18 @@ class TransactionByMonthCardWidget extends StatelessWidget {
           ),
           itemCount: expenses.length,
           itemBuilder: (_, index) {
-            final TransactionEntity expense = expenses[index];
-            final AccountEntity? account =
-                context.read<HomeCubit>().fetchAccountFromId(expense.accountId);
+            final TransactionEntity transaction = expenses[index];
+            final AccountEntity? account = context
+                .read<HomeCubit>()
+                .fetchAccountFromId(transaction.accountId);
             final CategoryEntity? category = context
                 .read<HomeCubit>()
-                .fetchCategoryFromId(expense.categoryId);
+                .fetchCategoryFromId(transaction.categoryId);
             if (account == null || category == null) {
-              return const SizedBox.shrink();
+              return CorruptedItemWidget(transactionEntity: transaction);
             } else {
               return TransactionItemWidget(
-                expense: expense,
+                expense: transaction,
                 account: account,
                 category: category,
               );

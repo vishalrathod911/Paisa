@@ -34,7 +34,7 @@ Future<void> main() async {
       TargetPlatform.iOS == defaultTargetPlatform) {
     initAppShortcuts();
   }
-  _addDummyData();
+  //_addDummyData();
 }
 
 void _addDummyData() async {

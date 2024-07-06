@@ -11,6 +11,8 @@ import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
+import 'package:paisa/features/transaction/domain/repository/transaction_repository.dart';
+import 'package:paisa/main.dart';
 
 class TransactionItemWidget extends StatelessWidget {
   const TransactionItemWidget({
@@ -23,10 +25,10 @@ class TransactionItemWidget extends StatelessWidget {
   });
 
   final AccountEntity account;
-  final AccountEntity? fromAccount;
-  final AccountEntity? toAccount;
   final CategoryEntity category;
   final TransactionEntity expense;
+  final AccountEntity? fromAccount;
+  final AccountEntity? toAccount;
 
   String getSubtitle(BuildContext context) {
     if (expense.type == TransactionType.transfer) {
@@ -129,6 +131,34 @@ class ExpenseTransferItemWidget extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class CorruptedItemWidget extends StatelessWidget {
+  const CorruptedItemWidget({
+    super.key,
+    required this.transactionEntity,
+  });
+
+  final TransactionEntity transactionEntity;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      trailing: IconButton(
+        onPressed: () async {
+          await getIt<TransactionRepository>()
+              .clearExpense(transactionEntity.superId!);
+        },
+        icon: const Icon(Icons.delete),
+      ),
+      onTap: () async {
+        await getIt<TransactionRepository>()
+            .clearExpense(transactionEntity.superId!);
+      },
+      title: const Text('Corrupted item'),
+      subtitle: const Text('Please delete the item'),
     );
   }
 }

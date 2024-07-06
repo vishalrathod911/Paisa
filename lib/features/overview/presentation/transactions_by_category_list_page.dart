@@ -62,7 +62,7 @@ class TransactionByCategoryPage extends StatelessWidget {
                 .read<HomeCubit>()
                 .fetchCategoryFromId(expenses[index].categoryId);
             if (account == null || category == null) {
-              return const SizedBox.shrink();
+              return CorruptedItemWidget(transactionEntity: expenses[index]);
             }
             return TransactionItemWidget(
               expense: expenses[index],

@@ -147,7 +147,7 @@ class _SearchPageState extends State<SearchPage> {
                         BlocProvider.of<HomeCubit>(context)
                             .fetchCategoryFromId(expense.categoryId);
                     if (account == null || category == null) {
-                      return const SizedBox.shrink();
+                      return CorruptedItemWidget(transactionEntity: expense);
                     } else {
                       return TransactionItemWidget(
                         expense: expense,

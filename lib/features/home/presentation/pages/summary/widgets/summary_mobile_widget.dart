@@ -89,7 +89,7 @@ class SummaryMobileWidget extends StatelessWidget {
                       .read<HomeCubit>()
                       .fetchAccountFromId(transaction.toAccountId);
                   if (fromAccount == null || toAccount == null) {
-                    return const SizedBox.shrink();
+                    return CorruptedItemWidget(transactionEntity: transaction);
                   }
                   return ExpenseTransferItemWidget(
                     expense: transaction,
@@ -104,7 +104,7 @@ class SummaryMobileWidget extends StatelessWidget {
                       .read<HomeCubit>()
                       .fetchCategoryFromId(transaction.categoryId);
                   if (account == null || category == null) {
-                    return const SizedBox.shrink();
+                    return CorruptedItemWidget(transactionEntity: transaction);
                   }
                   return TransactionItemWidget(
                     expense: transaction,

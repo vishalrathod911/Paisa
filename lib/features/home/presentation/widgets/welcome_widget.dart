@@ -48,10 +48,13 @@ class UserImageWidget extends StatelessWidget {
                   ),
                 );
               } else {
-                return Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: CircleAvatar(
-                    foregroundImage: FileImage(File(image)),
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(32),
+                  child: Image.file(
+                    File(image),
+                    width: 42,
+                    fit: BoxFit.cover,
+                    height: 42,
                   ),
                 );
               }

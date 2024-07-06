@@ -34,7 +34,6 @@ class HomeMobileWidget extends StatelessWidget {
         title: const PaisaTitle(),
         actions: const [
           PaisaSearchButton(),
-          PaisaUserWidget(),
           SizedBox(width: 8),
         ],
       ),

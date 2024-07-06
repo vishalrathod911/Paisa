@@ -29,16 +29,16 @@ class TransactionsListWidget extends StatelessWidget {
       ),
       itemCount: expenses.length,
       itemBuilder: (_, index) {
-        final TransactionEntity expense = expenses[index];
+        final TransactionEntity transaction = expenses[index];
         final AccountEntity? account = BlocProvider.of<HomeCubit>(context)
-            .fetchAccountFromId(expense.accountId);
+            .fetchAccountFromId(transaction.accountId);
         final CategoryEntity? category = BlocProvider.of<HomeCubit>(context)
-            .fetchCategoryFromId(expense.categoryId);
+            .fetchCategoryFromId(transaction.categoryId);
         if (account == null || category == null) {
-          return const SizedBox.shrink();
+          return CorruptedItemWidget(transactionEntity: transaction);
         } else {
           return TransactionItemWidget(
-            expense: expense,
+            expense: transaction,
             account: account,
             category: category,
           );

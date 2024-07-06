@@ -58,18 +58,19 @@ class SummaryTabletWidget extends StatelessWidget {
                   SliverList.builder(
                     itemCount: expenses.length,
                     itemBuilder: (BuildContext context, int index) {
-                      final TransactionEntity expense = expenses[index];
+                      final TransactionEntity transaction = expenses[index];
                       final AccountEntity? account = context
                           .read<HomeCubit>()
-                          .fetchAccountFromId(expense.accountId);
+                          .fetchAccountFromId(transaction.accountId);
                       final CategoryEntity? category = context
                           .read<HomeCubit>()
-                          .fetchCategoryFromId(expense.categoryId);
+                          .fetchCategoryFromId(transaction.categoryId);
                       if (account == null || category == null) {
-                        return const SizedBox.shrink();
+                        return CorruptedItemWidget(
+                            transactionEntity: transaction);
                       } else {
                         return TransactionItemWidget(
-                          expense: expense,
+                          expense: transaction,
                           account: account,
                           category: category,
                         );

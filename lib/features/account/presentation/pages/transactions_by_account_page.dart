@@ -96,18 +96,19 @@ class TransactionsByAccountPage extends StatelessWidget {
                   shrinkWrap: true,
                   itemCount: transactions.length,
                   itemBuilder: (context, index) {
-                    final TransactionEntity expense = transactions[index];
+                    final TransactionEntity transaction = transactions[index];
                     final CategoryEntity? category =
                         BlocProvider.of<HomeCubit>(context)
-                            .fetchCategoryFromId(expense.categoryId);
+                            .fetchCategoryFromId(transaction.categoryId);
                     final AccountEntity? account =
                         BlocProvider.of<HomeCubit>(context)
-                            .fetchAccountFromId(expense.accountId);
+                            .fetchAccountFromId(transaction.accountId);
                     if (category == null || account == null) {
-                      return const SizedBox.shrink();
+                      return CorruptedItemWidget(
+                          transactionEntity: transaction);
                     } else {
                       return TransactionItemWidget(
-                        expense: expense,
+                        expense: transaction,
                         account: account,
                         category: category,
                       );
