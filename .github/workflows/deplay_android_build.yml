@@ -39,10 +39,22 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      - name: Build Android Release APK
+      - name: Build Android Dev Release APK
+        run: flutter build apk --flavor dev --no-tree-shake-icons
+
+      - name: Create GitHub Dev Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: build/app/outputs/flutter-apk/app-dev-release.apk
+          token: ${{ secrets.GITHUB_TOKEN  }}
+          generateReleaseNotes: true
+          makeLatest: true
+          bodyFile: "body.md"
+
+      - name: Build Android Prod Release APK
         run: flutter build apk --flavor prod --no-tree-shake-icons
 
-      - name: Create GitHub Release
+      - name: Create GitHub Prod Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: build/app/outputs/flutter-apk/app-prod-release.apk
