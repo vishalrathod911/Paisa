@@ -307,7 +307,8 @@ Future<void> _updateHomeScreenWidget(
   );
   await HomeWidget.updateWidget(
     name: 'Paisa',
-    androidName: 'PaisaHomeScreenWidget',
+    iOSName: 'PaisaHomeWidgetReceiver',
+    androidName: 'PaisaHomeWidgetReceiver',
     qualifiedAndroidName: 'dev.hemanths.paisa.glance.PaisaHomeWidgetReceiver',
   );
 }

@@ -59,13 +59,6 @@
     "pickColorAccountDesc",
     "back",
     "emptyRecommendedAccountsInfo",
-    "transferCategorySubtitle",
-    "currencySelectorError",
-    "justBlackText",
-    "dateAndTime",
-    "goals",
-    "addGoalTooltip",
-    "customize",
     "statistics",
     "welcomeAppTitle",
     "welcomeAppSubTitle"
@@ -324,15 +317,8 @@
   ],
 
   "vi": [
-    "pickColorAccountDesc",
+    "lockApp",
     "emptyRecommendedAccountsInfo",
-    "transferCategorySubtitle",
-    "currencySelectorError",
-    "justBlackText",
-    "dateAndTime",
-    "goals",
-    "addGoalTooltip",
-    "customize",
     "statistics",
     "welcomeAppTitle",
     "welcomeAppSubTitle"

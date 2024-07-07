@@ -37,6 +37,8 @@ Future<void> main() async {
     initAppShortcuts();
   }
 
+  HomeWidget.setAppGroupId('group.PaisaHomeScreenWidgetGroup');
+
   //_addDummyData();
 }
 
