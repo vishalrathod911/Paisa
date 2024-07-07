@@ -54,151 +54,120 @@ Future<void> _updateHomeScreenWidget(
   final double totalExpenses = transactions.totalExpense;
   final double totalIncome = transactions.totalIncome;
   final double totalExpenseBalance = totalIncome - totalExpenses;
-
   final String totalExpensesFormatted =
       totalExpenses.toFormateCurrency(context);
   final String totalIncomeFormatted = totalIncome.toFormateCurrency(context);
   final String totalExpenseBalanceFormatted =
       totalExpenseBalance.toFormateCurrency(context);
-
   final int primaryContainer =
       Theme.of(context).colorScheme.primaryContainer.value;
   final int bgColor = Color(primaryContainer).value;
-  final int onPrimaryContainer =
-      Theme.of(context).colorScheme.onPrimaryContainer.value;
-  final int textColor = Color(onPrimaryContainer).value;
-  final widget = PaisaCard(
-    color: context.primary,
-    child: Column(
-      children: [
-        ListTile(
-          title: Text(
-            context.loc.totalBalance,
-            style: TextStyle(
-              color: context.onPrimary,
-            ),
-          ),
-        ),
-        ListTile(
-          title: Text(
-            totalExpenseBalance.toFormateCurrency(context),
-            style: TextStyle(
-              color: context.onPrimary,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-  await HomeWidget.saveWidgetData('expense', totalExpensesFormatted);
-  await HomeWidget.saveWidgetData('income', totalIncomeFormatted);
-  await HomeWidget.saveWidgetData('total', totalExpenseBalanceFormatted);
-  await HomeWidget.saveWidgetData('bgColor', chopToJavaInt(bgColor));
-  await HomeWidget.saveWidgetData('textColor', chopToJavaInt(textColor));
 
-  var path = await HomeWidget.renderFlutterWidget(
-    Material(
-      color: context.primaryContainer,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Column(
-                children: [
-                  Text(
-                    'Total Balance',
-                    style: GoogleFonts.outfit(fontSize: 16),
-                  ),
-                  Text(
-                    totalExpenseBalanceFormatted,
-                    style: GoogleFonts.outfit(fontSize: 24.sp),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 16.h),
-            Row(
+  await HomeWidget.saveWidgetData('bgColor', chopToJavaInt(bgColor));
+  final Widget lineChart = Material(
+    color: context.primaryContainer,
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Column(
               children: [
-                Expanded(
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.green.withOpacity(0.24),
-                        ),
-                        padding: EdgeInsets.all(8.0.w),
-                        margin: EdgeInsets.all(8),
-                        child: const Icon(
-                          Icons.south_west,
-                          color: Colors.green,
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Income',
-                              style: GoogleFonts.outfit(
-                                fontSize: 16,
-                                color: Colors.green,
-                              ),
-                            ),
-                            Text(
-                              totalIncomeFormatted,
-                              style: GoogleFonts.outfit(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                Text(
+                  'Total Balance',
+                  style: GoogleFonts.outfit(fontSize: 16),
                 ),
-                Expanded(
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.red.withOpacity(0.24),
-                        ),
-                        padding: EdgeInsets.all(8.0.w),
-                        margin: EdgeInsets.all(8),
-                        child: const Icon(
-                          Icons.north_east,
-                          color: Colors.red,
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Expense',
-                              style: GoogleFonts.outfit(
-                                fontSize: 16,
-                                color: Colors.red,
-                              ),
-                            ),
-                            Text(
-                              totalExpensesFormatted,
-                              style: GoogleFonts.outfit(fontSize: 18.sp),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                Text(
+                  totalExpenseBalanceFormatted,
+                  style: GoogleFonts.outfit(fontSize: 24.sp),
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+          SizedBox(height: 16.h),
+          Row(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.green.withOpacity(0.24),
+                      ),
+                      padding: EdgeInsets.all(8.0.w),
+                      margin: EdgeInsets.all(8),
+                      child: const Icon(
+                        Icons.south_west,
+                        color: Colors.green,
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Income',
+                            style: GoogleFonts.outfit(
+                              fontSize: 16,
+                              color: Colors.green,
+                            ),
+                          ),
+                          Text(
+                            totalIncomeFormatted,
+                            style: GoogleFonts.outfit(fontSize: 18),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.red.withOpacity(0.24),
+                      ),
+                      padding: EdgeInsets.all(8.0.w),
+                      margin: EdgeInsets.all(8),
+                      child: const Icon(
+                        Icons.north_east,
+                        color: Colors.red,
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Expense',
+                            style: GoogleFonts.outfit(
+                              fontSize: 16,
+                              color: Colors.red,
+                            ),
+                          ),
+                          Text(
+                            totalExpensesFormatted,
+                            style: GoogleFonts.outfit(fontSize: 18.sp),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     ),
+  );
+  var path = await HomeWidget.renderFlutterWidget(
+    lineChart,
     key: 'lineChart',
     logicalSize: const Size(450, 400),
   );
