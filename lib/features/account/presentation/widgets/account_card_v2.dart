@@ -13,14 +13,10 @@ class AccountCardV2 extends StatelessWidget {
     super.key,
     required this.account,
     required this.transactions,
-    this.onDelete,
-    this.onTap,
   });
 
   final AccountEntity account;
   final List<TransactionEntity> transactions;
-  final VoidCallback? onDelete;
-  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +33,7 @@ class AccountCardV2 extends StatelessWidget {
       child: PaisaFilledCard(
         color: color,
         child: InkWell(
-          onTap: () {
+          onTap: () async {
             TransactionsByAccountPageData(accountId: account.superId!)
                 .push(context);
           },

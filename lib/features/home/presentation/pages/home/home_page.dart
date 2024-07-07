@@ -1,11 +1,24 @@
 // Flutter imports:
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:paisa/core/extensions/color_extension.dart';
+import 'package:paisa/core/common.dart';
+import 'package:paisa/features/account/data/model/account_model.dart';
+import 'package:paisa/features/account/domain/entities/account_entity.dart';
+import 'package:paisa/features/category/data/model/category_model.dart';
+import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
+import 'package:paisa/features/transaction/data/model/transaction_model.dart';
+import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 // Project imports:
@@ -71,31 +84,60 @@ class HomePage extends StatelessWidget {
     final Widget actionButton = HomeFloatingActionButtonWidget(
       summaryController: getIt<SummaryController>(),
     );
-    return PaisaAnnotatedRegionWidget(
-      color: context.surface,
-      child: PopScope(
-        canPop: context.read<HomeCubit>().state.index != 0,
-        onPopInvoked: (didPop) {
-          if (didPop) {
-            context.read<HomeCubit>().setCurrentIndex(0);
-          }
-        },
-        child: ScreenTypeLayout.builder(
-          mobile: (p0) => HomeMobileWidget(
-            floatingActionButton: actionButton,
-            destinations: destinations,
-          ),
-          tablet: (p0) => HomeTabletWidget(
-            floatingActionButton: actionButton,
-            destinations: destinations,
-          ),
-          desktop: (p0) => HomeDesktopWidget(
-            floatingActionButton: actionButton,
-            destinations: destinations,
-          ),
-        ),
-      ),
-    );
+    return MultiValueListenableBuilder(
+        valueListenables: [
+          getIt<Box<TransactionModel>>().listenable(),
+          getIt<Box<AccountModel>>().listenable(),
+          getIt<Box<CategoryModel>>().listenable()
+        ],
+        builder: (BuildContext context, List<dynamic> values, Widget? child) {
+          final List<TransactionModel> transactionModels =
+              values[0].values.toList();
+          final List<AccountModel> accountModels = values[1].values.toList();
+          final List<CategoryModel> categoryModels = values[2].values.toList();
+          final List<TransactionEntity> transactions =
+              transactionModels.excludeAccounts();
+          final List<AccountEntity> accounts = accountModels.toEntities();
+          final List<CategoryEntity> categories = categoryModels.toEntities();
+
+          _updateHomeScreenWidget(
+            context,
+            transactions: transactions,
+          );
+
+          return MultiProvider(
+            providers: [
+              Provider.value(value: transactions),
+              Provider.value(value: accounts),
+              Provider.value(value: categories),
+            ],
+            child: PaisaAnnotatedRegionWidget(
+              color: context.surface,
+              child: PopScope(
+                canPop: context.read<HomeCubit>().state.index != 0,
+                onPopInvoked: (didPop) {
+                  if (didPop) {
+                    context.read<HomeCubit>().setCurrentIndex(0);
+                  }
+                },
+                child: ScreenTypeLayout.builder(
+                  mobile: (p0) => HomeMobileWidget(
+                    floatingActionButton: actionButton,
+                    destinations: destinations,
+                  ),
+                  tablet: (p0) => HomeTabletWidget(
+                    floatingActionButton: actionButton,
+                    destinations: destinations,
+                  ),
+                  desktop: (p0) => HomeDesktopWidget(
+                    floatingActionButton: actionButton,
+                    destinations: destinations,
+                  ),
+                ),
+              ),
+            ),
+          );
+        });
   }
 }
 
@@ -109,4 +151,170 @@ class Destination {
   final Icon icon;
   final PageType pageType;
   final Icon selectedIcon;
+}
+
+class MultiValueListenableBuilder extends StatelessWidget {
+  final List<ValueListenable> valueListenables;
+  final Widget Function(
+      BuildContext context, List<dynamic> values, Widget? child) builder;
+  final Widget? child;
+
+  MultiValueListenableBuilder({
+    Key? key,
+    required this.valueListenables,
+    required this.builder,
+    this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<dynamic>(
+      valueListenable: valueListenables[0],
+      builder: (context, _, __) {
+        return builder(
+          context,
+          valueListenables.map((listenable) => listenable.value).toList(),
+          child,
+        );
+      },
+    );
+  }
+}
+
+Future<void> _updateHomeScreenWidget(
+  BuildContext context, {
+  required List<TransactionEntity> transactions,
+}) async {
+  final int primaryContainer =
+      Theme.of(context).colorScheme.primaryContainer.value;
+  final int bgColor = Color(primaryContainer).value;
+
+  final double totalExpenses = transactions.totalExpense;
+  final double totalIncome = transactions.totalIncome;
+  final double totalExpenseBalance = totalIncome - totalExpenses;
+  final String totalExpensesFormatted =
+      totalExpenses.toFormateCurrency(context);
+  final String totalIncomeFormatted = totalIncome.toFormateCurrency(context);
+  final String totalExpenseBalanceFormatted =
+      totalExpenseBalance.toFormateCurrency(context);
+  await HomeWidget.saveWidgetData('bgColor', chopToJavaInt(bgColor));
+  final Widget lineChart = Material(
+    color: context.primaryContainer,
+    child: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Column(
+              children: [
+                Text(
+                  'Total Balance',
+                  style: GoogleFonts.outfit(fontSize: 16),
+                ),
+                Text(
+                  totalExpenseBalanceFormatted,
+                  style: GoogleFonts.outfit(fontSize: 24.sp),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 16.h),
+          Row(
+            children: [
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.green.withOpacity(0.24),
+                      ),
+                      padding: EdgeInsets.all(8.0.w),
+                      margin: EdgeInsets.all(8),
+                      child: const Icon(
+                        Icons.south_west,
+                        color: Colors.green,
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Income',
+                            style: GoogleFonts.outfit(
+                              fontSize: 16,
+                              color: Colors.green,
+                            ),
+                          ),
+                          Text(
+                            totalIncomeFormatted,
+                            style: GoogleFonts.outfit(fontSize: 18),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.red.withOpacity(0.24),
+                      ),
+                      padding: EdgeInsets.all(8.0.w),
+                      margin: EdgeInsets.all(8),
+                      child: const Icon(
+                        Icons.north_east,
+                        color: Colors.red,
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Expense',
+                            style: GoogleFonts.outfit(
+                              fontSize: 16,
+                              color: Colors.red,
+                            ),
+                          ),
+                          Text(
+                            totalExpensesFormatted,
+                            style: GoogleFonts.outfit(fontSize: 18.sp),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
+  var path = await HomeWidget.renderFlutterWidget(
+    lineChart,
+    key: 'lineChart',
+    logicalSize: const Size(520, 550),
+  );
+  await HomeWidget.updateWidget(
+    name: 'Paisa',
+    androidName: 'PaisaHomeScreenWidget',
+    qualifiedAndroidName: 'dev.hemanths.paisa.glance.PaisaHomeWidgetReceiver',
+  );
+}
+
+int chopToJavaInt(int result) {
+  while (result > pow(2, 31)) {
+    result = result - pow(2, 32).toInt();
+  }
+  return result;
 }

@@ -1,6 +1,5 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 // Package imports:
 
@@ -48,43 +47,24 @@ class FilterDropDown extends StatefulWidget {
 class _FilterDropDownState extends State<FilterDropDown> {
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: RichText(
-          text: TextSpan(
-            style: context.bodyMedium,
-            children: [
-              TextSpan(
-                text: getIt<SummaryController>()
-                    .filterExpenseNotifier
-                    .value
-                    .stringValue(context),
-                style: context.bodyMedium,
-              ),
-              const WidgetSpan(
-                alignment: PlaceholderAlignment.middle,
-                child: Icon(
-                  Icons.arrow_drop_down,
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-      itemBuilder: (context) {
-        return FilterExpense.values
+    return DropdownButtonHideUnderline(
+      child: DropdownButton<FilterExpense>(
+        dropdownColor: context.primaryContainer,
+        value: getIt<SummaryController>().filterExpenseNotifier.value,
+        items: FilterExpense.values
             .map(
-              (e) => PopupMenuItem(
+              (e) => DropdownMenuItem(
                 value: e,
                 child: Text(e.stringValue(context)),
               ),
             )
-            .toList();
-      },
-      onSelected: (value) {
-        getIt<SummaryController>().filterExpenseNotifier.value = value;
-      },
+            .toList(),
+        onChanged: (value) {
+          if (value != null) {
+            getIt<SummaryController>().filterExpenseNotifier.value = value;
+          }
+        },
+      ),
     );
   }
 }

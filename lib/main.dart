@@ -1,4 +1,5 @@
 // Dart imports:
+import 'dart:io';
 import 'dart:math';
 
 // Flutter imports:
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:get_it/get_it.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 // Project imports:
@@ -34,6 +36,7 @@ Future<void> main() async {
       TargetPlatform.iOS == defaultTargetPlatform) {
     initAppShortcuts();
   }
+
   //_addDummyData();
 }
 

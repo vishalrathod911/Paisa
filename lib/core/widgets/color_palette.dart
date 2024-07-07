@@ -1,13 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 // Project imports:
 import 'package:paisa/core/common.dart';
-import 'package:paisa/core/widgets/paisa_widget.dart';
-import 'package:paisa/features/transaction/data/model/transaction_model.dart';
-import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
-import 'package:paisa/main.dart';
 
 class ColorPalette extends StatelessWidget {
   const ColorPalette({super.key});
@@ -18,40 +13,6 @@ class ColorPalette extends StatelessWidget {
       appBar: AppBar(),
       body: ListView(
         children: [
-          ValueListenableBuilder<Box<TransactionModel>>(
-            valueListenable: getIt<Box<TransactionModel>>().listenable(),
-            builder: (_, value, child) {
-              final List<TransactionEntity> transactions =
-                  value.values.excludeAccounts();
-              final double totalExpenses = transactions.totalExpense;
-              final double totalIncome = transactions.totalIncome;
-              final double totalExpenseBalance = totalIncome - totalExpenses;
-
-              return PaisaCard(
-                color: context.primary,
-                child: Column(
-                  children: [
-                    ListTile(
-                      title: Text(
-                        context.loc.totalBalance,
-                        style: TextStyle(
-                          color: context.onPrimary,
-                        ),
-                      ),
-                    ),
-                    ListTile(
-                      title: Text(
-                        totalExpenseBalance.toFormateCurrency(context),
-                        style: TextStyle(
-                          color: context.onPrimary,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
           Container(
             height: 50,
             color: context.primary,

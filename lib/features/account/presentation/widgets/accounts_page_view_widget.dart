@@ -6,14 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 // Project imports:
-import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
-import 'package:paisa/core/widgets/lava/lava_clock.dart';
-import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
-import 'package:paisa/features/account/presentation/bloc/accounts_bloc.dart';
 import 'package:paisa/features/account/presentation/cubit/accounts_cubit.dart';
-import 'package:paisa/features/account/presentation/widgets/account_card.dart';
 import 'package:paisa/features/account/presentation/widgets/account_card_v2.dart';
 
 class AccountPageViewWidget extends StatefulWidget {
@@ -28,8 +23,7 @@ class AccountPageViewWidget extends StatefulWidget {
   State<AccountPageViewWidget> createState() => _AccountPageViewWidgetState();
 }
 
-class _AccountPageViewWidgetState extends State<AccountPageViewWidget>
-    with AutomaticKeepAliveClientMixin {
+class _AccountPageViewWidgetState extends State<AccountPageViewWidget> {
   final PageController _controller = PageController();
 
   @override
@@ -43,41 +37,7 @@ class _AccountPageViewWidgetState extends State<AccountPageViewWidget>
   }
 
   @override
-  bool get wantKeepAlive => true;
-
-  void _deleteDialog(AccountEntity account) {
-    paisaAlertDialog(
-      context,
-      title: Text(
-        context.loc.dialogDeleteTitle,
-      ),
-      child: RichText(
-        text: TextSpan(
-          text: context.loc.deleteAccount,
-          style: context.bodyMedium,
-          children: [
-            TextSpan(
-              text: account.name,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-      confirmationButton: TextButton(
-        onPressed: () {
-          context.read<AccountBloc>().add(DeleteAccountEvent(account.superId!));
-          Navigator.pop(context);
-        },
-        child: Text(context.loc.delete),
-      ),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -100,12 +60,6 @@ class _AccountPageViewWidgetState extends State<AccountPageViewWidget>
                     key: ValueKey(account.hashCode),
                     account: account,
                     transactions: state.transactions,
-                    onDelete: () => _deleteDialog(account),
-                    onTap: () {
-                      AccountPageData(
-                        accountId: account.superId,
-                      ).push(context);
-                    },
                   );
                 },
               );

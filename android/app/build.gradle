@@ -37,9 +37,18 @@ android {
     testNamespace "dev.hemanths.paisa.dev"
     compileSdkVersion flutter.compileSdkVersion
 
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
     }
 
     kotlinOptions {
@@ -86,9 +95,7 @@ android {
                     'proguard-rules.pro'
         }
     }
-    buildFeatures {
-        viewBinding true
-    }
+
 }
 
 flutter {
@@ -96,6 +103,7 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.glance:glance-appwidget:1.1.0'
+    implementation "androidx.work:work-runtime-ktx:2.8.1"
+    implementation "androidx.multidex:multidex:2.0.1"
 }

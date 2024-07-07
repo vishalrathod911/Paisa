@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:paisa/config/routes.dart';
 
 // Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/future_resolve.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_divider.dart';
 import 'package:paisa/features/settings/data/authenticate.dart';
-import 'package:paisa/features/settings/domain/use_case/setting_use_case.dart';
-import 'package:paisa/main.dart';
 
 class BiometricAuthWidget extends StatefulWidget {
   const BiometricAuthWidget({
@@ -25,10 +24,9 @@ class BiometricAuthWidget extends StatefulWidget {
 }
 
 class _BiometricAuthWidgetState extends State<BiometricAuthWidget> {
-  final SettingsUseCase settingsUseCase = getIt<SettingsUseCase>();
-  late bool isSelected = settingsUseCase.get(userAuthKey, defaultValue: false);
+  late bool isSelected = settings.get(userAuthKey, defaultValue: false);
 
-  void _showSnackBar(bool result) => settingsUseCase
+  void _showSnackBar(bool result) => settings
       .put(userAuthKey, result)
       .then((value) => ScaffoldMessenger.maybeOf(context)?.showSnackBar(
             SnackBar(

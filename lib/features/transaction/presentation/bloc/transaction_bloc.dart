@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:paisa/config/routes.dart';
 
 // Project imports:
 import 'package:paisa/core/common.dart';
@@ -17,7 +18,6 @@ import 'package:paisa/core/use_case/use_case.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/domain/use_case/account_use_case.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
-import 'package:paisa/features/settings/domain/use_case/settings_use_case.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/features/transaction/domain/use_case/transaction_use_case.dart';
 
@@ -28,7 +28,6 @@ part 'transaction_state.dart';
 @injectable
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   TransactionBloc(
-    this.settingsUseCase,
     this._accountsUseCase,
     this._addTransactionUseCase,
     this._deleteTransactionUseCase,
@@ -58,7 +57,6 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   CategoryEntity? selectedCategory;
   int? selectedCategoryId;
   DateTime selectedDate = DateTime.now();
-  final SettingsUseCase settingsUseCase;
   TimeOfDay timeOfDay = TimeOfDay.now();
   AccountEntity? fromAccount, toAccount;
   double? transactionAmount;
@@ -71,7 +69,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     final int? expenseId = event.expenseId;
     if (expenseId == null) {
-      selectedAccountId = settingsUseCase.get(defaultAccountIdKey);
+      selectedAccountId = settings.get(defaultAccountIdKey);
       return;
     }
 

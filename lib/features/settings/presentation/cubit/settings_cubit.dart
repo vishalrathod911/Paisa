@@ -2,6 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:paisa/config/routes.dart';
 import 'package:share_plus/share_plus.dart';
 
 // Project imports:
@@ -22,7 +23,6 @@ class SettingCubit extends Cubit<SettingsState> {
     this.updateExpensesUseCase,
     this.jsonFileImportUseCase,
     this.jsonFileExportUseCase,
-    this.settingsUseCase,
     this.csvFileExportUseCase,
   ) : super(SettingsInitial());
 
@@ -30,7 +30,6 @@ class SettingCubit extends Cubit<SettingsState> {
   final GetDefaultCategoriesUseCase getDefaultCategoriesUseCase;
   final JSONFileExportUseCase jsonFileExportUseCase;
   final JSONFileImportUseCase jsonFileImportUseCase;
-  final SettingsUseCase settingsUseCase;
   final GetTransactionsUseCase transactionsUseCase;
   final UpdateTransactionUseCase updateExpensesUseCase;
 
@@ -64,11 +63,11 @@ class SettingCubit extends Cubit<SettingsState> {
         ));
   }
 
-  int? get defaultAccountId => settingsUseCase.get(defaultAccountIdKey);
+  int? get defaultAccountId => settings.get(defaultAccountIdKey);
 
   dynamic setDefaultAccountId(int accountId) =>
-      settingsUseCase.put(defaultAccountIdKey, accountId);
+      settings.put(defaultAccountIdKey, accountId);
 
   void setDefaultCalendarFormat(String format) =>
-      settingsUseCase.put(calendarFormatKey, format);
+      settings.put(calendarFormatKey, format);
 }

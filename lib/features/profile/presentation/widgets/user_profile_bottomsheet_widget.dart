@@ -3,21 +3,19 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:paisa/config/routes.dart';
 
 // Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/profile/presentation/cubit/profile_cubit.dart';
-import 'package:paisa/features/settings/domain/use_case/setting_use_case.dart';
 
 class UserProfileBottomSheetWidget extends StatelessWidget {
   const UserProfileBottomSheetWidget({
     super.key,
-    required this.settingsUseCase,
     required this.profileCubit,
   });
 
-  final SettingsUseCase settingsUseCase;
   final ProfileCubit profileCubit;
 
   void _updateDetails(String name) {
@@ -31,7 +29,7 @@ class UserProfileBottomSheetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController controller = TextEditingController();
-    String name = settingsUseCase.get(userNameSetKey, defaultValue: '');
+    final String name = settings.get(userNameSetKey, defaultValue: '');
     controller.text = name;
     controller.selection = TextSelection.collapsed(offset: name.length);
     return BlocProvider(

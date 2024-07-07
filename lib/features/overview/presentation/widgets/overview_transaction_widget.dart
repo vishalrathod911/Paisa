@@ -3,16 +3,15 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:hive_flutter/hive_flutter.dart';
 
 // Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_empty_widget.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
-import 'package:paisa/features/transaction/data/model/transaction_model.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/main.dart';
+import 'package:provider/provider.dart';
 
 class OverviewTransactionWidget extends StatelessWidget {
   const OverviewTransactionWidget({
@@ -24,24 +23,20 @@ class OverviewTransactionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Box<TransactionModel>>(
-      valueListenable: getIt<Box<TransactionModel>>().listenable(),
-      builder: (context, expenseBox, _) {
-        if (expenseBox.values.excludeTransfer().isEmpty) {
-          return EmptyWidget(
-            icon: Icons.paid,
-            title: context.loc.emptyOverviewMessageTitle,
-            description: context.loc.emptyOverviewMessageSubtitle,
-          );
-        }
-        return FilterDateRangeWidget(
-          dateTimeRangeNotifier:
-              getIt<SummaryController>().dateTimeRangeNotifier,
-          expenses: expenseBox.values.toEntities(),
-          builder: (transactions) {
-            return builder(transactions);
-          },
-        );
+    final Iterable<TransactionEntity> transactions =
+        Provider.of<List<TransactionEntity>>(context).excludeTransfer();
+    if (transactions.isEmpty) {
+      return EmptyWidget(
+        icon: Icons.paid,
+        title: context.loc.emptyOverviewMessageTitle,
+        description: context.loc.emptyOverviewMessageSubtitle,
+      );
+    }
+    return FilterDateRangeWidget(
+      dateTimeRangeNotifier: getIt<SummaryController>().dateTimeRangeNotifier,
+      expenses: transactions,
+      builder: (transactions) {
+        return builder(transactions);
       },
     );
   }

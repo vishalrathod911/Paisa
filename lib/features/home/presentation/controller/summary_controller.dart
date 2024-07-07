@@ -3,22 +3,20 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:injectable/injectable.dart';
+import 'package:paisa/config/routes.dart';
 
 // Project imports:
 import 'package:paisa/core/constants/constants.dart';
 import 'package:paisa/core/enum/filter_expense.dart';
 import 'package:paisa/core/enum/transaction_type.dart';
-import 'package:paisa/features/settings/domain/use_case/setting_use_case.dart';
 
 @lazySingleton
 class SummaryController {
-  SummaryController(this.settingsUseCase);
-
   final ValueNotifier<String> dateNotifier = ValueNotifier<String>('');
   final ValueNotifier<DateTimeRange?> dateTimeRangeNotifier =
       ValueNotifier<DateTimeRange?>(null);
 
-  late final FilterExpense filterExpense = settingsUseCase.get<FilterExpense>(
+  late final FilterExpense filterExpense = settings.get(
     selectedFilterExpenseKey,
     defaultValue: FilterExpense.daily,
   );
@@ -29,8 +27,7 @@ class SummaryController {
   final ValueNotifier<FilterExpense> notifyFilterExpense =
       ValueNotifier(FilterExpense.daily);
 
-  final SettingsUseCase settingsUseCase;
-  late final FilterExpense sortHomeExpense = settingsUseCase.get<FilterExpense>(
+  late final FilterExpense sortHomeExpense = settings.get(
     selectedHomeFilterExpenseKey,
     defaultValue: FilterExpense.daily,
   );

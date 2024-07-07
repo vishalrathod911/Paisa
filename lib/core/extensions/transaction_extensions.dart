@@ -100,6 +100,10 @@ extension ExpenseModelsHelper on Iterable<TransactionModel> {
 }
 
 extension ExpensesHelper on Iterable<TransactionEntity> {
+  Iterable<TransactionEntity> excludeTransfer() {
+    return where((element) => element.type != TransactionType.transfer);
+  }
+
   List<TransactionEntity> budgetOverView(TransactionType transactionType) =>
       sorted((a, b) => b.time.compareTo(a.time))
           .where((element) => element.type == transactionType)

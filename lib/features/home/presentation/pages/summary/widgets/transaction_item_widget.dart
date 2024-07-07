@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Package imports:
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 // Project imports:
 import 'package:paisa/config/routes.dart';
@@ -89,13 +88,14 @@ class TransactionItemWidget extends StatelessWidget {
         context.read<HomeCubit>().fetchAccountFromId(transaction.toAccountId);
 
     if (transaction.type == TransactionType.transfer) {
-      if (fromAccount == null || toAccount == null) {
+      if (fromAccount == null || toAccount == null || category == null) {
         return CorruptedTransactionItemWidget(transactionEntity: transaction);
       }
       return TransferTransactionItemWidget(
-        expense: transaction,
+        transaction: transaction,
         fromAccount: fromAccount,
         toAccount: toAccount,
+        category: category,
       );
     }
     if (account == null || category == null) {
@@ -128,19 +128,14 @@ class TransactionItemWidget extends StatelessWidget {
       ),
       leading: CircleAvatar(
         backgroundColor: color.withOpacity(0.2),
-        child: transaction.type == TransactionType.transfer
-            ? Icon(
-                MdiIcons.swapHorizontal,
-                color: color,
-              )
-            : Icon(
-                IconData(
-                  category.icon,
-                  fontFamily: fontFamilyName,
-                  fontPackage: fontFamilyPackageName,
-                ),
-                color: color,
-              ),
+        child: Icon(
+          IconData(
+            category.icon,
+            fontFamily: fontFamilyName,
+            fontPackage: fontFamilyPackageName,
+          ),
+          color: color,
+        ),
       ),
       trailing: Text(
         transaction.currency.toFormateCurrency(context),
@@ -155,13 +150,15 @@ class TransactionItemWidget extends StatelessWidget {
 class TransferTransactionItemWidget extends StatelessWidget {
   const TransferTransactionItemWidget({
     super.key,
-    required this.expense,
+    required this.transaction,
     required this.fromAccount,
     required this.toAccount,
+    required this.category,
   });
 
-  final TransactionEntity expense;
+  final TransactionEntity transaction;
   final AccountEntity fromAccount, toAccount;
+  final CategoryEntity category;
 
   String get title {
     return 'Transfer from ${fromAccount.bankName} to ${toAccount.bankName}';
@@ -169,6 +166,7 @@ class TransferTransactionItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color color = Color(category.color);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: ListTile(
@@ -176,7 +174,7 @@ class TransferTransactionItemWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
         ),
         onTap: () {
-          TransactionPageData(transactionId: expense.superId).push(context);
+          TransactionPageData(transactionId: transaction.superId).push(context);
         },
         title: Text(
           title,
@@ -185,7 +183,7 @@ class TransferTransactionItemWidget extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          expense.time.shortDayString,
+          transaction.time.shortDayString,
           style: context.bodySmall?.copyWith(
             color: context.bodySmall?.color?.withOpacity(0.55),
           ),
@@ -193,14 +191,18 @@ class TransferTransactionItemWidget extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: context.primary.withOpacity(0.2),
           child: Icon(
-            MdiIcons.bankTransfer,
-            color: context.primary,
+            IconData(
+              category.icon,
+              fontFamily: fontFamilyName,
+              fontPackage: fontFamilyPackageName,
+            ),
+            color: color,
           ),
         ),
         trailing: Text(
-          '${expense.type.sign}${expense.currency.toFormateCurrency(context)}',
+          '${transaction.type.sign}${transaction.currency.toFormateCurrency(context)}',
           style: context.bodyMedium?.copyWith(
-            color: expense.type.color(context),
+            color: transaction.type.color(context),
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/config/routes.dart';
 
 // Project imports:
 import 'package:paisa/core/common.dart';
@@ -24,8 +25,7 @@ class FilterHomeExpensesWidget extends StatelessWidget {
     return ValueListenableBuilder<FilterExpense>(
       valueListenable: summaryController.accountTransactionsNotifier,
       builder: (_, value, child) {
-        summaryController.settingsUseCase
-            .put(selectedHomeFilterExpenseKey, value);
+        settings.put(selectedHomeFilterExpenseKey, value);
         return SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
