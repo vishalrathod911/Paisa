@@ -129,8 +129,6 @@ extension ExpensesHelper on Iterable<TransactionEntity> {
         }
       });
 
-  double get fullTotal => totalIncome - totalExpense;
-
   double get totalExpense => expenseList
       .map((e) => e.currency)
       .fold<double>(0, (previousValue, element) => previousValue + element);

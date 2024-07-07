@@ -26,6 +26,7 @@ class TransactionByCategoryPage extends StatelessWidget {
         context.read<HomeCubit>().fetchExpensesFromCategoryId(categoryId);
     final CategoryEntity? categoryEntity =
         context.read<HomeCubit>().fetchCategoryFromId(categoryId);
+    final double total = expenses.totalIncome - expenses.totalExpense;
 
     return PaisaAnnotatedRegionWidget(
       color: Colors.transparent,
@@ -41,7 +42,7 @@ class TransactionByCategoryPage extends StatelessWidget {
                     ?.copyWith(color: context.onSurfaceVariant),
               ),
               subtitle: Text(
-                expenses.fullTotal.toFormateCurrency(context),
+                total.toFormateCurrency(context),
                 style: context.titleMedium?.copyWith(
                   color: context.onSurfaceVariant,
                   fontWeight: FontWeight.bold,

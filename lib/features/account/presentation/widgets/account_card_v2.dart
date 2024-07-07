@@ -28,10 +28,9 @@ class AccountCardV2 extends StatelessWidget {
         ColorScheme.fromSeed(seedColor: Color(account.color));
     final Color color = colorScheme.primaryContainer;
     final Color onPrimary = colorScheme.onPrimaryContainer;
-    final String expense = transactions.totalExpense.toFormateCurrency(context);
-    final String income = transactions.totalIncome.toFormateCurrency(context);
-    final String totalBalance =
-        (account.amount + transactions.fullTotal).toFormateCurrency(context);
+    final double expense = transactions.totalExpense;
+    final double income = transactions.totalIncome;
+    final double totalBalance = (account.amount + (income - expense));
     return Container(
       padding: const EdgeInsets.all(8.0),
       height: 242,
@@ -67,7 +66,7 @@ class AccountCardV2 extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
-                  totalBalance,
+                  totalBalance.toFormateCurrency(context),
                   style: context.headlineSmall?.copyWith(
                     color: onPrimary,
                     fontWeight: FontWeight.bold,
@@ -90,7 +89,7 @@ class AccountCardV2 extends StatelessWidget {
                   Expanded(
                     child: ThisMonthTransactionWidget(
                       type: TransactionType.income,
-                      content: income,
+                      content: income.toFormateCurrency(context),
                       color: onPrimary,
                     ),
                   ),
@@ -99,7 +98,7 @@ class AccountCardV2 extends StatelessWidget {
                     child: ThisMonthTransactionWidget(
                       type: TransactionType.expense,
                       color: onPrimary,
-                      content: expense,
+                      content: expense.toFormateCurrency(context),
                     ),
                   ),
                 ],

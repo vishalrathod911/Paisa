@@ -2,10 +2,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Package imports:
 import 'package:hive_flutter/adapters.dart';
 import 'package:home_widget/home_widget.dart';
+import 'package:paisa/core/widgets/paisa_widgets/paisa_card.dart';
+import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_total_widget.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -29,12 +33,10 @@ class SummaryPage extends StatelessWidget {
       builder: (_, value, child) {
         final List<TransactionEntity> transactions =
             value.values.excludeAccounts();
-        /* _updateHomeScreenWidget(
+        _updateHomeScreenWidget(
           context,
-          totalExpenses: transactions.totalExpense.toFormateCurrency(context),
-          totalIncome: transactions.totalIncome.toFormateCurrency(context),
-          total: transactions.total.toFormateCurrency(context),
-        ); */
+          transactions: transactions,
+        );
         return ScreenTypeLayout.builder(
           mobile: (p0) => SummaryMobileWidget(transactions: transactions),
           tablet: (p0) => SummaryTabletWidget(expenses: transactions),
@@ -47,20 +49,159 @@ class SummaryPage extends StatelessWidget {
 
 Future<void> _updateHomeScreenWidget(
   BuildContext context, {
-  required String totalExpenses,
-  required String totalIncome,
-  required String total,
+  required List<TransactionEntity> transactions,
 }) async {
-  final primaryContainer = Theme.of(context).colorScheme.primaryContainer.value;
-  final bgColor = Color(primaryContainer).value;
-  final onPrimaryContainer =
+  final double totalExpenses = transactions.totalExpense;
+  final double totalIncome = transactions.totalIncome;
+  final double totalExpenseBalance = totalIncome - totalExpenses;
+
+  final String totalExpensesFormatted =
+      totalExpenses.toFormateCurrency(context);
+  final String totalIncomeFormatted = totalIncome.toFormateCurrency(context);
+  final String totalExpenseBalanceFormatted =
+      totalExpenseBalance.toFormateCurrency(context);
+
+  final int primaryContainer =
+      Theme.of(context).colorScheme.primaryContainer.value;
+  final int bgColor = Color(primaryContainer).value;
+  final int onPrimaryContainer =
       Theme.of(context).colorScheme.onPrimaryContainer.value;
-  final textColor = Color(onPrimaryContainer).value;
-  await HomeWidget.saveWidgetData('expense', totalExpenses);
-  await HomeWidget.saveWidgetData('income', totalIncome);
-  await HomeWidget.saveWidgetData('total', total);
+  final int textColor = Color(onPrimaryContainer).value;
+  final widget = PaisaCard(
+    color: context.primary,
+    child: Column(
+      children: [
+        ListTile(
+          title: Text(
+            context.loc.totalBalance,
+            style: TextStyle(
+              color: context.onPrimary,
+            ),
+          ),
+        ),
+        ListTile(
+          title: Text(
+            totalExpenseBalance.toFormateCurrency(context),
+            style: TextStyle(
+              color: context.onPrimary,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+  await HomeWidget.saveWidgetData('expense', totalExpensesFormatted);
+  await HomeWidget.saveWidgetData('income', totalIncomeFormatted);
+  await HomeWidget.saveWidgetData('total', totalExpenseBalanceFormatted);
   await HomeWidget.saveWidgetData('bgColor', chopToJavaInt(bgColor));
   await HomeWidget.saveWidgetData('textColor', chopToJavaInt(textColor));
+
+  var path = await HomeWidget.renderFlutterWidget(
+    Material(
+      color: context.primaryContainer,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Column(
+                children: [
+                  Text(
+                    'Total Balance',
+                    style: GoogleFonts.outfit(fontSize: 16),
+                  ),
+                  Text(
+                    totalExpenseBalanceFormatted,
+                    style: GoogleFonts.outfit(fontSize: 24.sp),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 16.h),
+            Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.green.withOpacity(0.24),
+                        ),
+                        padding: EdgeInsets.all(8.0.w),
+                        margin: EdgeInsets.all(8),
+                        child: const Icon(
+                          Icons.south_west,
+                          color: Colors.green,
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Income',
+                              style: GoogleFonts.outfit(
+                                fontSize: 16,
+                                color: Colors.green,
+                              ),
+                            ),
+                            Text(
+                              totalIncomeFormatted,
+                              style: GoogleFonts.outfit(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          color: Colors.red.withOpacity(0.24),
+                        ),
+                        padding: EdgeInsets.all(8.0.w),
+                        margin: EdgeInsets.all(8),
+                        child: const Icon(
+                          Icons.north_east,
+                          color: Colors.red,
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Expense',
+                              style: GoogleFonts.outfit(
+                                fontSize: 16,
+                                color: Colors.red,
+                              ),
+                            ),
+                            Text(
+                              totalExpensesFormatted,
+                              style: GoogleFonts.outfit(fontSize: 18.sp),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+    key: 'lineChart',
+    logicalSize: const Size(450, 400),
+  );
   await HomeWidget.updateWidget(
     name: 'Paisa',
     androidName: 'PaisaHomeScreenWidget',
