@@ -10,6 +10,8 @@ import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 
+const String systemFont = 'System';
+
 class FontPickerPage extends StatefulWidget {
   const FontPickerPage({
     super.key,
@@ -23,7 +25,8 @@ class FontPickerPage extends StatefulWidget {
 }
 
 class _FontPickerPageState extends State<FontPickerPage> {
-  final List<String> fonts = GoogleFonts.asMap().keys.toList();
+  final List<String> fonts = GoogleFonts.asMap().keys.toList()
+    ..insert(0, systemFont);
   final ScrollController scrollController = ScrollController();
   late String selectedFont = widget.currentFont;
   final TextEditingController textEditingController = TextEditingController();
@@ -89,7 +92,8 @@ class _FontPickerPageState extends State<FontPickerPage> {
                     },
                     title: Text(
                       font,
-                      style: GoogleFonts.getFont(font),
+                      style:
+                          font == systemFont ? null : GoogleFonts.getFont(font),
                     ),
                   );
                 },

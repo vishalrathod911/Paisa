@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/core/app_providers.dart';
+import 'package:paisa/features/settings/presentation/pages/font_picker_page.dart';
 import 'package:paisa/main.dart';
 import 'package:provider/provider.dart';
 
@@ -75,15 +76,19 @@ class _PaisaAppState extends State<PaisaApp> {
             defaultValue: 'Outfit',
           );
 
-          final TextTheme darkTextTheme = GoogleFonts.getTextTheme(
-            fontPreference,
-            ThemeData.dark().textTheme,
-          );
+          final TextTheme darkTextTheme = fontPreference == systemFont
+              ? ThemeData.dark().textTheme
+              : GoogleFonts.getTextTheme(
+                  fontPreference,
+                  ThemeData.dark().textTheme,
+                );
 
-          final TextTheme lightTextTheme = GoogleFonts.getTextTheme(
-            fontPreference,
-            ThemeData.light().textTheme,
-          );
+          final TextTheme lightTextTheme = fontPreference == systemFont
+              ? ThemeData.light().textTheme
+              : GoogleFonts.getTextTheme(
+                  fontPreference,
+                  ThemeData.light().textTheme,
+                );
 
           return ProxyProvider0<CountryEntity>(
             lazy: true,
