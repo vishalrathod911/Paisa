@@ -208,4 +208,12 @@
     "accountColorError": "Lege den Namen der Kontofarbe fest",
     "emptySelectedAccountsInfo": "Wähle ein Konto von den oberen Optionen zum starten",
     "emptyrecommendedAccountsInfo": "Keine Konten übrig zum hinzufügen"
+    "transferCategorySubtitle": "Transaktionen zwischen Konten erlauben",
+    "currencySelectorError": "Bitte wähle ein Währung aus!",
+    "justBlackText": "Nur Schwarz (Dark Mode OLED)",
+    "dateAndTime": "Datum & Zeit",
+    "goals": "Ziele",
+    "addGoalTooltip": "Ziel hinzufügen",
+    "customize": "Personalisierung",
 }
+
