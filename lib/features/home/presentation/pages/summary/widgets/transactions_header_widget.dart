@@ -37,7 +37,7 @@ class TransactionsHeaderWidget extends StatelessWidget {
           foregroundColor: context.primary,
         ),
         label: ValueListenableBuilder<FilterExpense>(
-          valueListenable: summaryController.sortHomeExpenseNotifier,
+          valueListenable: summaryController.accountTransactionsNotifier,
           builder: (context, value, child) {
             return Text(value.stringValue(context));
           },

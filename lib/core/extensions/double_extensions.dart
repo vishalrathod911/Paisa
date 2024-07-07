@@ -10,7 +10,8 @@ import 'package:paisa/features/intro/domain/entities/country_entity.dart';
 
 extension MappingOnDouble on double {
   String toFormateCurrency(BuildContext context) {
-    final CountryEntity country = Provider.of<CountryEntity>(context);
+    final CountryEntity country =
+        Provider.of<CountryEntity>(context, listen: false);
     final formatter = NumberFormat.currency(customPattern: country.pattern);
     if (country.symbolOnLeft) {
       return '${country.symbol}${country.spaceBetweenAmountAndSymbol ? ' ' : ''}${formatter.format(this)}'

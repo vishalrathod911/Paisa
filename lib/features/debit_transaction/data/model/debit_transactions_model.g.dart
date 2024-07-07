@@ -6,6 +6,45 @@ part of 'debit_transactions_model.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
+class TransactionModelTypeAdapter extends TypeAdapter<TransactionModelType> {
+  @override
+  final int typeId = 23;
+
+  @override
+  TransactionModelType read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 1:
+        return TransactionModelType.debit;
+      case 2:
+        return TransactionModelType.goal;
+      default:
+        return TransactionModelType.debit;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, TransactionModelType obj) {
+    switch (obj) {
+      case TransactionModelType.debit:
+        writer.writeByte(1);
+        break;
+      case TransactionModelType.goal:
+        writer.writeByte(2);
+        break;
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TransactionModelTypeAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
 class DebitTransactionsModelAdapter
     extends TypeAdapter<_$DebitTransactionsModelImpl> {
   @override
@@ -22,7 +61,7 @@ class DebitTransactionsModelAdapter
       now: fields[2] as DateTime,
       parentId: fields[4] == null ? -1 : fields[4] as int,
       superId: fields[3] as int?,
-      type: fields[5] as TransactionModelType,
+      type: fields[5] as TransactionModelType?,
     );
   }
 
@@ -75,7 +114,7 @@ Map<String, dynamic> _$$DebitTransactionsModelImplToJson(
       'now': instance.now.toIso8601String(),
       'parentId': instance.parentId,
       'superId': instance.superId,
-      'type': _$TransactionModelTypeEnumMap[instance.type]!,
+      'type': _$TransactionModelTypeEnumMap[instance.type],
     };
 
 const _$TransactionModelTypeEnumMap = {

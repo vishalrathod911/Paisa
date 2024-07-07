@@ -17,18 +17,15 @@ class AccountsCubit extends Cubit<AccountsState> {
   final GetAccountUseCase getAccountUseCase;
   final GetTransactionsByAccountIdUseCase getTransactionsByAccountIdUseCase;
 
-  void fetchTransactionsByAccountId(int accountId) async {
+  void fetchTransactionsByAccountId(AccountEntity account) async {
     emit(state.copyWith(isLoading: true));
-    final AccountEntity? accountEntity =
-        getAccountUseCase(GetAccountParams(accountId));
     final List<TransactionEntity> transactions =
         getTransactionsByAccountIdUseCase(
-            ParamsGetTransactionsByAccountId(accountId));
-
+            ParamsGetTransactionsByAccountId(account.superId!));
     emit(state.copyWith(
       isLoading: false,
       transactions: transactions,
-      accountEntity: accountEntity,
+      accountEntity: account,
     ));
   }
 }

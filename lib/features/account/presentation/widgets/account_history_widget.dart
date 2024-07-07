@@ -32,7 +32,7 @@ class AccountHistoryWidget extends StatelessWidget {
       );
     } else {
       return ValueListenableBuilder<FilterExpense>(
-        valueListenable: summaryController.sortHomeExpenseNotifier,
+        valueListenable: summaryController.accountTransactionsNotifier,
         builder: (_, value, __) {
           final Map<String, List<TransactionEntity>> maps = groupBy(expenses,
               (TransactionEntity element) => element.time.formatted(value));

@@ -77,7 +77,7 @@ class _IntroAccountAddWidgetState extends State<IntroAccountAddWidget>
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 200,
+                          maxCrossAxisExtent: 250,
                           childAspectRatio: 2,
                         ),
                         physics: const NeverScrollableScrollPhysics(),
@@ -189,12 +189,13 @@ class AccountItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Color color = Color(model.color);
     return ScreenTypeLayout.builder(
       mobile: (p0) => ListTile(
         onTap: onPress,
         leading: Icon(
           model.cardType.icon,
-          color: Color(model.color ?? Colors.brown.shade200.value),
+          color: color,
         ),
         title: Text(model.bankName),
         subtitle: Text(model.name),
@@ -211,7 +212,7 @@ class AccountItemWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 16.0),
                   child: Icon(
                     model.cardType.icon,
-                    color: Color(model.color ?? Colors.brown.shade200.value),
+                    color: color,
                   ),
                 ),
                 Expanded(

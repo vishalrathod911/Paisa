@@ -9,9 +9,8 @@ import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 
 extension AccountModelMapping on AccountModel {
-  double get initialAmount => amount;
   AccountEntity toEntity() => AccountEntity(
-        amount: amount,
+        amount: amount ?? 0,
         bankName: bankName,
         cardType: cardType,
         name: name,
@@ -32,8 +31,7 @@ extension AccountModelsMapping on Iterable<AccountModel> {
 extension AccountBoxMapping on Box<AccountModel> {
   List<AccountEntity> toEntities() => values
       .map((accountModel) => accountModel.toEntity())
-      .sorted((a, b) => b.name.compareTo(a.name))
-      .toList();
+      .sorted((a, b) => b.name.compareTo(a.name));
 
   double get totalAccountInitialAmount {
     final List<int> accounts = settings.get(
@@ -42,11 +40,7 @@ extension AccountBoxMapping on Box<AccountModel> {
     );
     return values
         .where((element) => !accounts.contains(element.superId))
-        .map((account) => account.initialAmount)
+        .map((account) => account.amount ?? 0)
         .fold<double>(0, (previousValue, element) => previousValue + element);
   }
-}
-
-extension AccountEntityHelper on AccountEntity {
-  double get initialAmount => amount ?? 0;
 }

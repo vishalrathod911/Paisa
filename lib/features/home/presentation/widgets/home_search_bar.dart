@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/config/routes.dart';
 
 // Project imports:
 import 'package:paisa/core/common.dart';
@@ -19,8 +20,7 @@ class HomeSearchBar extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(34),
         onTap: () {
-          //TODO: Search Page
-          //GoRouter.of(context).pushNamed(searchName);
+          const SearchPageData().push(context);
         },
         child: Padding(
           padding: const EdgeInsets.all(12.0),

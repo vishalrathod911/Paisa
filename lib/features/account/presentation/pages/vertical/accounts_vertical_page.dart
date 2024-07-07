@@ -31,7 +31,7 @@ class AccountMobileVerticalPage extends StatelessWidget {
                   .toList();
               return AccountCardV2(
                 account: accounts[index],
-                expenses: expenses,
+                transactions: expenses,
               );
             },
           ),
@@ -50,7 +50,7 @@ class AccountMobileVerticalPage extends StatelessWidget {
                   .toList();
               return AccountCardV2(
                 account: accounts[index],
-                expenses: expenses,
+                transactions: expenses,
               );
             },
           ),

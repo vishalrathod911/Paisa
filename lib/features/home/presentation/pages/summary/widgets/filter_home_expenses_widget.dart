@@ -16,13 +16,13 @@ class FilterHomeExpensesWidget extends StatelessWidget {
   final SummaryController summaryController;
 
   void updateFilter(FilterExpense filterExpense) {
-    summaryController.sortHomeExpenseNotifier.value = filterExpense;
+    summaryController.accountTransactionsNotifier.value = filterExpense;
   }
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<FilterExpense>(
-      valueListenable: summaryController.sortHomeExpenseNotifier,
+      valueListenable: summaryController.accountTransactionsNotifier,
       builder: (_, value, child) {
         summaryController.settingsUseCase
             .put(selectedHomeFilterExpenseKey, value);

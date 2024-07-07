@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
-import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
@@ -27,6 +26,7 @@ class TransactionByCategoryPage extends StatelessWidget {
         context.read<HomeCubit>().fetchExpensesFromCategoryId(categoryId);
     final CategoryEntity? categoryEntity =
         context.read<HomeCubit>().fetchCategoryFromId(categoryId);
+    final double total = expenses.totalIncome - expenses.totalExpense;
 
     return PaisaAnnotatedRegionWidget(
       color: Colors.transparent,
@@ -42,7 +42,7 @@ class TransactionByCategoryPage extends StatelessWidget {
                     ?.copyWith(color: context.onSurfaceVariant),
               ),
               subtitle: Text(
-                expenses.fullTotal.toFormateCurrency(context),
+                total.toFormateCurrency(context),
                 style: context.titleMedium?.copyWith(
                   color: context.onSurfaceVariant,
                   fontWeight: FontWeight.bold,
@@ -55,20 +55,7 @@ class TransactionByCategoryPage extends StatelessWidget {
           shrinkWrap: true,
           itemCount: expenses.length,
           itemBuilder: (BuildContext context, int index) {
-            final AccountEntity? account = context
-                .read<HomeCubit>()
-                .fetchAccountFromId(expenses[index].accountId);
-            final CategoryEntity? category = context
-                .read<HomeCubit>()
-                .fetchCategoryFromId(expenses[index].categoryId);
-            if (account == null || category == null) {
-              return const SizedBox.shrink();
-            }
-            return TransactionItemWidget(
-              expense: expenses[index],
-              account: account,
-              category: category,
-            );
+            return TransactionItemWidget(transaction: expenses[index]);
           },
         ),
       ),

@@ -14,8 +14,9 @@ import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
-import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_list_widget.dart';
+import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
 import 'package:paisa/features/search/presentation/cubit/search_cubit.dart';
+import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/main.dart';
 
 class SearchPage extends StatefulWidget {
@@ -109,22 +110,38 @@ class _SearchPageState extends State<SearchPage> {
         bloc: searchCubitCubit,
         builder: (context, state) {
           if (state is SearchResultState) {
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'Result',
-                      style: context.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
+            final List<TransactionEntity> expenses = state.expenses;
+
+            return CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildListDelegate(
+                    [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          'Result',
+                          style: context.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  TransactionsListWidget(expenses: state.expenses),
-                ],
-              ),
+                ),
+                SliverList.separated(
+                  separatorBuilder: (context, index) => Divider(
+                    indent: 72,
+                    height: 0,
+                    color: Theme.of(context).dividerColor,
+                  ),
+                  itemCount: expenses.length,
+                  itemBuilder: (_, index) {
+                    final TransactionEntity expense = expenses[index];
+                    return TransactionItemWidget(transaction: expense);
+                  },
+                )
+              ],
             );
           } else if (state is SearchQueryEmptyState) {
             return Center(
@@ -192,6 +209,36 @@ class _FilterWidgetState extends State<FilterWidget> {
             'Filter',
             style: context.titleLarge,
           ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              PaisaButton.mediumText(
+                onPressed: () {
+                  Navigator.pop(
+                    context,
+                    {
+                      'account': [],
+                      'category': [],
+                    },
+                  );
+                },
+                text: 'Clear',
+              ),
+              PaisaButton.mediumText(
+                onPressed: () {
+                  Navigator.pop(
+                    context,
+                    {
+                      'account': selectedAccount,
+                      'category': selectedCategory,
+                    },
+                  );
+                },
+                text: context.loc.done,
+              ),
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(16.0),
@@ -255,7 +302,6 @@ class _FilterWidgetState extends State<FilterWidget> {
                                   : Theme.of(context)
                                       .colorScheme
                                       .onSurfaceVariant),
-                      padding: const EdgeInsets.all(12),
                     ),
                   );
                 }),
@@ -327,45 +373,12 @@ class _FilterWidgetState extends State<FilterWidget> {
                                   : Theme.of(context)
                                       .colorScheme
                                       .onSurfaceVariant),
-                      padding: const EdgeInsets.all(12),
                     ),
                   );
                 }),
               ),
             );
           },
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              PaisaTextButton(
-                onPressed: () {
-                  Navigator.pop(
-                    context,
-                    {
-                      'account': [],
-                      'category': [],
-                    },
-                  );
-                },
-                title: 'Clear',
-              ),
-              PaisaButton(
-                onPressed: () {
-                  Navigator.pop(
-                    context,
-                    {
-                      'account': selectedAccount,
-                      'category': selectedCategory,
-                    },
-                  );
-                },
-                title: 'Done',
-              ),
-            ],
-          ),
         ),
       ],
     );

@@ -14,6 +14,7 @@ import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/presentation/bloc/accounts_bloc.dart';
 import 'package:paisa/features/account/presentation/cubit/accounts_cubit.dart';
 import 'package:paisa/features/account/presentation/widgets/account_card.dart';
+import 'package:paisa/features/account/presentation/widgets/account_card_v2.dart';
 
 class AccountPageViewWidget extends StatefulWidget {
   const AccountPageViewWidget({
@@ -32,16 +33,46 @@ class _AccountPageViewWidgetState extends State<AccountPageViewWidget>
   final PageController _controller = PageController();
 
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   void initState() {
     super.initState();
     if (widget.accounts.isNotEmpty) {
       context.read<AccountsCubit>().fetchTransactionsByAccountId(
-            widget.accounts.first.superId!,
+            widget.accounts.first,
           );
     }
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  void _deleteDialog(AccountEntity account) {
+    paisaAlertDialog(
+      context,
+      title: Text(
+        context.loc.dialogDeleteTitle,
+      ),
+      child: RichText(
+        text: TextSpan(
+          text: context.loc.deleteAccount,
+          style: context.bodyMedium,
+          children: [
+            TextSpan(
+              text: account.name,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+      confirmationButton: TextButton(
+        onPressed: () {
+          context.read<AccountBloc>().add(DeleteAccountEvent(account.superId!));
+          Navigator.pop(context);
+        },
+        child: Text(context.loc.delete),
+      ),
+    );
   }
 
   @override
@@ -50,77 +81,35 @@ class _AccountPageViewWidgetState extends State<AccountPageViewWidget>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        LavaAnimation(
-          child: SizedBox(
-            height: 256.h,
-            child: PageView.builder(
-              key: const Key('accounts_page_view'),
-              controller: _controller,
-              itemCount: widget.accounts.length,
-              onPageChanged: (index) {
-                context.read<AccountsCubit>().fetchTransactionsByAccountId(
-                    widget.accounts[index].superId!);
-              },
-              itemBuilder: (_, index) {
-                return BlocBuilder<AccountsCubit, AccountsState>(
-                  builder: (context, state) {
-                    final AccountEntity account = widget.accounts[index];
-                    final String expense = state.transactions.totalExpense
-                        .toFormateCurrency(context);
-                    final String income = state.transactions.totalIncome
-                        .toFormateCurrency(context);
-                    final String totalBalance =
-                        (state.transactions.fullTotal + account.initialAmount)
-                            .toFormateCurrency(context);
-                    return AccountCard(
-                      key: ValueKey(account.hashCode),
-                      expense: expense,
-                      income: income,
-                      totalBalance: totalBalance,
-                      cardHolder: account.name,
-                      bankName: account.bankName,
-                      cardType: account.cardType,
-                      onDelete: () {
-                        paisaAlertDialog(
-                          context,
-                          title: Text(
-                            context.loc.dialogDeleteTitle,
-                          ),
-                          child: RichText(
-                            text: TextSpan(
-                              text: context.loc.deleteAccount,
-                              style: context.bodyMedium,
-                              children: [
-                                TextSpan(
-                                  text: account.name,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          confirmationButton: TextButton(
-                            onPressed: () {
-                              context
-                                  .read<AccountBloc>()
-                                  .add(DeleteAccountEvent(account.superId!));
-                              Navigator.pop(context);
-                            },
-                            child: Text(context.loc.delete),
-                          ),
-                        );
-                      },
-                      onTap: () {
-                        AccountPageData(
-                          accountId: account.superId,
-                        ).push(context);
-                      },
-                    );
-                  },
-                );
-              },
-            ),
+        SizedBox(
+          height: 256.h,
+          child: PageView.builder(
+            key: const Key('accounts_page_view'),
+            controller: _controller,
+            itemCount: widget.accounts.length,
+            onPageChanged: (index) {
+              context
+                  .read<AccountsCubit>()
+                  .fetchTransactionsByAccountId(widget.accounts[index]);
+            },
+            itemBuilder: (_, index) {
+              return BlocBuilder<AccountsCubit, AccountsState>(
+                builder: (context, state) {
+                  final AccountEntity account = widget.accounts[index];
+                  return AccountCardV2(
+                    key: ValueKey(account.hashCode),
+                    account: account,
+                    transactions: state.transactions,
+                    onDelete: () => _deleteDialog(account),
+                    onTap: () {
+                      AccountPageData(
+                        accountId: account.superId,
+                      ).push(context);
+                    },
+                  );
+                },
+              );
+            },
           ),
         ),
         AccountPageViewDotsIndicator(

@@ -7,6 +7,7 @@ import 'package:hive_flutter/adapters.dart';
 // Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
+import 'package:paisa/features/profile/presentation/pages/paisa_user_widget.dart';
 import 'package:paisa/main.dart';
 
 class WelcomeNameWidget extends StatelessWidget {
@@ -21,9 +22,9 @@ class WelcomeNameWidget extends StatelessWidget {
         keys: [userNameSetKey],
       ),
       builder: (context, value, _) {
-        final name = value.get(userNameSetKey, defaultValue: 'Name');
-
+        final String name = value.get(userNameSetKey, defaultValue: 'Name');
         return ListTile(
+          leading: const PaisaUserWidget(),
           title: Text(
             name,
             style: context.titleMedium?.copyWith(

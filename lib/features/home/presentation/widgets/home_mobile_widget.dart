@@ -12,7 +12,6 @@ import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
 import 'package:paisa/features/home/presentation/pages/home/home_page.dart';
 import 'package:paisa/features/home/presentation/widgets/content_widget.dart';
 import 'package:paisa/features/home/presentation/widgets/paisa_search_button.dart';
-import 'package:paisa/features/profile/presentation/pages/paisa_user_widget.dart';
 
 final GlobalKey<ScaffoldState> _scaffoldStateKey = GlobalKey<ScaffoldState>();
 
@@ -34,7 +33,6 @@ class HomeMobileWidget extends StatelessWidget {
         title: const PaisaTitle(),
         actions: const [
           PaisaSearchButton(),
-          PaisaUserWidget(),
           SizedBox(width: 8),
         ],
       ),
@@ -55,7 +53,7 @@ class HomeMobileWidget extends StatelessWidget {
                     selectedIcon: e.selectedIcon,
                     label: Text(e.pageType.name(context)),
                   )),
-              const Divider(),
+              const PaisaDivider(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: ListTile(

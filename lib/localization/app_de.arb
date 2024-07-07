@@ -31,7 +31,7 @@
     "selectAccount": "Konto auswählen",
     "selectCategory": "Kategorie auswählen",
     "settings": "Einstellungen",
-    "localApp": "App entsperren mit Fingerabdruck",
+    "lockApp": "App entsperren mit Fingerabdruck",
     "expense": "Ausgaben",
     "transfer": "Übertragungen",
     "daily": "Täglich",
@@ -163,9 +163,6 @@
     "rightSymbol": "Symbol rechts",
     "customSymbol": "Eigenes Symbol",
     "intoTitle": "Einfache Möglichkeit, deine Ersparnisse zu kontrollieren",
-    "intoSummary1": "Verwalte dein Geld mit unserer App",
-    "intoSummary2": "Einfache Ausgabenverfolgung für ein besseres Budget",
-    "intoSummary3": "Behalte jederzeit und überall den Überblick über deine Ausgaben",
     "introCTA": "Jetzt loslegen",
     "deleteDebtOrCredit": "Durch das Löschen der Schulden oder der Gutschrift werden alle damit verbundenen Datensätze gelöscht ",
     "backupAndRestoreJSONTitle": "Deine Daten exportieren im JSON-Format",
@@ -219,3 +216,4 @@
     "addGoalTooltip": "Ziel hinzufügen",
     "customize": "Personalisierung",
 }
+

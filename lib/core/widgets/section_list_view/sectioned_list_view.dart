@@ -5,14 +5,23 @@ enum GroupedListOrder { ASC, DESC }
 
 @immutable
 class SliverGroupedListView<T, E> extends StatefulWidget {
-  /// Items of which [itemBuilder] or [indexedItemBuilder] produce the list.
-  final List<T> elements;
-
-  /// Defines which elements are grouped together.
-  ///
-  /// Function is called for each element in the list, when equal for two
-  /// elements, those two belong to the same group.
-  final E Function(T element) groupBy;
+  /// Creates a [SliverGroupedListView]
+  const SliverGroupedListView({
+    super.key,
+    required this.elements,
+    required this.groupBy,
+    this.groupComparator,
+    this.groupSeparatorBuilder,
+    this.groupHeaderBuilder,
+    this.itemBuilder,
+    this.indexedItemBuilder,
+    this.itemComparator,
+    this.order = GroupedListOrder.ASC,
+    this.sort = true,
+    this.separator = const SizedBox.shrink(),
+    this.footer,
+  })  : assert(itemBuilder != null || indexedItemBuilder != null),
+        assert(groupSeparatorBuilder != null || groupHeaderBuilder != null);
 
   /// Can be used to define a custom sorting for the groups.
   ///
@@ -48,40 +57,31 @@ class SliverGroupedListView<T, E> extends StatefulWidget {
   final Widget Function(BuildContext context, T element, int index)?
       indexedItemBuilder;
 
+  /// Items of which [itemBuilder] or [indexedItemBuilder] produce the list.
+  final List<T> elements;
+
+  /// Widget at the end of the list
+  final Widget? footer;
+
+  /// Defines which elements are grouped together.
+  ///
+  /// Function is called for each element in the list, when equal for two
+  /// elements, those two belong to the same group.
+  final E Function(T element) groupBy;
+
   /// Whether the order of the list is ascending or descending.
   ///
   /// Defaults to ASC.
   final GroupedListOrder order;
+
+  /// Called to build separators for between each item in the list.
+  final Widget separator;
 
   /// Whether the elements will be sorted or not. If not it must be done
   ///  manually.
   ///
   /// Defauts to true.
   final bool sort;
-
-  /// Called to build separators for between each item in the list.
-  final Widget separator;
-
-  /// Widget at the end of the list
-  final Widget? footer;
-
-  /// Creates a [SliverGroupedListView]
-  const SliverGroupedListView({
-    super.key,
-    required this.elements,
-    required this.groupBy,
-    this.groupComparator,
-    this.groupSeparatorBuilder,
-    this.groupHeaderBuilder,
-    this.itemBuilder,
-    this.indexedItemBuilder,
-    this.itemComparator,
-    this.order = GroupedListOrder.ASC,
-    this.sort = true,
-    this.separator = const SizedBox.shrink(),
-    this.footer,
-  })  : assert(itemBuilder != null || indexedItemBuilder != null),
-        assert(groupSeparatorBuilder != null || groupHeaderBuilder != null);
 
   @override
   State<StatefulWidget> createState() => _SliverGroupedListViewState<T, E>();
@@ -91,44 +91,6 @@ class _SliverGroupedListViewState<T, E>
     extends State<SliverGroupedListView<T, E>> {
   final LinkedHashMap<String, GlobalKey> _keys = LinkedHashMap();
   List<T> _sortedElements = [];
-
-  @override
-  Widget build(BuildContext context) {
-    _sortedElements = _sortElements();
-    var hiddenIndex = 0;
-    bool isSeparator(int i) => i.isEven;
-
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        childCount: widget.footer == null
-            ? _sortedElements.length * 2
-            : (_sortedElements.length * 2) + 1,
-        (context, index) {
-          var actualIndex = index ~/ 2;
-
-          if (widget.footer != null && index == _sortedElements.length * 2) {
-            return widget.footer!;
-          }
-
-          if (index == hiddenIndex) {
-            return Opacity(
-              opacity: 1,
-              child: _buildGroupSeparator(_sortedElements[actualIndex]),
-            );
-          }
-          if (isSeparator(index)) {
-            var curr = widget.groupBy(_sortedElements[actualIndex]);
-            var prev = widget.groupBy(_sortedElements[actualIndex - 1]);
-            if (prev != curr) {
-              return _buildGroupSeparator(_sortedElements[actualIndex]);
-            }
-            return widget.separator;
-          }
-          return _buildItem(context, actualIndex);
-        },
-      ),
-    );
-  }
 
   Container _buildItem(context, int actualIndex) {
     var key = GlobalKey();
@@ -176,5 +138,43 @@ class _SliverGroupedListViewState<T, E>
       return widget.groupSeparatorBuilder!(widget.groupBy(element));
     }
     return widget.groupHeaderBuilder!(element);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _sortedElements = _sortElements();
+    var hiddenIndex = 0;
+    bool isSeparator(int i) => i.isEven;
+
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        childCount: widget.footer == null
+            ? _sortedElements.length * 2
+            : (_sortedElements.length * 2) + 1,
+        (context, index) {
+          var actualIndex = index ~/ 2;
+
+          if (widget.footer != null && index == _sortedElements.length * 2) {
+            return widget.footer!;
+          }
+
+          if (index == hiddenIndex) {
+            return Opacity(
+              opacity: 1,
+              child: _buildGroupSeparator(_sortedElements[actualIndex]),
+            );
+          }
+          if (isSeparator(index)) {
+            var curr = widget.groupBy(_sortedElements[actualIndex]);
+            var prev = widget.groupBy(_sortedElements[actualIndex - 1]);
+            if (prev != curr) {
+              return _buildGroupSeparator(_sortedElements[actualIndex]);
+            }
+            return widget.separator;
+          }
+          return _buildItem(context, actualIndex);
+        },
+      ),
+    );
   }
 }

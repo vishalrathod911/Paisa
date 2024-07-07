@@ -83,7 +83,7 @@ class _IntroCategoryAddWidgetState extends State<IntroCategoryAddWidget>
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 200,
+                          maxCrossAxisExtent: 250,
                           childAspectRatio: 2,
                         ),
                         physics: const NeverScrollableScrollPhysics(),

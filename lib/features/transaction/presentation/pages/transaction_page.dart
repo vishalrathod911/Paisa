@@ -106,9 +106,9 @@ class _TransactionPageState extends State<TransactionPage> {
               amountController.selection = TextSelection.collapsed(
                 offset: state.transaction.currency.toString().length,
               );
-              descriptionController.text = state.transaction.description ?? '';
+              descriptionController.text = state.transaction.description;
               descriptionController.selection = TextSelection.collapsed(
-                offset: state.transaction.description?.length ?? 0,
+                offset: state.transaction.description.length,
               );
             }
           },
@@ -165,14 +165,13 @@ class _TransactionPageState extends State<TransactionPage> {
                 bottomNavigationBar: SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: PaisaBigButton(
+                    child: PaisaButton.largeElevated(
                       onPressed: () {
                         context
                             .read<TransactionBloc>()
                             .add(TransactionEvent.addOrUpdate(isAddExpense));
                       },
-                      title:
-                          isAddExpense ? context.loc.add : context.loc.update,
+                      text: isAddExpense ? context.loc.add : context.loc.update,
                     ),
                   ),
                 ),
@@ -204,14 +203,13 @@ class _TransactionPageState extends State<TransactionPage> {
                   ),
                   actions: [
                     TransactionDeleteWidget(expenseId: widget.transactionId),
-                    PaisaButton(
+                    PaisaButton.mediumElevated(
                       onPressed: () {
                         context
                             .read<TransactionBloc>()
                             .add(TransactionEvent.addOrUpdate(isAddExpense));
                       },
-                      title:
-                          isAddExpense ? context.loc.add : context.loc.update,
+                      text: isAddExpense ? context.loc.add : context.loc.update,
                     ),
                     const SizedBox(width: 16),
                   ],

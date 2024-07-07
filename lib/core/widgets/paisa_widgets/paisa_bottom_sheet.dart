@@ -46,6 +46,9 @@ Future<T?> paisaAlertDialog<T>(
           onPressed: () => Navigator.pop(context),
           child: Text(
             context.loc.cancel,
+            style: context.bodyMedium?.copyWith(
+              color: context.onBackground,
+            ),
           ),
         ),
         confirmationButton,

@@ -35,7 +35,7 @@ class SummaryController {
     defaultValue: FilterExpense.daily,
   );
 
-  late final ValueNotifier<FilterExpense> sortHomeExpenseNotifier =
+  late final ValueNotifier<FilterExpense> accountTransactionsNotifier =
       ValueNotifier<FilterExpense>(sortHomeExpense);
 
   final ValueNotifier<TransactionType> typeNotifier =
