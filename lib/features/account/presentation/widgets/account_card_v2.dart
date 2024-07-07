@@ -24,9 +24,16 @@ class AccountCardV2 extends StatelessWidget {
         ColorScheme.fromSeed(seedColor: Color(account.color));
     final Color color = colorScheme.primaryContainer;
     final Color onPrimary = colorScheme.onPrimaryContainer;
-    final double expense = transactions.totalExpense;
-    final double income = transactions.totalIncome;
-    final double totalBalance = (account.amount + (income - expense));
+
+    final double totalExpense =
+        transactions.totalAccountExpense(account.superId!);
+    final double totalIncome =
+        transactions.totalAccountIncome(account.superId!);
+    final double balance = ((totalIncome - totalExpense) + account.amount);
+
+    final String income = totalIncome.toFormateCurrency(context);
+    final String expense = totalExpense.toFormateCurrency(context);
+    final String totalBalance = balance.toFormateCurrency(context);
     return Container(
       padding: const EdgeInsets.all(8.0),
       height: 242,
@@ -62,7 +69,7 @@ class AccountCardV2 extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
-                  totalBalance.toFormateCurrency(context),
+                  totalBalance,
                   style: context.headlineSmall?.copyWith(
                     color: onPrimary,
                     fontWeight: FontWeight.bold,
@@ -85,7 +92,7 @@ class AccountCardV2 extends StatelessWidget {
                   Expanded(
                     child: ThisMonthTransactionWidget(
                       type: TransactionType.income,
-                      content: income.toFormateCurrency(context),
+                      content: income,
                       color: onPrimary,
                     ),
                   ),
@@ -94,7 +101,7 @@ class AccountCardV2 extends StatelessWidget {
                     child: ThisMonthTransactionWidget(
                       type: TransactionType.expense,
                       color: onPrimary,
-                      content: expense.toFormateCurrency(context),
+                      content: expense,
                     ),
                   ),
                 ],
