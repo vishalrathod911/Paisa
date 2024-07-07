@@ -219,5 +219,8 @@
     "dateAndTime": "Data e hora",
     "goals": "Metas",
     "addGoalTooltip": "Adicionar meta",
-    "customize": "Customização"
+    "customize": "Customização",
+    "statistics": "Estatísticas",
+    "welcomeAppTitle": "Bem-vindo(a) ao Paisa",
+    "welcomeAppSubTitle": "Seu companheiro de finanças pessoais para uma gestão de dinheiro mais inteligente"
 }
