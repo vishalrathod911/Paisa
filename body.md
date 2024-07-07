@@ -1,5 +1,3 @@
-#### Fix debit transactions add/ delete
+#### Fixed home screen widget
 
-#### Fix Transfer transactions
-
-#### Improved welcome page
+#### Improved performance of loading transactions, accounts and categories
