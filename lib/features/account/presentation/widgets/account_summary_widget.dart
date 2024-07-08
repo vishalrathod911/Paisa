@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/account/presentation/widgets/summary_month_card_widget.dart';
-import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 
 class AccountSummaryWidget extends StatelessWidget {
   const AccountSummaryWidget({
@@ -15,7 +15,7 @@ class AccountSummaryWidget extends StatelessWidget {
     this.useAccountsList = false,
   });
 
-  final List<TransactionEntity> expenses;
+  final List<TransactionCombined> expenses;
   final bool useAccountsList;
 
   @override

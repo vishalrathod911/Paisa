@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/presentation/widgets/account_card.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/transaction/data/model/transaction_model.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/main.dart';
@@ -25,10 +26,12 @@ class AccountMobileVerticalPage extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 124),
             itemCount: accounts.length,
             itemBuilder: (context, index) {
-              final List<TransactionEntity> expenses = value
+              final List<TransactionCombined> expenses =
+                  [] /* value
                   .expensesFromAccountId(accounts[index].superId!)
                   .map((e) => e.toEntity())
-                  .toList();
+                  .toList() */
+                  ;
               return AccountCardV2(
                 account: accounts[index],
                 transactions: expenses,
@@ -44,10 +47,12 @@ class AccountMobileVerticalPage extends StatelessWidget {
               childAspectRatio: 16 / 11,
             ),
             itemBuilder: (BuildContext context, int index) {
-              final List<TransactionEntity> expenses = value
+              final List<TransactionCombined> expenses =
+                  [] /* value
                   .expensesFromAccountId(accounts[index].superId!)
                   .map((e) => e.toEntity())
-                  .toList();
+                  .toList() */
+                  ;
               return AccountCardV2(
                 account: accounts[index],
                 transactions: expenses,

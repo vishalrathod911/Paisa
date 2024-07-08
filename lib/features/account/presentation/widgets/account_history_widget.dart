@@ -8,6 +8,7 @@ import 'package:collection/collection.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_month_card.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
@@ -19,7 +20,7 @@ class AccountHistoryWidget extends StatelessWidget {
     required this.summaryController,
   });
 
-  final List<TransactionEntity> expenses;
+  final List<TransactionCombined> expenses;
   final SummaryController summaryController;
 
   @override
@@ -34,8 +35,8 @@ class AccountHistoryWidget extends StatelessWidget {
       return ValueListenableBuilder<FilterExpense>(
         valueListenable: summaryController.accountTransactionsNotifier,
         builder: (_, value, __) {
-          final Map<String, List<TransactionEntity>> maps = groupBy(expenses,
-              (TransactionEntity element) => element.time.formatted(value));
+          final Map<String, List<TransactionCombined>> maps = groupBy(expenses,
+              (TransactionCombined element) => element.time.formatted(value));
           return ListView.separated(
             separatorBuilder: (context, index) => const PaisaDivider(),
             shrinkWrap: true,

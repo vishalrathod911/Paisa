@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 
 // Project imports:
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_history_widget.dart';
@@ -13,7 +14,7 @@ class SummaryDesktopWidget extends StatelessWidget {
     required this.expenses,
   });
 
-  final List<TransactionEntity> expenses;
+  final List<TransactionCombined> expenses;
 
   @override
   Widget build(BuildContext context) {

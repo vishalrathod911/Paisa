@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 // Package imports:
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
@@ -24,7 +25,7 @@ class AccountCardV2 extends StatelessWidget {
   });
 
   final AccountEntity account;
-  final List<TransactionEntity> transactions;
+  final List<TransactionCombined> transactions;
 
   @override
   Widget build(BuildContext context) {

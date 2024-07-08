@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/domain/use_case/account_use_case.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/features/transaction/domain/use_case/transaction_use_case.dart';
 
@@ -19,12 +20,13 @@ class AccountsCubit extends Cubit<AccountsState> {
 
   void fetchTransactionsByAccountId(AccountEntity account) async {
     emit(state.copyWith(isLoading: true));
-    final List<TransactionEntity> transactions =
-        getTransactionsByAccountIdUseCase(
-            ParamsGetTransactionsByAccountId(account.superId!));
+    final List<TransactionCombined> transactions = []
+        /* getTransactionsByAccountIdUseCase(
+            ParamsGetTransactionsByAccountId(account.superId!)) */
+        ;
     emit(state.copyWith(
       isLoading: false,
-      transactions: transactions,
+      transactions: [],
       accountEntity: account,
     ));
   }
@@ -34,7 +36,7 @@ class AccountsCubit extends Cubit<AccountsState> {
 class AccountsState with _$AccountsState {
   const factory AccountsState.loaded({
     @Default(false) bool isLoading,
-    @Default([]) List<TransactionEntity> transactions,
+    @Default([]) List<TransactionCombined> transactions,
     AccountEntity? accountEntity,
   }) = _Initial;
 }

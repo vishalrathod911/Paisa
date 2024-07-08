@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/theme/custom_color.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 
@@ -15,7 +16,7 @@ class TransactionByMonthCardWidget extends StatelessWidget {
     required this.expenses,
   });
 
-  final List<TransactionEntity> expenses;
+  final List<TransactionCombined> expenses;
   final String title;
   final double total;
 
@@ -52,7 +53,7 @@ class TransactionByMonthCardWidget extends StatelessWidget {
           ),
           itemCount: expenses.length,
           itemBuilder: (_, index) {
-            final TransactionEntity transaction = expenses[index];
+            final TransactionCombined transaction = expenses[index];
             return TransactionItemWidget(transaction: transaction);
           },
         )

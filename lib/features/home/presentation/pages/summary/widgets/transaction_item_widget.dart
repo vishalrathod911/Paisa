@@ -11,6 +11,7 @@ import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_bottom_sheet.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/features/transaction/domain/repository/transaction_repository.dart';
@@ -22,7 +23,7 @@ class TransactionItemWidget extends StatelessWidget {
     required this.transaction,
   });
 
-  final TransactionEntity transaction;
+  final TransactionCombined transaction;
 
   String getSubtitle(
     BuildContext context,
@@ -78,14 +79,10 @@ class TransactionItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AccountEntity? account =
-        context.read<HomeCubit>().fetchAccountFromId(transaction.accountId);
-    final CategoryEntity? category =
-        context.read<HomeCubit>().fetchCategoryFromId(transaction.categoryId);
-    final AccountEntity? fromAccount =
-        context.read<HomeCubit>().fetchAccountFromId(transaction.fromAccountId);
-    final AccountEntity? toAccount =
-        context.read<HomeCubit>().fetchAccountFromId(transaction.toAccountId);
+    final AccountEntity account = transaction.account;
+    final CategoryEntity category = transaction.category;
+    final AccountEntity? fromAccount = transaction.fromAccount;
+    final AccountEntity? toAccount = transaction.toAccount;
 
     if (transaction.type == TransactionType.transfer) {
       if (fromAccount == null || toAccount == null || category == null) {
@@ -156,7 +153,7 @@ class TransferTransactionItemWidget extends StatelessWidget {
     required this.category,
   });
 
-  final TransactionEntity transaction;
+  final TransactionCombined transaction;
   final AccountEntity fromAccount, toAccount;
   final CategoryEntity category;
 
@@ -216,7 +213,7 @@ class CorruptedTransactionItemWidget extends StatelessWidget {
     required this.transactionEntity,
   });
 
-  final TransactionEntity transactionEntity;
+  final TransactionCombined transactionEntity;
 
   @override
   Widget build(BuildContext context) {

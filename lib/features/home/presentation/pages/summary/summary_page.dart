@@ -1,6 +1,7 @@
 // Flutter imports:
 
 import 'package:flutter/material.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 
 // Package imports:
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
@@ -19,8 +20,8 @@ class SummaryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<TransactionEntity> transactions =
-        Provider.of<List<TransactionEntity>>(context);
+    final List<TransactionCombined> transactions =
+        Provider.of<List<TransactionCombined>>(context);
     return ScreenTypeLayout.builder(
       mobile: (p0) => SummaryMobileWidget(transactions: transactions),
       tablet: (p0) => SummaryTabletWidget(expenses: transactions),

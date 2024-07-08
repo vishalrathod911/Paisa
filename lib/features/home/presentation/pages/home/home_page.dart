@@ -1,7 +1,6 @@
 // Flutter imports:
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -11,10 +10,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/widgets/combined_transaction_widget.dart';
+import 'package:paisa/core/widgets/multi_value_listenable_builder.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
-import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
-import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/features/transaction/data/model/transaction_model.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
@@ -85,59 +84,60 @@ class HomePage extends StatelessWidget {
       summaryController: getIt<SummaryController>(),
     );
     return MultiValueListenableBuilder(
-        valueListenables: [
-          getIt<Box<TransactionModel>>().listenable(),
-          getIt<Box<AccountModel>>().listenable(),
-          getIt<Box<CategoryModel>>().listenable()
-        ],
-        builder: (BuildContext context, List<dynamic> values, Widget? child) {
-          final List<TransactionModel> transactionModels =
-              values[0].values.toList();
-          final List<AccountModel> accountModels = values[1].values.toList();
-          final List<CategoryModel> categoryModels = values[2].values.toList();
-          final List<TransactionEntity> transactions =
-              transactionModels.excludeAccounts();
-          final List<AccountEntity> accounts = accountModels.toEntities();
-          final List<CategoryEntity> categories = categoryModels.toEntities();
+      valueListenable: [
+        getIt<Box<TransactionModel>>().listenable(),
+        getIt<Box<AccountModel>>().listenable(),
+        getIt<Box<CategoryModel>>().listenable()
+      ],
+      builder: (BuildContext context, List<dynamic> values, Widget? child) {
+        final List<TransactionModel> transactionModels =
+            values[0].values.toList();
 
-          _updateHomeScreenWidget(
-            context,
-            transactions: transactions,
-          );
+        final List<TransactionEntity> transactions =
+            transactionModels.excludeAccounts();
 
-          return MultiProvider(
-            providers: [
-              Provider.value(value: transactions),
-              Provider.value(value: accounts),
-              Provider.value(value: categories),
-            ],
-            child: PaisaAnnotatedRegionWidget(
-              color: context.surface,
-              child: PopScope(
-                canPop: context.read<HomeCubit>().state.index != 0,
-                onPopInvoked: (didPop) {
-                  if (didPop) {
-                    context.read<HomeCubit>().setCurrentIndex(0);
-                  }
-                },
-                child: ScreenTypeLayout.builder(
-                  mobile: (p0) => HomeMobileWidget(
-                    floatingActionButton: actionButton,
-                    destinations: destinations,
-                  ),
-                  tablet: (p0) => HomeTabletWidget(
-                    floatingActionButton: actionButton,
-                    destinations: destinations,
-                  ),
-                  desktop: (p0) => HomeDesktopWidget(
-                    floatingActionButton: actionButton,
-                    destinations: destinations,
+        _updateHomeScreenWidget(
+          context,
+          transactions: transactions,
+        );
+
+        return CombinedTransactionsWidget(
+          transactions: transactions,
+          builder: (context, transactions) {
+            return MultiProvider(
+              providers: [
+                Provider.value(value: transactions),
+              ],
+              child: PaisaAnnotatedRegionWidget(
+                color: context.surface,
+                child: PopScope(
+                  canPop: context.read<HomeCubit>().state.index != 0,
+                  onPopInvoked: (didPop) {
+                    if (didPop) {
+                      context.read<HomeCubit>().setCurrentIndex(0);
+                    }
+                  },
+                  child: ScreenTypeLayout.builder(
+                    mobile: (p0) => HomeMobileWidget(
+                      floatingActionButton: actionButton,
+                      destinations: destinations,
+                    ),
+                    tablet: (p0) => HomeTabletWidget(
+                      floatingActionButton: actionButton,
+                      destinations: destinations,
+                    ),
+                    desktop: (p0) => HomeDesktopWidget(
+                      floatingActionButton: actionButton,
+                      destinations: destinations,
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-        });
+            );
+          },
+        );
+      },
+    );
   }
 }
 
@@ -151,34 +151,6 @@ class Destination {
   final Icon icon;
   final PageType pageType;
   final Icon selectedIcon;
-}
-
-class MultiValueListenableBuilder extends StatelessWidget {
-  final List<ValueListenable> valueListenables;
-  final Widget Function(
-      BuildContext context, List<dynamic> values, Widget? child) builder;
-  final Widget? child;
-
-  MultiValueListenableBuilder({
-    Key? key,
-    required this.valueListenables,
-    required this.builder,
-    this.child,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<dynamic>(
-      valueListenable: valueListenables[0],
-      builder: (context, _, __) {
-        return builder(
-          context,
-          valueListenables.map((listenable) => listenable.value).toList(),
-          child,
-        );
-      },
-    );
-  }
 }
 
 Future<void> _updateHomeScreenWidget(

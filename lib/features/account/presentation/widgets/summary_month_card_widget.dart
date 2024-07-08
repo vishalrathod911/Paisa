@@ -9,7 +9,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/theme/custom_color.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_card.dart';
-import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 
 class SummaryMonthCardWidget extends StatelessWidget {
   const SummaryMonthCardWidget({
@@ -17,7 +17,7 @@ class SummaryMonthCardWidget extends StatelessWidget {
     required this.transactions,
   });
 
-  final List<TransactionEntity> transactions;
+  final List<TransactionCombined> transactions;
 
   @override
   Widget build(BuildContext context) {

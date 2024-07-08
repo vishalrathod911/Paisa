@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
@@ -22,8 +23,8 @@ class TransactionByCategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<TransactionEntity> expenses =
-        context.read<HomeCubit>().fetchExpensesFromCategoryId(categoryId);
+    final List<TransactionCombined> expenses =
+        []; //context.read<HomeCubit>().fetchExpensesFromCategoryId(categoryId);
     final CategoryEntity? categoryEntity =
         context.read<HomeCubit>().fetchCategoryFromId(categoryId);
     final double total = expenses.totalIncome - expenses.totalExpense;

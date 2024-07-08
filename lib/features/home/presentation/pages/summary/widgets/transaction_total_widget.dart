@@ -9,9 +9,9 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_total_for_month_widget.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/total_balance_widget.dart';
-import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/main.dart';
 
 class TransactionTotalWidget extends StatelessWidget {
@@ -20,7 +20,7 @@ class TransactionTotalWidget extends StatelessWidget {
     required this.transactions,
   });
 
-  final List<TransactionEntity> transactions;
+  final List<TransactionCombined> transactions;
 
   @override
   Widget build(BuildContext context) {

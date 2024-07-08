@@ -17,26 +17,28 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$AccountsState {
   bool get isLoading => throw _privateConstructorUsedError;
-  List<TransactionEntity> get transactions =>
+  List<TransactionCombined> get transactions =>
       throw _privateConstructorUsedError;
   AccountEntity? get accountEntity => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading,
-            List<TransactionEntity> transactions, AccountEntity? accountEntity)
+    required TResult Function(
+            bool isLoading,
+            List<TransactionCombined> transactions,
+            AccountEntity? accountEntity)
         loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, List<TransactionEntity> transactions,
+    TResult? Function(bool isLoading, List<TransactionCombined> transactions,
             AccountEntity? accountEntity)?
         loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, List<TransactionEntity> transactions,
+    TResult Function(bool isLoading, List<TransactionCombined> transactions,
             AccountEntity? accountEntity)?
         loaded,
     required TResult orElse(),
@@ -72,7 +74,7 @@ abstract class $AccountsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
-      List<TransactionEntity> transactions,
+      List<TransactionCombined> transactions,
       AccountEntity? accountEntity});
 
   $AccountEntityCopyWith<$Res>? get accountEntity;
@@ -103,7 +105,7 @@ class _$AccountsStateCopyWithImpl<$Res, $Val extends AccountsState>
       transactions: null == transactions
           ? _value.transactions
           : transactions // ignore: cast_nullable_to_non_nullable
-              as List<TransactionEntity>,
+              as List<TransactionCombined>,
       accountEntity: freezed == accountEntity
           ? _value.accountEntity
           : accountEntity // ignore: cast_nullable_to_non_nullable
@@ -134,7 +136,7 @@ abstract class _$$InitialImplCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
-      List<TransactionEntity> transactions,
+      List<TransactionCombined> transactions,
       AccountEntity? accountEntity});
 
   @override
@@ -164,7 +166,7 @@ class __$$InitialImplCopyWithImpl<$Res>
       transactions: null == transactions
           ? _value._transactions
           : transactions // ignore: cast_nullable_to_non_nullable
-              as List<TransactionEntity>,
+              as List<TransactionCombined>,
       accountEntity: freezed == accountEntity
           ? _value.accountEntity
           : accountEntity // ignore: cast_nullable_to_non_nullable
@@ -178,17 +180,17 @@ class __$$InitialImplCopyWithImpl<$Res>
 class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   const _$InitialImpl(
       {this.isLoading = false,
-      final List<TransactionEntity> transactions = const [],
+      final List<TransactionCombined> transactions = const [],
       this.accountEntity})
       : _transactions = transactions;
 
   @override
   @JsonKey()
   final bool isLoading;
-  final List<TransactionEntity> _transactions;
+  final List<TransactionCombined> _transactions;
   @override
   @JsonKey()
-  List<TransactionEntity> get transactions {
+  List<TransactionCombined> get transactions {
     if (_transactions is EqualUnmodifiableListView) return _transactions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_transactions);
@@ -238,8 +240,10 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool isLoading,
-            List<TransactionEntity> transactions, AccountEntity? accountEntity)
+    required TResult Function(
+            bool isLoading,
+            List<TransactionCombined> transactions,
+            AccountEntity? accountEntity)
         loaded,
   }) {
     return loaded(isLoading, transactions, accountEntity);
@@ -248,7 +252,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool isLoading, List<TransactionEntity> transactions,
+    TResult? Function(bool isLoading, List<TransactionCombined> transactions,
             AccountEntity? accountEntity)?
         loaded,
   }) {
@@ -258,7 +262,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool isLoading, List<TransactionEntity> transactions,
+    TResult Function(bool isLoading, List<TransactionCombined> transactions,
             AccountEntity? accountEntity)?
         loaded,
     required TResult orElse(),
@@ -301,13 +305,13 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
 abstract class _Initial implements AccountsState {
   const factory _Initial(
       {final bool isLoading,
-      final List<TransactionEntity> transactions,
+      final List<TransactionCombined> transactions,
       final AccountEntity? accountEntity}) = _$InitialImpl;
 
   @override
   bool get isLoading;
   @override
-  List<TransactionEntity> get transactions;
+  List<TransactionCombined> get transactions;
   @override
   AccountEntity? get accountEntity;
   @override

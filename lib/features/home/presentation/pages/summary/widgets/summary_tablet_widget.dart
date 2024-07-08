@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
 
@@ -16,7 +17,7 @@ class SummaryTabletWidget extends StatelessWidget {
     required this.expenses,
   });
 
-  final List<TransactionEntity> expenses;
+  final List<TransactionCombined> expenses;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class SummaryTabletWidget extends StatelessWidget {
               SliverList.builder(
                 itemCount: expenses.length,
                 itemBuilder: (BuildContext context, int index) {
-                  final TransactionEntity transaction = expenses[index];
+                  final TransactionCombined transaction = expenses[index];
                   return TransactionItemWidget(transaction: transaction);
                 },
               ),

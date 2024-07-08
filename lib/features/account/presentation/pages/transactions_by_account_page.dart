@@ -6,6 +6,7 @@ import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/presentation/bloc/accounts_bloc.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
@@ -60,8 +61,8 @@ class TransactionsByAccountPage extends StatelessWidget {
     final ScrollController scrollController = ScrollController();
     final AccountEntity? accountEntity =
         context.read<HomeCubit>().fetchAccountFromId(accountId);
-    final List<TransactionEntity> transactions =
-        context.read<HomeCubit>().fetchTransactionsFromAccountId(accountId);
+    final List<TransactionCombined> transactions =
+        []; // context.read<HomeCubit>().fetchTransactionsFromAccountId(accountId);
     return BlocListener<AccountBloc, AccountState>(
       listener: (context, state) {
         if (state is AccountDeletedState) {
@@ -106,7 +107,8 @@ class TransactionsByAccountPage extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: transactions.length,
                     itemBuilder: (context, index) {
-                      final TransactionEntity transaction = transactions[index];
+                      final TransactionCombined transaction =
+                          transactions[index];
                       return TransactionItemWidget(transaction: transaction);
                     },
                   ),

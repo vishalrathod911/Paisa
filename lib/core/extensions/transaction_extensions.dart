@@ -9,9 +9,84 @@ import 'package:paisa/core/common.dart';
 
 // Project imports:
 import 'package:paisa/core/enum/transaction_type.dart';
+import 'package:paisa/features/home/presentation/controller/combined_transaction.dart';
 import 'package:paisa/features/transaction/data/model/search_query.dart';
 import 'package:paisa/features/transaction/data/model/transaction_model.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
+
+extension TransactionCombinedHelper on Iterable<TransactionCombined> {
+  Iterable<TransactionCombined> get expenseList =>
+      where((element) => element.type == TransactionType.expense);
+
+  double get totalExpense => expenseList
+      .map((e) => e.currency)
+      .fold<double>(0, (previousValue, element) => previousValue + (element));
+
+  double get totalIncome => incomeList
+      .map((e) => e.currency)
+      .fold<double>(0, (previousValue, element) => previousValue + (element));
+
+  Iterable<TransactionCombined> get incomeList =>
+      where((element) => element.type == TransactionType.income);
+
+  double get thisMonthExpense => thisMonthExpensesList
+      .map((e) => e.currency)
+      .fold<double>(0, (previousValue, element) => previousValue + element);
+
+  double get filterTotal => fold<double>(0, (previousValue, element) {
+        if (element.type == TransactionType.expense) {
+          return previousValue - (element.currency);
+        } else if (element.type == TransactionType.income) {
+          return previousValue + (element.currency);
+        } else {
+          return previousValue;
+        }
+      });
+  List<TransactionCombined> get thisMonthIncomeList =>
+      where((element) => element.type == TransactionType.income)
+          .where((element) =>
+              element.time.month == DateTime.now().month &&
+              element.time.year == DateTime.now().year)
+          .toList();
+  List<double> get incomeDoubleList =>
+      thisMonthIncomeList.map((element) => (element.currency)).toList();
+
+  List<TransactionCombined> get thisMonthExpensesList =>
+      where((element) => element.type == TransactionType.expense)
+          .where((element) =>
+              element.time.month == DateTime.now().month &&
+              element.time.year == DateTime.now().year)
+          .toList();
+
+  List<double> get expenseDoubleList =>
+      thisMonthExpensesList.map((element) => (element.currency)).toList();
+
+  double totalAccountExpense(int? accountId) {
+    return fold(0, (previousValue, element) {
+      if (element.fromAccount?.superId == accountId &&
+          element.type == TransactionType.transfer) {
+        return previousValue + element.currency;
+      } else if (element.type == TransactionType.expense) {
+        return previousValue + element.currency;
+      } else {
+        return previousValue + 0;
+      }
+    });
+  }
+
+  double totalAccountIncome(int? accountId) {
+    return fold(0, (previousValue, element) {
+      if (element.toAccount?.superId == accountId &&
+          element.type == TransactionType.transfer) {
+        return previousValue + element.currency;
+      } else if (element.type == TransactionType.income) {
+        return previousValue + element.currency;
+      } else {
+        return previousValue + 0;
+      }
+    });
+  }
+}
 
 extension ExpenseModelBoxMapping on Box<TransactionModel> {
   List<TransactionModel> get expenses =>
