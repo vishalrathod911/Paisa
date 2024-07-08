@@ -32,7 +32,7 @@ class _BiometricAuthWidgetState extends State<BiometricAuthWidget> {
             SnackBar(
               content: Text(
                 result ? 'Authenticated' : 'Not authenticated',
-                style: TextStyle(
+                style: context.bodyMedium?.copyWith(
                   color: context.onPrimaryContainer,
                 ),
               ),
