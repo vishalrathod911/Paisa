@@ -48,7 +48,7 @@ class NavigationBarItem extends StatelessWidget {
             ),
             Text(
               title,
-              style: TextStyle(color: color),
+              style: context.bodyMedium?.copyWith(color: color),
             )
           ],
         ),

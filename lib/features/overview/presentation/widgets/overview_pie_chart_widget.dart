@@ -70,7 +70,7 @@ class PieChartWidget extends StatelessWidget {
         color: color.withOpacity(0.3),
         value: e.value.total / total,
         title: '${((e.value.total / total) * 100).toStringAsFixed(0)}%',
-        titleStyle: TextStyle(
+        titleStyle: context.bodyMedium?.copyWith(
           fontWeight: FontWeight.bold,
           color: color,
         ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
-import 'package:paisa/features/account/presentation/widgets/account_card_v2.dart';
+import 'package:paisa/features/account/presentation/widgets/account_card.dart';
 import 'package:paisa/features/transaction/data/model/transaction_model.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/main.dart';

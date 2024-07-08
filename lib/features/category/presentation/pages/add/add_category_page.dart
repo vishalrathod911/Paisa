@@ -233,7 +233,7 @@ class DeleteCategoryWidget extends StatelessWidget {
           children: [
             TextSpan(
               text: context.read<CategoryBloc>().categoryTitle,
-              style: const TextStyle(
+              style: context.bodyMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),

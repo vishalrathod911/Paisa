@@ -56,7 +56,7 @@ class ChooseCalendarFormatWidgetState
                     },
                     title: Text(
                       e.exampleValue,
-                      style: TextStyle(
+                      style: context.bodyMedium?.copyWith(
                         color: context.onSurface,
                       ),
                     ),

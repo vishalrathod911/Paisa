@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/presentation/cubit/accounts_cubit.dart';
-import 'package:paisa/features/account/presentation/widgets/account_card_v2.dart';
+import 'package:paisa/features/account/presentation/widgets/account_card.dart';
 
 class AccountPageViewWidget extends StatefulWidget {
   const AccountPageViewWidget({

@@ -368,7 +368,7 @@ class DeleteAccountWidget extends StatelessWidget {
           children: [
             TextSpan(
               text: context.read<AccountBloc>().accountName,
-              style: const TextStyle(
+              style: context.bodyMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),

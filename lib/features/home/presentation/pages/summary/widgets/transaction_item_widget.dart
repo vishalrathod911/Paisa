@@ -53,7 +53,7 @@ class TransactionItemWidget extends StatelessWidget {
           children: [
             TextSpan(
               text: ' ${transaction.name}',
-              style: const TextStyle(
+              style: context.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),

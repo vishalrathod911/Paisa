@@ -352,7 +352,7 @@ class _CategorySelectWidgetState extends State<CategorySelectWidget> {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   label: Text(
                     context.loc.addNew,
-                    style: TextStyle(
+                    style: context.bodyMedium?.copyWith(
                       color: context.primary,
                     ),
                   ),
@@ -393,8 +393,10 @@ class _CategorySelectWidgetState extends State<CategorySelectWidget> {
                   ),
                   showCheckmark: false,
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  label: Text(category.name),
-                  labelStyle: context.titleMedium?.copyWith(
+                  label: Text(
+                    category.name,
+                  ),
+                  labelStyle: context.bodyMedium?.copyWith(
                       color: category.superId == selectedId
                           ? context.primary
                           : context.onSurfaceVariant),

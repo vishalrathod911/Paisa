@@ -155,13 +155,13 @@ class DebtItemWidget extends StatelessWidget {
                   ListTile(
                     title: Text(
                       debt.name,
-                      style: context.headlineSmall?.copyWith(
+                      style: context.titleLarge?.copyWith(
                         color: context.onSurfaceVariant,
                       ),
                     ),
                     subtitle: Text(
                       debt.description,
-                      style: TextStyle(
+                      style: context.bodyMedium?.copyWith(
                         color: Theme.of(context)
                             .colorScheme
                             .onSurfaceVariant

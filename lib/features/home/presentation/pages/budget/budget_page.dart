@@ -70,8 +70,9 @@ class BudgetItem extends StatelessWidget {
     final double totalExpenses = expenses.totalExpense;
     final double totalBudget =
         (category.finalBudget == 0.0 ? 1 : category.finalBudget);
-    double difference = category.finalBudget - totalExpenses;
-
+    final double difference = category.finalBudget - totalExpenses;
+    final String remaining =
+        (difference < 0 ? 0.0 : difference).toFormateCurrency(context);
     return ListTile(
       isThreeLine: true,
       leading: CircleAvatar(
@@ -104,7 +105,8 @@ class BudgetItem extends StatelessWidget {
                       TextSpan(
                         text:
                             ' ${category.finalBudget.toFormateCurrency(context)}',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: context.bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
@@ -118,7 +120,9 @@ class BudgetItem extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: ' ${totalExpenses.toFormateCurrency(context)}',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        style: context.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: difference < 0 ? context.error : null),
                       )
                     ],
                   ),
@@ -131,9 +135,10 @@ class BudgetItem extends StatelessWidget {
                     ),
                     children: [
                       TextSpan(
-                        text:
-                            ' ${(difference < 0 ? 0.0 : difference).toFormateCurrency(context)}',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        text: remaining,
+                        style: context.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       )
                     ],
                   ),
