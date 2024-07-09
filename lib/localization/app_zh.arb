@@ -79,7 +79,7 @@
     "version": "版本",
     "versionNumber": "v{version}",
     "deleteAccount": "删除账户将删除与此账户相关的所有支出 ",
-    "deleteCategory": "删除类别将删除与此类别相关的所有支出",
+    "deleteCategory": "删除类别将删除与此类别相关的所有支出 ",
     "deleteExpense": "支出将从账户中永久删除",
     "dialogDeleteTitle": "永久删除？",
     "updatedCategory": "类别已更新",

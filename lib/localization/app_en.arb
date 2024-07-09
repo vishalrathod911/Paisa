@@ -410,7 +410,7 @@
         "description": "Delete account message",
         "type": "text"
     },
-    "deleteCategory": "Deleting the category deletes all expenses which are tied to this category",
+    "deleteCategory": "Deleting the category deletes all expenses which are tied to this category ",
     "@deleteCategory": {
         "description": "Delete category message",
         "type": "text"
