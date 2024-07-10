@@ -140,6 +140,7 @@ class Languages {
     LanguageEntity(code: 'pt', value: 'Portuguese'),
     LanguageEntity(code: 'ru', value: 'Russian'),
     LanguageEntity(code: 'ta', value: 'Tamil (IN)'),
+    LanguageEntity(code: 'ma', value: 'Malayalam (IN)'),
     LanguageEntity(code: 'vi', value: 'Vietnamese'),
     LanguageEntity(code: 'zh', value: 'Chinese'),
     LanguageEntity(code: 'zh_TW', value: 'Traditional Chinese'),
