@@ -54,14 +54,8 @@
   ],
 
   "de": [
-    "defaultAccount",
-    "deletedCategory",
     "pickColorAccountDesc",
-    "back",
-    "emptyRecommendedAccountsInfo",
-    "statistics",
-    "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "emptyRecommendedAccountsInfo"
   ],
 
   "es": [

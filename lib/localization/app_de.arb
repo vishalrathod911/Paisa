@@ -7,6 +7,7 @@
     "accounts": "Konten",
     "budget": "Budget",
     "overview": "Übersicht",
+    "defaultAccount": "Standardkonto"
     "recurring": "Wiederkehrende Zahlungen",
     "debts": "Schulden",
     "addTransactionTooltip": "Transaktion hinzufügen",
@@ -51,6 +52,7 @@
     "addedAccount": "Konto erfolgreich hinzugefügt",
     "updatedAccount": "Konto erfolgreich bearbeitet",
     "deletedAccount": "Konto erfolgreich gelöscht",
+    "deletedCategory": "Kategorie erfolgreich gelöscht",
     "successAddCategory": "Kategorie erfolgreich hinzugefügt",
     "validName": "Gebe einen gültigen Namen ein",
     "profile": "Mein Profil",
@@ -183,6 +185,7 @@
     "authenticate": "Authentifizieren",
     "biometricMessage": "Berühre den Fingerabdrucksensor",
     "addedCategories": "Hinzugefügte Kategorien",
+    "back": "Zurück",
     "recommendedCategories": "Standard Kategorien",
     "addedAccounts": "Hinzugefügte Konten",
     "recommendedAccounts": "Standard Konten",
@@ -214,5 +217,8 @@
     "dateAndTime": "Datum & Zeit",
     "goals": "Ziele",
     "addGoalTooltip": "Ziel hinzufügen",
-    "customize": "Personalisierung"
+    "customize": "Personalisierung",
+    "statistics": "Statistik",
+    "welcomeAppTitle": "Willkommen bei Paisa",
+    "welcomeAppSubTitle": "Deinem persönlichen Finanzbegleiter für intelligentere Geldverwaltung",                          
 }
