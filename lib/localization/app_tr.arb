@@ -78,7 +78,7 @@
     "version": "Versiyon",
     "versionNumber": "v{version}",
     "deleteAccount": "Hesabın silinmesi, bu hesaba bağlı tüm masrafları siler ",
-    "deleteCategory": "Kategorinin silinmesi, bu kategoriye bağlı tüm giderleri siler",
+    "deleteCategory": "Kategorinin silinmesi, bu kategoriye bağlı tüm giderleri siler ",
     "deleteExpense": "Gider hesaptan kalıcı olarak kaldırılacak",
     "dialogDeleteTitle": "Kalıcı olarak silinsin mi?",
     "updatedCategory": "Kategori güncellendi",
