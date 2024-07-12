@@ -120,7 +120,7 @@ class AccountPageState extends State<AccountPage> {
               context.showMaterialSnackBar(
                 isAccountAddOrUpdate
                     ? context.loc.addedAccount
-                    : context.loc.updateAccount,
+                    : context.loc.updatedAccount,
                 backgroundColor: context.primaryContainer,
                 color: context.onPrimaryContainer,
               );
