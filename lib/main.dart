@@ -36,9 +36,12 @@ Future<void> main() async {
       TargetPlatform.iOS == defaultTargetPlatform) {
     initAppShortcuts();
   }
-
-  HomeWidget.setAppGroupId('group.PaisaHomeScreenWidgetGroup');
-  _addDummyData();
+  if (Platform.isIOS) {
+    HomeWidget.setAppGroupId('group.PaisaHomeScreenWidgetGroup');
+  }
+  if (kDebugMode) {
+    _addDummyData();
+  }
 }
 
 void _addDummyData() async {
