@@ -134,7 +134,7 @@ class _NameAutoSuggestState extends State<NameAutoSuggest> {
             setState(() {
               _suggestions = widget.names
                   .where((name) =>
-                      name.toLowerCase().startsWith(value.toLowerCase()))
+                      name.toLowerCase().contains(value.toLowerCase()))
                   .toList();
             });
             context.read<TransactionBloc>().expenseName = value;
