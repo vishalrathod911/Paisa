@@ -59,12 +59,12 @@ class SummaryMobileWidget extends StatelessWidget {
           valueListenable:
               Provider.of<SummaryController>(context).notifyFilterExpense,
           builder: (context, value, child) {
-            return SliverGroupedListView(
+            return SliverGroupedListView<TransactionEntity, String>(
               elements: transactions,
               groupBy: (element) => element.time.formatted(value),
               separator: const PaisaDivider(),
               sort: false,
-              groupSeparatorBuilder: (value) {
+              groupSeparatorBuilder: (value, groupTotal) {
                 return ListTile(
                   title: Text(
                     value,
@@ -73,7 +73,17 @@ class SummaryMobileWidget extends StatelessWidget {
                       color: context.onBackground,
                     ),
                   ),
+                  trailing: Text(
+                    groupTotal.toFormateCurrency(context),
+                    style: context.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                      color: context.onBackground,
+                    ),
+                  ),
                 );
+              },
+              groupTotalCalculator: (List<TransactionEntity> groupElements) {
+                return groupElements.filterTotal;
               },
               itemBuilder: (context, transaction) {
                 return TransactionItemWidget(transaction: transaction);

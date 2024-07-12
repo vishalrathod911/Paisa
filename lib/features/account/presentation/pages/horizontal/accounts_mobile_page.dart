@@ -13,6 +13,7 @@ import 'package:paisa/features/account/presentation/widgets/accounts_page_view_w
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transactions_header_widget.dart';
+import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:provider/provider.dart';
 
 class AccountsHorizontalMobilePage extends StatelessWidget {
@@ -46,7 +47,7 @@ class AccountsHorizontalMobilePage extends StatelessWidget {
                   groupBy: (element) => element.time.formatted(value),
                   separator: const PaisaDivider(),
                   sort: false,
-                  groupSeparatorBuilder: (value) {
+                  groupSeparatorBuilder: (value, groupTotal) {
                     return ListTile(
                       title: Text(
                         value,
@@ -55,7 +56,18 @@ class AccountsHorizontalMobilePage extends StatelessWidget {
                           color: context.onBackground,
                         ),
                       ),
+                      trailing: Text(
+                        groupTotal.toFormateCurrency(context),
+                        style: context.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: context.onBackground,
+                        ),
+                      ),
                     );
+                  },
+                  groupTotalCalculator:
+                      (List<TransactionEntity> groupElements) {
+                    return groupElements.filterTotal;
                   },
                   itemBuilder: (context, transaction) {
                     return TransactionItemWidget(transaction: transaction);
