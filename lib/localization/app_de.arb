@@ -7,7 +7,7 @@
     "accounts": "Konten",
     "budget": "Budget",
     "overview": "Übersicht",
-    "defaultAccount": "Standardkonto"
+    "defaultAccount": "Standardkonto",
     "recurring": "Wiederkehrende Zahlungen",
     "debts": "Schulden",
     "addTransactionTooltip": "Transaktion hinzufügen",
@@ -220,5 +220,5 @@
     "customize": "Personalisierung",
     "statistics": "Statistik",
     "welcomeAppTitle": "Willkommen bei Paisa",
-    "welcomeAppSubTitle": "Deinem persönlichen Finanzbegleiter für intelligentere Geldverwaltung",                          
+    "welcomeAppSubTitle": "Deinem persönlichen Finanzbegleiter für intelligentere Geldverwaltung"
 }
