@@ -50,7 +50,7 @@ Future<GetIt> configInjector(
     HomeWidget.setAppGroupId('group.PaisaHomeScreenWidgetGroup');
   }
   if (kDebugMode) {
-    _addDummyData();
+    //_addDummyData();
   }
   return init(
     getIt,
