@@ -1,18 +1,14 @@
-// Flutter imports:
 import 'dart:io';
-// Dart imports:
+
 import 'dart:math';
 
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:get_it/get_it.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-// Project imports:
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/data/data_sources/account_data_source.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
@@ -21,15 +17,13 @@ import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/transaction/data/data_sources/local/transaction_data_manager.dart';
 import 'package:paisa/features/transaction/data/model/transaction_model.dart';
 
-// Package imports:
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:injectable/injectable.dart';
+import 'package:paisa/main.dart';
 import 'package:quick_actions/quick_actions.dart';
 
-// Project imports:
 import 'package:paisa/config/routes.dart';
-import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/di/dependency_injection.config.dart';
 import 'package:paisa/di/module/hive_module.dart';
 

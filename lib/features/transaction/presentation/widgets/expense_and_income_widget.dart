@@ -28,7 +28,7 @@ class ExpenseIncomeWidget extends StatelessWidget {
     return ListView(
       children: [
         const SizedBox(height: 16),
-        TransactionNameWidget(controller: nameController),
+        TransactionNameWidgetV2(controller: nameController),
         const SizedBox(height: 16),
         TransactionAmountWidget(controller: amountController),
         const SizedBox(height: 16),

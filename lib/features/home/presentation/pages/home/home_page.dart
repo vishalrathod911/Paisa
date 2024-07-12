@@ -85,7 +85,7 @@ class HomePage extends StatelessWidget {
       summaryController: getIt<SummaryController>(),
     );
     return MultiValueListenableBuilder(
-        valueListenables: [
+        valueListenable: [
           getIt<Box<TransactionModel>>().listenable(),
           getIt<Box<AccountModel>>().listenable(),
           getIt<Box<CategoryModel>>().listenable()
@@ -154,26 +154,27 @@ class Destination {
 }
 
 class MultiValueListenableBuilder extends StatelessWidget {
-  final List<ValueListenable> valueListenables;
-  final Widget Function(
-      BuildContext context, List<dynamic> values, Widget? child) builder;
-  final Widget? child;
-
-  MultiValueListenableBuilder({
-    Key? key,
-    required this.valueListenables,
+  const MultiValueListenableBuilder({
+    super.key,
+    required this.valueListenable,
     required this.builder,
     this.child,
-  }) : super(key: key);
+  });
+
+  final Widget Function(
+      BuildContext context, List<dynamic> values, Widget? child) builder;
+
+  final Widget? child;
+  final List<ValueListenable> valueListenable;
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<dynamic>(
-      valueListenable: valueListenables[0],
+      valueListenable: valueListenable[0],
       builder: (context, _, __) {
         return builder(
           context,
-          valueListenables.map((listenable) => listenable.value).toList(),
+          valueListenable.map((listenable) => listenable.value).toList(),
           child,
         );
       },

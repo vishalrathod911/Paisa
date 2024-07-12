@@ -226,7 +226,8 @@ class _TransactionPageState extends State<TransactionPage> {
                             children: [
                               const TransactionToggleButtons(),
                               const SizedBox(height: 16),
-                              TransactionNameWidget(controller: nameController),
+                              TransactionNameWidgetV2(
+                                  controller: nameController),
                               const SizedBox(height: 16),
                               TransactionDescriptionWidget(
                                   controller: descriptionController),
