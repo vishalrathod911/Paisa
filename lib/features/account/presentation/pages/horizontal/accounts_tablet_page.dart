@@ -1,5 +1,3 @@
-// Flutter imports:
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:paisa/core/common.dart';
@@ -7,7 +5,6 @@ import 'package:paisa/core/enum/filter_expense.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_divider.dart';
 import 'package:paisa/core/widgets/section_list_view/sectioned_list_view.dart';
 
-// Project imports:
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/presentation/cubit/accounts_cubit.dart';
 import 'package:paisa/features/account/presentation/widgets/accounts_page_view_widget.dart';

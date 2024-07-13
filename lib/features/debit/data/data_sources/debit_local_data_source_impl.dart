@@ -1,9 +1,7 @@
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:injectable/injectable.dart';
 
-// Project imports:
 import 'package:paisa/features/debit/data/models/debit_model.dart';
 
 abstract class DebtDataSource {

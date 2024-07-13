@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 
 class PaisaAnnotatedRegionWidget extends StatelessWidget {

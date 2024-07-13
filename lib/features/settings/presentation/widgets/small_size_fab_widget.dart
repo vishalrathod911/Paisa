@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/config/routes.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 
 class SmallSizeFabWidget extends StatefulWidget {
@@ -21,6 +18,7 @@ class _SmallSizeFabWidgetState extends State<SmallSizeFabWidget> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
+      activeColor: context.secondary,
       secondary: Icon(MdiIcons.resize),
       title: Text(
         context.loc.smallSizeFab,

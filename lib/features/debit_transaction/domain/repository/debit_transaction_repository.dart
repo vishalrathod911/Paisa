@@ -1,4 +1,3 @@
-// Project imports:
 import 'package:paisa/features/debit_transaction/domain/entities/debit_transaction_entity.dart';
 
 abstract class DebitTransactionRepository {

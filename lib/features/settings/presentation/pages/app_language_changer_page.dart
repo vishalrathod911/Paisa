@@ -1,11 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
 
-// Project imports:
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_annotate_region_widget.dart';
@@ -41,7 +39,7 @@ class _AppLanguageChangerPageState extends State<AppLanguageChangerPage> {
   Widget build(BuildContext context) {
     return PaisaAnnotatedRegionWidget(
       color: context.background,
-      child: Scaffold(
+      child: PaisaScaffold(
         appBar: context.materialYouAppBar(context.loc.chooseAppLanguage),
         body: ListView.builder(
           shrinkWrap: true,

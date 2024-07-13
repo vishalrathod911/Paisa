@@ -1,7 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 

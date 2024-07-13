@@ -54,7 +54,7 @@ class CurrentTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color color =
-        isSelected ? context.primary : Theme.of(context).disabledColor;
+        isSelected ? context.secondary : Theme.of(context).disabledColor;
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),

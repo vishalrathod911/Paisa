@@ -1,8 +1,6 @@
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/adapters.dart';
 
-// Project imports:
 import 'package:paisa/features/debit_transaction/data/model/debit_transactions_model.dart';
 import 'package:paisa/features/debit_transaction/domain/entities/debit_transaction_entity.dart';
 

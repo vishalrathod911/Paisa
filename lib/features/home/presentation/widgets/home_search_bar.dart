@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:paisa/config/routes.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 
 class HomeSearchBar extends StatelessWidget {

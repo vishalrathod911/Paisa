@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:paisa/features/account/presentation/cubit/accounts_cubit.dart';
 import 'package:paisa/features/overview/presentation/overview_page.dart';
 
-// Project imports:
 import 'package:paisa/features/account/presentation/pages/accounts_page.dart';
 import 'package:paisa/features/category/presentation/pages/category_list_page.dart';
 import 'package:paisa/features/debit/presentation/pages/debts_page.dart';

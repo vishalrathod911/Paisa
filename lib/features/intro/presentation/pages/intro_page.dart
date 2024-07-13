@@ -1,11 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Package imports:
 import 'package:hive_flutter/adapters.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/lava/lava_clock.dart';
@@ -30,7 +28,7 @@ class IntoMobileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return PaisaAnnotatedRegionWidget(
       color: context.background,
-      child: Scaffold(
+      child: PaisaScaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           toolbarHeight: 0,

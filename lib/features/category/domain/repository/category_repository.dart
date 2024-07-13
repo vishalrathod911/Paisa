@@ -1,4 +1,3 @@
-// Project imports:
 import 'package:paisa/features/category/domain/entities/category.dart';
 
 abstract class CategoryRepository {

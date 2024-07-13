@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_empty_widget.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/features/overview/presentation/widgets/filter_tabs_widget.dart';
 
-// Project imports:
 import 'package:paisa/features/overview/presentation/widgets/overview_bar_chart.dart';
 import 'package:paisa/features/overview/presentation/widgets/overview_pie_chart_widget.dart';
 import 'package:paisa/features/overview/presentation/widgets/overview_transaction_widget.dart';
@@ -18,7 +18,7 @@ class OverViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PaisaScaffold(
       body: OverviewTransactionWidget(builder: (transactions) {
         if (transactions.isEmpty) {
           return EmptyWidget(

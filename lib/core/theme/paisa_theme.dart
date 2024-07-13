@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-// Project imports:
 import 'package:paisa/core/theme/custom_color.dart';
 
 ElevatedButtonThemeData elevatedButtonTheme(
@@ -62,7 +60,7 @@ NavigationDrawerThemeData navigationDrawerThemeData(
   TextTheme? textTheme,
 ) {
   return NavigationDrawerThemeData(
-    backgroundColor: colorScheme.surface,
+    backgroundColor: colorScheme.surfaceContainer,
     labelTextStyle: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
         return textTheme?.bodyLarge?.copyWith(

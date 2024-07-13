@@ -1,11 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-// Project imports:
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
@@ -29,8 +27,9 @@ class HomeTabletWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return PaisaAnnotatedRegionWidget(
       color: context.background,
-      child: Scaffold(
+      child: PaisaScaffold(
         appBar: AppBar(
+          backgroundColor: context.surface,
           leading: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 14.0),
             child: PaisaIconTitle(),

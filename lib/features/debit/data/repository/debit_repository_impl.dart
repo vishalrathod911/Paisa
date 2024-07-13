@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:injectable/injectable.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/debt_type.dart';
 import 'package:paisa/features/debit/data/data_sources/debit_local_data_source_impl.dart';

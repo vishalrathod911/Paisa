@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:hive_flutter/adapters.dart';
 
-// Project imports:
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 
@@ -26,11 +23,13 @@ class VariableFABSize extends StatelessWidget {
         final isSmallSize = value.get(smallSizeFabKey, defaultValue: false);
         if (isSmallSize) {
           return FloatingActionButton(
+            backgroundColor: context.secondaryContainer,
             onPressed: onPressed,
             child: Icon(icon),
           );
         } else {
           return FloatingActionButton.large(
+            backgroundColor: context.secondaryContainer,
             onPressed: onPressed,
             child: Icon(icon),
           );

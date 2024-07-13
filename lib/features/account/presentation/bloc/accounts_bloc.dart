@@ -1,14 +1,10 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-// Project imports:
 import 'package:paisa/core/enum/card_type.dart';
 import 'package:paisa/core/error/account_error.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';

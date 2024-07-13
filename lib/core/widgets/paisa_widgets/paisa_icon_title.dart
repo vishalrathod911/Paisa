@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
 
@@ -21,7 +18,7 @@ class PaisaIconTitle extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Icon(
               Icons.wallet,
-              color: context.primary,
+              color: context.secondary,
               size: 32,
             ),
           ),

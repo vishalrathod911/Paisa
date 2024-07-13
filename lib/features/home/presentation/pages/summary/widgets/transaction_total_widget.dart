@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Package imports:
 import 'package:hive_flutter/adapters.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';

@@ -1,4 +1,3 @@
-// Project imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';

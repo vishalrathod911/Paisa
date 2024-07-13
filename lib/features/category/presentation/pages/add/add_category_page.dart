@@ -1,13 +1,11 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-// Project imports:
 import 'package:paisa/core/extensions/build_context_extension.dart';
 import 'package:paisa/core/extensions/color_extension.dart';
 import 'package:paisa/core/extensions/text_style_extension.dart';
@@ -100,7 +98,7 @@ class _CategoryPageState extends State<CategoryPage> {
         },
         builder: (context, state) {
           return ScreenTypeLayout.builder(
-            mobile: (p0) => Scaffold(
+            mobile: (p0) => PaisaScaffold(
               appBar: context.materialYouAppBar(
                 isAddCategory
                     ? context.loc.addCategory
@@ -157,7 +155,7 @@ class _CategoryPageState extends State<CategoryPage> {
                 ),
               ),
             ),
-            tablet: (p0) => Scaffold(
+            tablet: (p0) => PaisaScaffold(
               appBar: context.materialYouAppBar(
                   isAddCategory
                       ? context.loc.addCategory
@@ -295,7 +293,7 @@ class CategoryColorWidget extends StatelessWidget {
           },
           leading: Icon(
             Icons.color_lens,
-            color: context.primary,
+            color: context.secondary,
           ),
           title: Text(context.loc.pickColor),
           subtitle: Text(context.loc.pickColorDesc),
@@ -329,7 +327,7 @@ class _TransferCategoryWidgetState extends State<TransferCategoryWidget> {
         return SwitchListTile(
           secondary: Icon(
             MdiIcons.swapHorizontal,
-            color: context.primary,
+            color: context.secondary,
           ),
           subtitle: Text(context.loc.transferCategorySubtitle),
           title: Text(context.loc.transferCategory),

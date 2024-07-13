@@ -1,13 +1,9 @@
-// Flutter imports:
-
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-// Project imports:
 import 'package:paisa/features/home/presentation/pages/summary/widgets/summary_desktop_widget.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/summary_mobile_widget.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/summary_tablet_widget.dart';

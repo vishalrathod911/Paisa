@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:paisa/config/routes.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 
 class JustBlackWidget extends StatefulWidget {
@@ -20,6 +17,7 @@ class _JustBlackWidgetState extends State<JustBlackWidget> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
+      activeColor: context.secondary,
       secondary: const SizedBox.shrink(),
       title: Text(context.loc.justBlackText),
       onChanged: (bool value) async {

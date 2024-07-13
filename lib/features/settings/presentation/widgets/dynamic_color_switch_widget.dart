@@ -1,9 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-
-// Project imports:
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/settings/presentation/widgets/setting_option.dart';

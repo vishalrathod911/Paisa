@@ -1,12 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/presentation/pages/add/add_account_page.dart';

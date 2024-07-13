@@ -1,4 +1,3 @@
-// Package imports:
 import 'package:hive_flutter/adapters.dart';
 
 part 'filter_expense.g.dart';

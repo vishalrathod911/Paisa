@@ -1,10 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
@@ -30,7 +28,7 @@ class TransactionByCategoryPage extends StatelessWidget {
 
     return PaisaAnnotatedRegionWidget(
       color: Colors.transparent,
-      child: Scaffold(
+      child: PaisaScaffold(
         extendBody: true,
         appBar: context.materialYouAppBar(categoryEntity?.name ?? ''),
         bottomNavigationBar: SafeArea(

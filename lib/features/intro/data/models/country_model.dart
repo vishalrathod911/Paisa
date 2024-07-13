@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_annotation_target
 
-// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/adapters.dart';
 

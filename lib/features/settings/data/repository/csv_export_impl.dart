@@ -1,13 +1,11 @@
 // Dart imports:
 import 'dart:io';
 
-// Package imports:
 import 'package:csv/csv.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 
-// Project imports:
 import 'package:paisa/features/account/data/data_sources/account_data_source.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/category/data/data_sources/category_data_source.dart';

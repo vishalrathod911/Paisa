@@ -1,13 +1,10 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 
-// Project imports:
 import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/features/transaction/data/model/search_query.dart';
 import 'package:paisa/features/transaction/data/model/transaction_model.dart';

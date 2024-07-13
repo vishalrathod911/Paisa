@@ -1,10 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Project imports:
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
@@ -27,9 +25,11 @@ class HomeMobileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PaisaScaffold(
       key: _scaffoldStateKey,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: context.surface,
         title: const PaisaTitle(),
         actions: const [
           PaisaSearchButton(),
@@ -39,7 +39,8 @@ class HomeMobileWidget extends StatelessWidget {
       drawer: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           return NavigationDrawer(
-            surfaceTintColor: context.surface,
+            backgroundColor: context.surfaceContainer,
+            indicatorColor: context.secondaryContainer,
             selectedIndex: context.watch<HomeCubit>().state.index,
             onDestinationSelected: (index) {
               _scaffoldStateKey.currentState?.closeDrawer();
@@ -48,7 +49,7 @@ class HomeMobileWidget extends StatelessWidget {
             children: [
               const PaisaIconTitle(),
               ...destinations.map((e) => NavigationDrawerDestination(
-                    backgroundColor: context.surface,
+                    backgroundColor: context.surfaceContainer,
                     icon: e.icon,
                     selectedIcon: e.selectedIcon,
                     label: Text(e.pageType.name(context)),
@@ -87,7 +88,8 @@ class HomeMobileWidget extends StatelessWidget {
             ),
             child: NavigationBar(
               elevation: 1,
-              backgroundColor: context.surface,
+              indicatorColor: context.secondaryContainer,
+              backgroundColor: context.surfaceContainer,
               selectedIndex: context.read<HomeCubit>().state.index,
               onDestinationSelected: (index) =>
                   context.read<HomeCubit>().setCurrentIndex(index),

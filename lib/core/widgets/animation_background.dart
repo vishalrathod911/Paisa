@@ -23,7 +23,7 @@ class _AnimationBackgroundState extends State<AnimationBackground>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
     )..repeat();
 
     _animation = CurvedAnimation(
@@ -62,7 +62,7 @@ class TexturedBackgroundPainter extends CustomPainter {
     final paint = Paint();
 
     // Animated gradient circle
-    final gradientCircle = RadialGradient(
+    final gradientCircle = const RadialGradient(
       colors: [Color(0xFFB19CD9), Color(0xFF6A5ACD)],
       stops: [0.2, 1.0],
     ).createShader(Rect.fromCircle(
@@ -78,7 +78,7 @@ class TexturedBackgroundPainter extends CustomPainter {
 
     // Animated textured triangle
     paint.shader = null;
-    paint.color = Color(0xFFFFC0CB);
+    paint.color = const Color(0xFFFFC0CB);
     final trianglePath = Path()
       ..moveTo(size.width * 0.8, size.height * 0.2)
       ..lineTo(size.width * 0.9, size.height * 0.3)
@@ -121,7 +121,7 @@ class TexturedBackgroundPainter extends CustomPainter {
     paint.style = PaintingStyle.stroke;
     paint.strokeWidth = 2;
     final dashedCircleCenter = Offset(size.width * 0.7, size.height * 0.6);
-    final dashedCircleRadius = 50.0;
+    const dashedCircleRadius = 50.0;
     for (var i = 0; i < 360; i += 15) {
       final angle = i * pi / 180;
       final rotatedAngle = angle + animationValue * 2 * pi;
@@ -135,7 +135,7 @@ class TexturedBackgroundPainter extends CustomPainter {
     }
 
     // Animated starburst
-    paint.color = Color(0xFFFFD700);
+    paint.color = const Color(0xFFFFD700);
     final starburstCenter = Offset(size.width * 0.2, size.height * 0.7);
     for (var i = 0; i < 12; i++) {
       final angle = i * pi / 6 + animationValue * 2 * pi;
@@ -163,7 +163,7 @@ class AnimatedBackgroundPainter extends CustomPainter {
     final paint = Paint();
 
     // Animate light purple circle
-    paint.color = Color(0xFFB19CD9).withOpacity(0.5);
+    paint.color = const Color(0xFFB19CD9).withOpacity(0.5);
     double radius = 50 + sin(animationValue * 2 * pi) * 10;
     canvas.drawCircle(
         Offset(size.width * 0.1, size.height * (0.1 + animationValue * 0.05)),
@@ -171,7 +171,7 @@ class AnimatedBackgroundPainter extends CustomPainter {
         paint);
 
     // Animate light pink circle
-    paint.color = Color(0xFFFFC0CB).withOpacity(0.5);
+    paint.color = const Color(0xFFFFC0CB).withOpacity(0.5);
     radius = 80 + cos(animationValue * 2 * pi) * 15;
     canvas.drawCircle(
         Offset(size.width * (0.85 - animationValue * 0.05), size.height * 0.2),
@@ -179,12 +179,12 @@ class AnimatedBackgroundPainter extends CustomPainter {
         paint);
 
     // Animate overlapping circles
-    paint.color = Color(0xFFB19CD9).withOpacity(0.5);
+    paint.color = const Color(0xFFB19CD9).withOpacity(0.5);
     canvas.drawCircle(
         Offset(size.width * (0.15 + animationValue * 0.05), size.height * 0.8),
         60,
         paint);
-    paint.color = Color(0xFFFFC0CB).withOpacity(0.5);
+    paint.color = const Color(0xFFFFC0CB).withOpacity(0.5);
     canvas.drawCircle(
         Offset(size.width * 0.25, size.height * (0.85 - animationValue * 0.05)),
         50,
@@ -251,14 +251,14 @@ class AdvancedBackgroundPainter extends CustomPainter {
     final paint = Paint();
 
     // Animated hexagon
-    paint.color = Color(0xFFB19CD9).withOpacity(0.5);
+    paint.color = const Color(0xFFB19CD9).withOpacity(0.5);
     final hexagonCenter = Offset(size.width * 0.2, size.height * 0.3);
     final hexagonRadius = 50 + sin(animationValue * 2 * pi) * 10;
     drawHexagon(
         canvas, hexagonCenter, hexagonRadius, paint, animationValue * 2 * pi);
 
     // Animated triangle
-    paint.color = Color(0xFFFFC0CB).withOpacity(0.5);
+    paint.color = const Color(0xFFFFC0CB).withOpacity(0.5);
     final triangleCenter = Offset(size.width * 0.8, size.height * 0.2);
     final triangleSize = 60 + cos(animationValue * 2 * pi) * 15;
     drawTriangle(
@@ -271,13 +271,13 @@ class AdvancedBackgroundPainter extends CustomPainter {
     //drawAnimatedCurvedLine(canvas, size, paint, animationValue);
 
     // Animated concentric circles
-    paint.color = Color(0xFFB19CD9).withOpacity(0.3);
+    paint.color = const Color(0xFFB19CD9).withOpacity(0.3);
     paint.style = PaintingStyle.stroke;
     drawConcentricCircles(canvas, Offset(size.width * 0.7, size.height * 0.8),
         paint, animationValue);
 
     // Animated floating dots
-    paint.color = Color(0xFFFFC0CB).withOpacity(0.7);
+    paint.color = const Color(0xFFFFC0CB).withOpacity(0.7);
     paint.style = PaintingStyle.fill;
     drawFloatingDots(canvas, size, paint, animationValue);
   }

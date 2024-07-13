@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
-// Project imports:
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/core/widgets/filter_widget/filter_budget_widget.dart';
 

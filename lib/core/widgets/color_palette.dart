@@ -1,7 +1,6 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 
 class ColorPalette extends StatelessWidget {
@@ -9,10 +8,254 @@ class ColorPalette extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PaisaScaffold(
       appBar: AppBar(),
       body: ListView(
         children: [
+          Container(
+            height: 50,
+            color: context.primaryFixed,
+            child: Center(
+              child: Text(
+                'Text primaryFixed onPrimaryFixed',
+                style: TextStyle(
+                  color: context.onPrimaryFixed,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.primaryFixedDim,
+            child: Center(
+              child: Text(
+                'Text primaryFixedDim onPrimaryFixed',
+                style: TextStyle(
+                  color: context.onPrimaryFixed,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.primaryFixed,
+            child: Center(
+              child: Text(
+                'Text primaryFixed onPrimaryFixedVariant ',
+                style: TextStyle(
+                  color: context.onPrimaryFixedVariant,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.primaryFixedDim,
+            child: Center(
+              child: Text(
+                'Text primaryFixedDim onPrimaryFixedVariant',
+                style: TextStyle(
+                  color: context.onPrimaryFixedVariant,
+                ),
+              ),
+            ),
+          ),
+          ///////
+          Container(
+            height: 50,
+            color: context.secondaryFixed,
+            child: Center(
+              child: Text(
+                'Text secondaryFixed onSecondaryFixed',
+                style: TextStyle(
+                  color: context.onSecondaryFixed,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.secondaryFixedDim,
+            child: Center(
+              child: Text(
+                'Text secondaryFixedDim onSecondaryFixed',
+                style: TextStyle(
+                  color: context.onSecondaryFixed,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.secondaryFixed,
+            child: Center(
+              child: Text(
+                'Text secondaryFixed onSecondaryFixedVariant ',
+                style: TextStyle(
+                  color: context.onSecondaryFixedVariant,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.secondaryFixedDim,
+            child: Center(
+              child: Text(
+                'Text secondaryFixedDim onSecondaryFixedVariant',
+                style: TextStyle(
+                  color: context.onSecondaryFixedVariant,
+                ),
+              ),
+            ),
+          ),
+          /////// /////// ///////
+          Container(
+            height: 50,
+            color: context.tertiaryFixed,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixed onTertiaryFixed',
+                style: TextStyle(
+                  color: context.onTertiaryFixed,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.tertiaryFixedDim,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixed',
+                style: TextStyle(
+                  color: context.onTertiaryFixed,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.tertiaryFixed,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixed onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onTertiaryFixedVariant,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.tertiaryFixedDim,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onTertiaryFixedVariant,
+                ),
+              ),
+            ),
+          ),
+          ///////////////////////////////
+          Container(
+            height: 50,
+            color: context.scrim,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onTertiaryFixedVariant,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.surfaceContainerHighest,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onSurface,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.surfaceContainerHigh,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onSurface,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.surfaceContainerLow,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onSurface,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.surfaceContainerLowest,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onSurface,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.surfaceBright,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onSurface,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.surfaceDim,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onSurface,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 50,
+            color: context.surfaceContainer,
+            child: Center(
+              child: Text(
+                'Text tertiaryFixedDim onTertiaryFixedVariant',
+                style: TextStyle(
+                  color: context.onSurface,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 100),
           Container(
             height: 50,
             color: context.primary,

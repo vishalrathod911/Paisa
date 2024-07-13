@@ -1,9 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/filter_expense.dart';
 import 'package:paisa/core/enum/transaction_type.dart';
@@ -107,6 +103,12 @@ class CategoryTransactionFilterWidget extends StatelessWidget {
         valueListenable: getIt<SummaryController>().typeNotifier,
         builder: (context, type, child) {
           return SegmentedButton<TransactionType>(
+            style: SegmentedButton.styleFrom(
+              foregroundColor: context.onSurface,
+              backgroundColor: context.surface,
+              selectedBackgroundColor: context.secondaryContainer,
+              selectedForegroundColor: context.onSecondaryContainer,
+            ),
             showSelectedIcon: false,
             segments: [
               ButtonSegment<TransactionType>(

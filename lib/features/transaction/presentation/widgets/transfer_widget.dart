@@ -1,10 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/transaction/presentation/bloc/transaction_bloc.dart';
 import 'package:paisa/features/transaction/presentation/widgets/pill_accounts_widget.dart';

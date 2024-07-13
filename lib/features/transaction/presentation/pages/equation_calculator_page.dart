@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:math_expressions/math_expressions.dart';
@@ -110,7 +111,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
   Widget build(BuildContext context) {
     return PaisaAnnotatedRegionWidget(
       color: context.background,
-      child: Scaffold(
+      child: PaisaScaffold(
         appBar: AppBar(
           actions: [
             TextButton(
@@ -186,7 +187,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Row(
                       children: [
                         _buildButton(MdiIcons.numeric4,

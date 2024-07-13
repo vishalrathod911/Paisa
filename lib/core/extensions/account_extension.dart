@@ -1,10 +1,8 @@
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/constants/constants.dart';
 
-// Project imports:
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 

@@ -1,8 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/widgets/paisa_widget.dart';
 
 class SettingsGroup extends StatelessWidget {
   const SettingsGroup({
@@ -16,10 +15,8 @@ class SettingsGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      elevation: 0,
-      color: context.background,
+    return PaisaFilledCard(
+      color: context.surface,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12), // if you need this
         side: BorderSide(
@@ -36,7 +33,7 @@ class SettingsGroup extends StatelessWidget {
             child: Text(
               title,
               style: context.titleMedium?.copyWith(
-                color: context.primary,
+                color: context.secondary,
               ),
             ),
           ),

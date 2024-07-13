@@ -1,10 +1,8 @@
-// Flutter imports:
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -21,7 +19,6 @@ import 'package:paisa/features/transaction/domain/entities/transaction_entity.da
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-// Project imports:
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
@@ -85,59 +82,60 @@ class HomePage extends StatelessWidget {
       summaryController: getIt<SummaryController>(),
     );
     return MultiValueListenableBuilder(
-        valueListenable: [
-          getIt<Box<TransactionModel>>().listenable(),
-          getIt<Box<AccountModel>>().listenable(),
-          getIt<Box<CategoryModel>>().listenable()
-        ],
-        builder: (BuildContext context, List<dynamic> values, Widget? child) {
-          final List<TransactionModel> transactionModels =
-              values[0].values.toList();
-          final List<AccountModel> accountModels = values[1].values.toList();
-          final List<CategoryModel> categoryModels = values[2].values.toList();
-          final List<TransactionEntity> transactions =
-              transactionModels.excludeAccounts();
-          final List<AccountEntity> accounts = accountModels.toEntities();
-          final List<CategoryEntity> categories = categoryModels.toEntities();
+      valueListenable: [
+        getIt<Box<TransactionModel>>().listenable(),
+        getIt<Box<AccountModel>>().listenable(),
+        getIt<Box<CategoryModel>>().listenable()
+      ],
+      builder: (BuildContext context, List<dynamic> values, Widget? child) {
+        final List<TransactionModel> transactionModels =
+            values[0].values.toList();
+        final List<AccountModel> accountModels = values[1].values.toList();
+        final List<CategoryModel> categoryModels = values[2].values.toList();
+        final List<TransactionEntity> transactions =
+            transactionModels.excludeAccounts();
+        final List<AccountEntity> accounts = accountModels.toEntities();
+        final List<CategoryEntity> categories = categoryModels.toEntities();
 
-          _updateHomeScreenWidget(
-            context,
-            transactions: transactions,
-          );
+        _updateHomeScreenWidget(
+          context,
+          transactions: transactions,
+        );
 
-          return MultiProvider(
-            providers: [
-              Provider.value(value: transactions),
-              Provider.value(value: accounts),
-              Provider.value(value: categories),
-            ],
-            child: PaisaAnnotatedRegionWidget(
-              color: context.surface,
-              child: PopScope(
-                canPop: context.read<HomeCubit>().state.index != 0,
-                onPopInvoked: (didPop) {
-                  if (didPop) {
-                    context.read<HomeCubit>().setCurrentIndex(0);
-                  }
-                },
-                child: ScreenTypeLayout.builder(
-                  mobile: (p0) => HomeMobileWidget(
-                    floatingActionButton: actionButton,
-                    destinations: destinations,
-                  ),
-                  tablet: (p0) => HomeTabletWidget(
-                    floatingActionButton: actionButton,
-                    destinations: destinations,
-                  ),
-                  desktop: (p0) => HomeDesktopWidget(
-                    floatingActionButton: actionButton,
-                    destinations: destinations,
-                  ),
+        return MultiProvider(
+          providers: [
+            Provider.value(value: transactions),
+            Provider.value(value: accounts),
+            Provider.value(value: categories),
+          ],
+          child: PaisaAnnotatedRegionWidget(
+            color: context.surfaceContainer,
+            child: PopScope(
+              canPop: context.read<HomeCubit>().state.index != 0,
+              onPopInvoked: (didPop) {
+                if (didPop) {
+                  context.read<HomeCubit>().setCurrentIndex(0);
+                }
+              },
+              child: ScreenTypeLayout.builder(
+                mobile: (p0) => HomeMobileWidget(
+                  floatingActionButton: actionButton,
+                  destinations: destinations,
+                ),
+                tablet: (p0) => HomeTabletWidget(
+                  floatingActionButton: actionButton,
+                  destinations: destinations,
+                ),
+                desktop: (p0) => HomeDesktopWidget(
+                  floatingActionButton: actionButton,
+                  destinations: destinations,
                 ),
               ),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -232,7 +230,7 @@ Future<void> _updateHomeScreenWidget(
                         color: Colors.green.withOpacity(0.24),
                       ),
                       padding: EdgeInsets.all(8.0.w),
-                      margin: EdgeInsets.all(8),
+                      margin: const EdgeInsets.all(8),
                       child: const Icon(
                         Icons.south_west,
                         color: Colors.green,
@@ -268,7 +266,7 @@ Future<void> _updateHomeScreenWidget(
                         color: Colors.red.withOpacity(0.24),
                       ),
                       padding: EdgeInsets.all(8.0.w),
-                      margin: EdgeInsets.all(8),
+                      margin: const EdgeInsets.all(8),
                       child: const Icon(
                         Icons.north_east,
                         color: Colors.red,

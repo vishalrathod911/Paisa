@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:injectable/injectable.dart';
 import 'package:paisa/config/routes.dart';
 
-// Project imports:
 import 'package:paisa/core/constants/constants.dart';
 import 'package:paisa/core/enum/filter_expense.dart';
 import 'package:paisa/core/enum/transaction_type.dart';

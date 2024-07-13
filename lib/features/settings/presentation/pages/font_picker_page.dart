@@ -1,12 +1,10 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:go_router/go_router.dart';
 
-// Package imports:
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paisa/config/routes.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 
@@ -44,8 +42,9 @@ class _FontPickerPageState extends State<FontPickerPage> {
   Widget build(BuildContext context) {
     return PaisaAnnotatedRegionWidget(
       color: context.background,
-      child: Scaffold(
+      child: PaisaScaffold(
         appBar: AppBar(
+          backgroundColor: context.surface,
           title: Text(context.loc.chooseFont),
           titleTextStyle: context.titleLarge,
           bottom: PreferredSize(

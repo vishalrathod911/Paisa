@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:injectable/injectable.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/data/data_sources/account_data_source.dart';

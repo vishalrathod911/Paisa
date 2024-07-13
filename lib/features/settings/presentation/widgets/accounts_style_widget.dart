@@ -17,6 +17,7 @@ class _AccountsStyleWidgetState extends State<AccountsStyleWidget> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
+      activeColor: context.secondary,
       secondary: Icon(MdiIcons.creditCard),
       title: Text(context.loc.accountStyle),
       subtitle: Text(

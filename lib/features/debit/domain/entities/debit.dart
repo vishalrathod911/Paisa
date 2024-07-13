@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-// Project imports:
 import 'package:paisa/core/common_enum.dart';
 
 part 'debit.freezed.dart';

@@ -1,4 +1,3 @@
-// Package imports:
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';

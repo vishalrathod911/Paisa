@@ -1,8 +1,6 @@
-// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/adapters.dart';
 
-// Project imports:
 import 'package:paisa/core/data/super_id.dart';
 
 part 'category_model.g.dart';

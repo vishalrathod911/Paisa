@@ -1,9 +1,8 @@
-// Flutter imports:
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/features/settings/presentation/widgets/accounts_style_widget.dart';
 import 'package:paisa/features/settings/presentation/widgets/app_theme_widget.dart';
@@ -11,7 +10,6 @@ import 'package:paisa/features/settings/presentation/widgets/choose_calendar_for
 import 'package:paisa/features/settings/presentation/widgets/true_black_widget_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-// Project imports:
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/calendar_formats.dart';
@@ -39,7 +37,7 @@ class SettingsPage extends StatelessWidget {
         .values[settings.get(calendarFormatKey, defaultValue: 2)];
     return PaisaAnnotatedRegionWidget(
       color: context.surface,
-      child: Scaffold(
+      child: PaisaScaffold(
         appBar: context.materialYouAppBar(
           context.loc.settings,
         ),

@@ -1,8 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -10,7 +9,6 @@ import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/error/account_error.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/account/presentation/bloc/accounts_bloc.dart';
@@ -157,7 +155,7 @@ class AccountPageState extends State<AccountPage> {
           },
           builder: (context, state) {
             return ScreenTypeLayout.builder(
-              mobile: (p0) => Scaffold(
+              mobile: (p0) => PaisaScaffold(
                 appBar: context.materialYouAppBar(
                   isAccountAddOrUpdate
                       ? context.loc.addAccount
@@ -234,7 +232,7 @@ class AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
-              tablet: (p0) => Scaffold(
+              tablet: (p0) => PaisaScaffold(
                 appBar: context.materialYouAppBar(
                   isAccountAddOrUpdate
                       ? context.loc.addAccount
@@ -332,7 +330,7 @@ class AccountColorPickerWidget extends StatelessWidget {
           },
           leading: Icon(
             Icons.color_lens,
-            color: context.primary,
+            color: context.secondary,
           ),
           title: Text(context.loc.pickColor),
           subtitle: Text(context.loc.pickColorDesc),

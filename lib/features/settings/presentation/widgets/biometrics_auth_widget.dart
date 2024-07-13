@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/config/routes.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/future_resolve.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_divider.dart';
@@ -54,6 +51,8 @@ class _BiometricAuthWidgetState extends State<BiometricAuthWidget> {
           child: Column(
             children: [
               SwitchListTile(
+                inactiveThumbColor: context.secondary,
+                activeColor: context.secondary,
                 secondary: Icon(MdiIcons.fingerprint),
                 title: Text(context.loc.lockApp),
                 subtitle: Text(

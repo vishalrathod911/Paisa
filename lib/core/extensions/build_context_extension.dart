@@ -1,11 +1,16 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:paisa/config/routes.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
+
+extension ThemeHelper on BuildContext {
+  bool get isBlackTheme => settings.get(
+        blackThemeKey,
+        defaultValue: false,
+      );
+}
 
 extension LocalizedBuildContext on BuildContext {
   AppLocalizations get loc => AppLocalizations.of(this)!;
@@ -18,6 +23,7 @@ extension AppBarHelper on BuildContext {
     Widget? leadingWidget,
   }) {
     return AppBar(
+      backgroundColor: surface,
       leading: leadingWidget,
       title: Text(title),
       titleTextStyle: titleLarge,

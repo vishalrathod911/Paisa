@@ -1,15 +1,12 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-// Project imports:
 import 'package:paisa/core/enum/debt_type.dart';
 import 'package:paisa/features/debit/data/models/debit_model.dart';
 import 'package:paisa/features/debit/domain/entities/debit.dart';

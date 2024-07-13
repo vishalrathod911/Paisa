@@ -1,11 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:go_router/go_router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-// Project imports:
 import 'package:paisa/core/extensions/build_context_extension.dart';
 import 'package:paisa/core/extensions/color_extension.dart';
 import 'package:paisa/core/extensions/text_style_extension.dart';
@@ -25,7 +23,7 @@ class _CategoryIconPickerPageState extends State<CategoryIconPickerPage> {
   Widget build(BuildContext context) {
     final List<MapEntry<String, List<IconData>>> map =
         paisaIconMap().entries.toList();
-    return Scaffold(
+    return PaisaScaffold(
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {

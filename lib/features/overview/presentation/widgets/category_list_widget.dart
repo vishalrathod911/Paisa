@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:paisa/config/routes.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';

@@ -1,13 +1,11 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
@@ -69,7 +67,7 @@ class _TransactionPageState extends State<TransactionPage> {
   @override
   Widget build(BuildContext context) {
     return PaisaAnnotatedRegionWidget(
-      color: context.background,
+      color: context.surface,
       child: BlocProvider(
         create: (context) => transactionBloc,
         child: BlocConsumer<TransactionBloc, TransactionState>(
@@ -122,9 +120,10 @@ class _TransactionPageState extends State<TransactionPage> {
                   widget.categoryId;
             }
             return ScreenTypeLayout.builder(
-              mobile: (p0) => Scaffold(
+              mobile: (p0) => PaisaScaffold(
                 extendBody: true,
                 appBar: AppBar(
+                  backgroundColor: context.surface,
                   title: Text(
                     isAddExpense
                         ? context.loc.addTransaction
@@ -162,22 +161,27 @@ class _TransactionPageState extends State<TransactionPage> {
                     }
                   },
                 ),
-                bottomNavigationBar: SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: PaisaButton.largeElevated(
-                      onPressed: () {
-                        context
-                            .read<TransactionBloc>()
-                            .add(TransactionEvent.addOrUpdate(isAddExpense));
-                      },
-                      text: isAddExpense ? context.loc.add : context.loc.update,
+                bottomNavigationBar: ColoredBox(
+                  color: context.surface,
+                  child: SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: PaisaButton.largeElevated(
+                        onPressed: () {
+                          context
+                              .read<TransactionBloc>()
+                              .add(TransactionEvent.addOrUpdate(isAddExpense));
+                        },
+                        text:
+                            isAddExpense ? context.loc.add : context.loc.update,
+                      ),
                     ),
                   ),
                 ),
               ),
-              tablet: (p0) => Scaffold(
+              tablet: (p0) => PaisaScaffold(
                 appBar: AppBar(
+                  backgroundColor: context.surface,
                   systemOverlayStyle: SystemUiOverlayStyle(
                     statusBarColor: Colors.transparent,
                     systemNavigationBarColor: Colors.transparent,
@@ -191,7 +195,6 @@ class _TransactionPageState extends State<TransactionPage> {
                     color: context.onSurface,
                   ),
                   elevation: 0,
-                  backgroundColor: Colors.transparent,
                   title: Text(
                     isAddExpense
                         ? context.loc.addTransaction

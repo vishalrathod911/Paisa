@@ -1,10 +1,6 @@
-// Flutter imports:
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
-// Package imports:
-
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_empty_widget.dart';

@@ -1,8 +1,6 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 
 enum ButtonSize { small, medium, large }

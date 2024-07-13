@@ -1,4 +1,3 @@
-// Package imports:
 import 'package:hive_flutter/adapters.dart';
 
 part 'debt_type.g.dart';

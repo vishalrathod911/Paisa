@@ -1,7 +1,5 @@
-// Package imports:
 import 'package:injectable/injectable.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/category/data/data_sources/category_data_source.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';

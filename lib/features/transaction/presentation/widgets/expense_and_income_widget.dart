@@ -1,9 +1,7 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:paisa/core/extensions/build_context_extension.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_sub_title_widget.dart';
 
-// Project imports:
 import 'package:paisa/features/transaction/presentation/widgets/select_account_widget.dart';
 import 'package:paisa/features/transaction/presentation/widgets/select_category_widget.dart';
 import 'package:paisa/features/transaction/presentation/widgets/transaction_amount_widget.dart';

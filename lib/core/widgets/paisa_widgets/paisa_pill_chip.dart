@@ -1,8 +1,5 @@
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-// Project imports:
 import 'package:paisa/core/common.dart';
 
 class PaisaPillChip extends StatelessWidget {
@@ -21,7 +18,7 @@ class PaisaPillChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final bgColor = context.tertiaryContainer;
     final textColor = context.onTertiaryContainer;
-    final borderColor = isSelected ? context.primary : null;
+    final borderColor = isSelected ? context.onTertiaryContainer : null;
 
     return Row(
       children: [

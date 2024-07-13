@@ -1,14 +1,11 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// Package imports:
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/config/routes.dart';
@@ -270,7 +267,7 @@ class MobileAccountCard extends StatelessWidget {
   final String totalBalance;
 
   @override
-  build(BuildContext context) {
+  GestureDetector build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -365,7 +362,7 @@ class AccountSummaryTail extends StatelessWidget {
   final String title;
 
   @override
-  build(BuildContext context) {
+  ListTile build(BuildContext context) {
     return ListTile(
       dense: true,
       title: Text(
@@ -409,7 +406,7 @@ class TabletAccountCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   @override
-  build(BuildContext context) {
+  GestureDetector build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -564,7 +561,7 @@ class DesktopAccountCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   @override
-  build(BuildContext context) {
+  GestureDetector build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(

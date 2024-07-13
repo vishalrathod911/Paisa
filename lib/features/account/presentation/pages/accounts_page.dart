@@ -1,12 +1,10 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:paisa/config/routes.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
@@ -23,7 +21,7 @@ class AccountsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<AccountEntity> accounts =
         Provider.of<List<AccountEntity>>(context);
-    return Scaffold(
+    return PaisaScaffold(
       key: const Key('accounts_mobile'),
       body: Builder(
         builder: (context) {

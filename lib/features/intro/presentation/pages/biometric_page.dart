@@ -1,10 +1,8 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-// Project imports:
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
@@ -44,7 +42,7 @@ class _BiometricPageState extends State<BiometricPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return PaisaScaffold(
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -56,7 +54,9 @@ class _BiometricPageState extends State<BiometricPage> {
           ),
         ),
       ),
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: context.surface,
+      ),
       body: Column(
         children: [
           const SizedBox(height: 24),

@@ -1,11 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:hive_flutter/adapters.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
@@ -23,7 +21,7 @@ class CategoryListPage extends StatelessWidget {
     final bloc = getIt<CategoryBloc>();
     return PaisaAnnotatedRegionWidget(
       color: context.background,
-      child: Scaffold(
+      child: PaisaScaffold(
         body: ValueListenableBuilder<Box<CategoryModel>>(
           valueListenable: getIt<Box<CategoryModel>>().listenable(),
           builder: (BuildContext context, value, Widget? child) {

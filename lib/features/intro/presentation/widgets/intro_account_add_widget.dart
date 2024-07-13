@@ -1,13 +1,11 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-// Project imports:
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/card_type.dart';
@@ -40,7 +38,7 @@ class _IntroAccountAddWidgetState extends State<IntroAccountAddWidget>
     super.build(context);
     return PaisaAnnotatedRegionWidget(
       color: context.background,
-      child: Scaffold(
+      child: PaisaScaffold(
         body: ValueListenableBuilder<Box<AccountModel>>(
           valueListenable: getIt<Box<AccountModel>>().listenable(),
           builder: (context, value, child) {

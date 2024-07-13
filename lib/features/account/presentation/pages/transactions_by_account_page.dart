@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:paisa/config/routes.dart';
@@ -70,7 +71,7 @@ class TransactionsByAccountPage extends StatelessWidget {
       },
       child: PaisaAnnotatedRegionWidget(
         color: context.background,
-        child: Scaffold(
+        child: PaisaScaffold(
           appBar: context.materialYouAppBar(
             accountEntity?.name ?? '',
             actions: [

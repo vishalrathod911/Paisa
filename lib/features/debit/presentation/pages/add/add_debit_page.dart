@@ -1,14 +1,12 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:flutter/services.dart';
 
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/debit/presentation/cubit/debts_bloc.dart';
@@ -89,7 +87,7 @@ class _DebitPageState extends State<DebitPage> {
             }
           },
           builder: (context, state) {
-            return Scaffold(
+            return PaisaScaffold(
               appBar: context.materialYouAppBar(
                 context.loc.addDebt,
                 actions: [

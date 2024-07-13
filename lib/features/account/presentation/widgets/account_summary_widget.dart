@@ -1,9 +1,5 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Package imports:
-
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/features/account/presentation/widgets/summary_month_card_widget.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';

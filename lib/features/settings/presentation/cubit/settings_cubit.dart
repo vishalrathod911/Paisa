@@ -1,11 +1,9 @@
-// Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:paisa/config/routes.dart';
 import 'package:share_plus/share_plus.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/error/failures.dart';
 import 'package:paisa/core/use_case/use_case.dart';

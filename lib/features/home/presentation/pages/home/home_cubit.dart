@@ -1,9 +1,7 @@
-// Package imports:
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-// Project imports:
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/domain/use_case/account_use_case.dart';

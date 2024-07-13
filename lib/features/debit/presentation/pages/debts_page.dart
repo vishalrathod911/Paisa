@@ -1,11 +1,9 @@
-// Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
-// Package imports:
 import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-// Project imports:
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/debt_type.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
@@ -20,7 +18,7 @@ class DebtsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
+      child: PaisaScaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: SafeArea(
@@ -30,32 +28,28 @@ class DebtsPage extends StatelessWidget {
                 right: 8.0,
                 bottom: 8.0,
               ),
-              child: Material(
-                borderRadius: BorderRadius.circular(32),
-                color: context.surfaceVariant,
-                child: TabBar(
-                  dividerColor: Colors.transparent,
-                  splashBorderRadius: BorderRadius.circular(32),
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32),
-                    color: context.primary,
-                  ),
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  labelColor: context.onPrimary,
-                  unselectedLabelColor: context.onSurfaceVariant,
-                  labelStyle: Theme.of(context)
-                      .textTheme
-                      .bodyLarge
-                      ?.copyWith(fontWeight: FontWeight.bold),
-                  unselectedLabelStyle: Theme.of(context)
-                      .textTheme
-                      .bodyLarge
-                      ?.copyWith(fontWeight: FontWeight.bold),
-                  tabs: [
-                    Tab(text: context.loc.debt),
-                    Tab(text: context.loc.credit),
-                  ],
+              child: TabBar(
+                dividerColor: Colors.transparent,
+                splashBorderRadius: BorderRadius.circular(32),
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(32),
+                  color: context.primary,
                 ),
+                indicatorSize: TabBarIndicatorSize.tab,
+                labelColor: context.onPrimary,
+                unselectedLabelColor: context.onSurfaceVariant,
+                labelStyle: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+                unselectedLabelStyle: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+                tabs: [
+                  Tab(text: context.loc.debt),
+                  Tab(text: context.loc.credit),
+                ],
               ),
             ),
           ),

@@ -1,11 +1,8 @@
-// Flutter imports:
 import 'package:flutter/foundation.dart';
 
-// Package imports:
 import 'package:hive_flutter/adapters.dart';
 import 'package:injectable/injectable.dart';
 
-// Project imports:
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';

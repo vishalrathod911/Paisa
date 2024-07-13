@@ -1,10 +1,8 @@
 // Dart imports:
 import 'dart:math';
 
-// Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
 import 'package:paisa/core/widgets/lava/ball.dart';
 
 class LavaPainter extends CustomPainter {
