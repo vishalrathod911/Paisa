@@ -16,7 +16,7 @@ import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/theme/custom_color.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 
-class AccountCardV2 extends StatelessWidget {
+class AccountCardV2 extends StatefulWidget {
   const AccountCardV2({
     super.key,
     required this.account,
@@ -27,17 +27,28 @@ class AccountCardV2 extends StatelessWidget {
   final List<TransactionEntity> transactions;
 
   @override
+  State<AccountCardV2> createState() => _AccountCardV2State();
+}
+
+class _AccountCardV2State extends State<AccountCardV2>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     final ColorScheme colorScheme =
-        ColorScheme.fromSeed(seedColor: Color(account.color));
+        ColorScheme.fromSeed(seedColor: Color(widget.account.color));
     final Color color = colorScheme.primaryContainer;
     final Color onPrimary = colorScheme.onPrimaryContainer;
 
     final double totalExpense =
-        transactions.totalAccountExpense(account.superId!);
+        widget.transactions.totalAccountExpense(widget.account.superId!);
     final double totalIncome =
-        transactions.totalAccountIncome(account.superId!);
-    final double balance = ((totalIncome - totalExpense) + account.amount);
+        widget.transactions.totalAccountIncome(widget.account.superId!);
+    final double balance =
+        ((totalIncome - totalExpense) + widget.account.amount);
 
     final String income = totalIncome.toFormateCurrency(context);
     final String expense = totalExpense.toFormateCurrency(context);
@@ -49,7 +60,7 @@ class AccountCardV2 extends StatelessWidget {
         color: color,
         child: InkWell(
           onTap: () async {
-            TransactionsByAccountPageData(accountId: account.superId!)
+            TransactionsByAccountPageData(accountId: widget.account.superId!)
                 .push(context);
           },
           child: Column(
@@ -58,17 +69,17 @@ class AccountCardV2 extends StatelessWidget {
               ListTile(
                 horizontalTitleGap: 0,
                 trailing: Icon(
-                  account.cardType.icon,
+                  widget.account.cardType.icon,
                   color: onPrimary,
                 ),
                 title: Text(
-                  account.name,
+                  widget.account.name,
                   style: context.bodyMedium?.copyWith(
                     color: onPrimary,
                   ),
                 ),
                 subtitle: Text(
-                  account.bankName,
+                  widget.account.bankName,
                   style: context.bodyMedium?.copyWith(
                     color: onPrimary.withOpacity(0.5),
                   ),

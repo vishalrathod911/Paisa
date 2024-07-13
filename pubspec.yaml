@@ -3,7 +3,7 @@ description: A expense manager app for Android, iOS, Web & Windows.
 
 publish_to: "none"
 
-version: 6.2.5+625
+version: 6.2.6+626
 
 environment:
   sdk: ">=3.0.2 <4.0.0"
