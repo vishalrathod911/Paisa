@@ -2,11 +2,8 @@ name: Android Release
 
 on:
   push:
-    #    branches:
-    #      - "dev2"
     tags:
       - "*"
-
   workflow_dispatch:
 
 jobs:
@@ -31,32 +28,26 @@ jobs:
         with:
           distribution: "zulu"
           java-version: "17"
-          cache: gradle
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
           cache: true
       - name: Get dependencies
         run: flutter pub get
-
       - name: Build Android Dev Release APK
         run: flutter build apk --flavor dev --no-tree-shake-icons
-
       - name: Build Android Prod Release APK
         run: flutter build apk --flavor prod --no-tree-shake-icons
-
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: build/app/outputs/flutter-apk/app-prod-release.apk,build/app/outputs/flutter-apk/app-dev-release.apk
-          token: ${{ secrets.GITHUB_TOKEN  }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
           makeLatest: true
           bodyFile: "body.md"
-
       - name: Create Android release appbundle
         run: flutter build appbundle --flavor prod --no-tree-shake-icons
-
       - name: Upload Android Release
         uses: actions/upload-artifact@v4
         with:
@@ -68,17 +59,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout artifacts
-        uses: actions/checkout@v4
-
-      - name: Get Android Build from artifacts
+      - name: Download Android Build from artifacts
         uses: actions/download-artifact@v4
         with:
           name: android-release
       - name: Release Build to internal track
-        uses: r0adkll/upload-google-play@v1
+        uses: r0adkll/upload-google-play@v1.1.2
         with:
-          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON  }}
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: dev.hemanths.paisa
           releaseFiles: app-prod-release.aab
           track: internal
