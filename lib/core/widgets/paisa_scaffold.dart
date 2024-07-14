@@ -12,6 +12,7 @@ class PaisaScaffold extends StatelessWidget {
     required this.body,
     this.resizeToAvoidBottomInset,
     this.extendBody = false,
+    this.scaffoldKey,
   });
 
   final PreferredSizeWidget? appBar;
@@ -22,11 +23,12 @@ class PaisaScaffold extends StatelessWidget {
   final Widget body;
   final bool? resizeToAvoidBottomInset;
   final bool extendBody;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: key,
+      key: scaffoldKey,
       extendBody: extendBody,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       appBar: appBar,

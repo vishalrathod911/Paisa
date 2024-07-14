@@ -123,6 +123,7 @@ class _TransactionPageState extends State<TransactionPage> {
               mobile: (p0) => PaisaScaffold(
                 extendBody: true,
                 appBar: AppBar(
+                  scrolledUnderElevation: 0,
                   backgroundColor: context.surface,
                   title: Text(
                     isAddExpense

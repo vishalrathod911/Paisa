@@ -96,7 +96,7 @@ class SelectedItem extends StatelessWidget {
                     },
                     icon: MdiIcons.plus.codePoint,
                     title: context.loc.addNew,
-                    color: context.primary,
+                    color: context.secondary,
                   );
                 } else {
                   final CategoryEntity category = categories[index - 1];

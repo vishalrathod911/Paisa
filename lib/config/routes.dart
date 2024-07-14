@@ -214,14 +214,14 @@ class BiometricPageData extends GoRouteData {
         ),
       ],
     ),
-    TypedGoRoute<TransactionsByCategoryPageData>(
-      path: 'transactions/:categoryId',
-    ),
     TypedGoRoute<ExportAndImportPageData>(
       path: 'export',
     ),
+    TypedGoRoute<TransactionsByCategoryPageData>(
+      path: 'transactions-by-category/:id',
+    ),
     TypedGoRoute<TransactionsByAccountPageData>(
-        path: 'transactions-by-account/:accountId')
+        path: 'transactions-by-account/:id')
   ],
 )
 class LandingPageData extends GoRouteData {
@@ -234,15 +234,13 @@ class LandingPageData extends GoRouteData {
 }
 
 class TransactionsByAccountPageData extends GoRouteData {
-  const TransactionsByAccountPageData({required this.accountId});
+  const TransactionsByAccountPageData({required this.id});
 
-  final int accountId;
+  final int id;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TransactionsByAccountPage(
-      accountId: accountId,
-    );
+    return TransactionsByAccountPage(accountId: id);
   }
 }
 
@@ -373,13 +371,13 @@ class ExportAndImportPageData extends GoRouteData {
 }
 
 class TransactionsByCategoryPageData extends GoRouteData {
-  const TransactionsByCategoryPageData(this.categoryId);
+  const TransactionsByCategoryPageData(this.id);
 
-  final int categoryId;
+  final int id;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return TransactionByCategoryPage(categoryId: categoryId);
+    return TransactionByCategoryPage(categoryId: id);
   }
 }
 

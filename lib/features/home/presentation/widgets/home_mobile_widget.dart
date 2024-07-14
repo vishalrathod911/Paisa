@@ -26,7 +26,7 @@ class HomeMobileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PaisaScaffold(
-      key: _scaffoldStateKey,
+      scaffoldKey: _scaffoldStateKey,
       appBar: AppBar(
         scrolledUnderElevation: 0,
         backgroundColor: context.surface,

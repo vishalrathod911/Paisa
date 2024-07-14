@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/widgets/paisa_widget.dart';
 
 class ItemWidget extends StatelessWidget {
   const ItemWidget({
@@ -9,16 +10,16 @@ class ItemWidget extends StatelessWidget {
     required this.title,
     required this.icon,
     required this.onPressed,
-    this.subtitle,
     required this.color,
+    this.subtitle,
   });
 
+  final Color color;
   final int icon;
-  final bool selected;
   final VoidCallback onPressed;
+  final bool selected;
   final String? subtitle;
   final String title;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +36,10 @@ class ItemWidget extends StatelessWidget {
           );
     return SizedBox(
       width: 150,
-      child: Card(
-        color: context.surface,
-        clipBehavior: Clip.antiAlias,
+      child: PaisaCard(
+        elevation: 1,
+        color: context.surfaceContainerLow,
         shape: shape,
-        shadowColor: color,
         child: InkWell(
           onTap: onPressed,
           child: Column(
@@ -48,14 +48,14 @@ class ItemWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: CircleAvatar(
-                  backgroundColor: color,
+                  backgroundColor: color.withOpacity(0.2),
                   child: Icon(
                     IconData(
                       icon,
                       fontFamily: fontFamilyName,
                       fontPackage: fontFamilyPackageName,
                     ),
-                    color: context.onPrimary,
+                    color: color,
                   ),
                 ),
               ),

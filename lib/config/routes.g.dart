@@ -196,15 +196,15 @@ RouteBase get $landingPageData => GoRouteData.$route(
           ],
         ),
         GoRouteData.$route(
-          path: 'transactions/:categoryId',
-          factory: $TransactionsByCategoryPageDataExtension._fromState,
-        ),
-        GoRouteData.$route(
           path: 'export',
           factory: $ExportAndImportPageDataExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'transactions-by-account/:accountId',
+          path: 'transactions-by-category/:id',
+          factory: $TransactionsByCategoryPageDataExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'transactions-by-account/:id',
           factory: $TransactionsByAccountPageDataExtension._fromState,
         ),
       ],
@@ -496,11 +496,11 @@ extension $TransactionsByCategoryPageDataExtension
     on TransactionsByCategoryPageData {
   static TransactionsByCategoryPageData _fromState(GoRouterState state) =>
       TransactionsByCategoryPageData(
-        int.parse(state.pathParameters['categoryId']!),
+        int.parse(state.pathParameters['id']!),
       );
 
   String get location => GoRouteData.$location(
-        '/landing/transactions/${Uri.encodeComponent(categoryId.toString())}',
+        '/landing/transactions-by-category/${Uri.encodeComponent(id.toString())}',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -517,11 +517,11 @@ extension $TransactionsByAccountPageDataExtension
     on TransactionsByAccountPageData {
   static TransactionsByAccountPageData _fromState(GoRouterState state) =>
       TransactionsByAccountPageData(
-        accountId: int.parse(state.pathParameters['accountId']!),
+        id: int.parse(state.pathParameters['id']!),
       );
 
   String get location => GoRouteData.$location(
-        '/landing/transactions-by-account/${Uri.encodeComponent(accountId.toString())}',
+        '/landing/transactions-by-account/${Uri.encodeComponent(id.toString())}',
       );
 
   void go(BuildContext context) => context.go(location);

@@ -107,7 +107,7 @@ class AccountSelectedItem extends StatelessWidget {
               } else {
                 final AccountEntity account = accounts[index - 1];
                 return ItemWidget(
-                  color: context.secondary,
+                  color: Color(account.color),
                   selected: account.superId ==
                       context.read<TransactionBloc>().selectedAccountId,
                   title: account.name,

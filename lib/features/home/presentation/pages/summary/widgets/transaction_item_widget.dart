@@ -100,6 +100,7 @@ class TransactionItemWidget extends StatelessWidget {
     final Color color = Color(category.color);
     final String subtitle =
         getSubtitle(context, account, fromAccount, toAccount);
+
     return ListTile(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
@@ -133,11 +134,23 @@ class TransactionItemWidget extends StatelessWidget {
           color: color,
         ),
       ),
-      trailing: Text(
-        transaction.currency.toFormateCurrency(context),
-        style: context.bodyMedium?.copyWith(
-          color: transaction.type.color(context),
-        ),
+      trailing: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            transaction.currency.toFormateCurrency(context),
+            style: context.bodyMedium?.copyWith(
+              color: transaction.type.color(context),
+            ),
+          ),
+          Text(
+            transaction.time.justTime,
+            style: context.bodySmall?.copyWith(
+              color: context.bodySmall?.color?.withOpacity(0.55),
+            ),
+          )
+        ],
       ),
     );
   }

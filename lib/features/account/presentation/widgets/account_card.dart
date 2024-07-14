@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/config/routes.dart';
-
 import 'package:paisa/core/theme/custom_color.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 
@@ -57,7 +54,7 @@ class _AccountCardV2State extends State<AccountCardV2>
         color: color,
         child: InkWell(
           onTap: () async {
-            TransactionsByAccountPageData(accountId: widget.account.superId!)
+            TransactionsByAccountPageData(id: widget.account.superId!)
                 .push(context);
           },
           child: Column(

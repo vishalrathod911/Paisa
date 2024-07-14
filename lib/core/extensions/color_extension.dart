@@ -13,7 +13,7 @@ extension ColorHelper on BuildContext {
   Color get onPrimaryContainer =>
       isBlackTheme ? const Color(0xFFAAAAAA) : colorScheme.onPrimaryContainer;
   Color get secondary =>
-      isBlackTheme ? const Color(0xFFAAAAAA) : colorScheme.secondary;
+      isBlackTheme ? const Color(0xFFDDDDDD) : colorScheme.secondary;
   Color get onSecondary =>
       isBlackTheme ? const Color(0xFFAAAAAA) : colorScheme.onSecondary;
   Color get inverseSurface =>
