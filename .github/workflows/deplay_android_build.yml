@@ -62,12 +62,15 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
       - name: Build iOS Release
-        run: flutter build ipa --release --no-codesign --flavor prod --no-tree-shake-icons
+        run: |
+          flutter build ipa --release --no-codesign --flavor prod --no-tree-shake-icons
+          ls -R build/ios/ipa  # Debug: List contents of build directory
       - name: Upload iOS Release
         uses: actions/upload-artifact@v4
         with:
           name: ios-release
           path: build/ios/ipa/*.ipa
+          if-no-files-found: error
 
   deploy_android:
     name: Deploy Android Build
@@ -97,6 +100,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ios-release
+      - name: List downloaded files
+        run: ls -R # Debug: List contents of download directory
       - name: Deploy to TestFlight
         uses: apple-actions/upload-testflight-build@v1
         with:
