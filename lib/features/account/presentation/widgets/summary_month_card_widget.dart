@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:chart_sparkline/chart_sparkline.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/theme/custom_color.dart';
 import 'package:paisa/core/widgets/paisa_widgets/paisa_card.dart';

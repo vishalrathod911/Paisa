@@ -1,6 +1,6 @@
 part of 'debts_bloc.dart';
 
-abstract class DebtsState extends Equatable {
+abstract interface class DebtsState extends Equatable {
   const DebtsState();
 
   @override
@@ -30,7 +30,7 @@ class DebtsTabState extends DebtsState {
 class DebtsSuccessState extends DebtsState {
   const DebtsSuccessState(this.debt);
 
-  final DebitEntity debt;
+  final DebtEntity debt;
 
   @override
   List<Object> get props => [debt];

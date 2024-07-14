@@ -10,8 +10,8 @@ import 'package:paisa/core/enum/debt_type.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/debit/data/models/debit_model.dart';
 import 'package:paisa/features/debit/presentation/cubit/debts_bloc.dart';
-import 'package:paisa/features/debit_transaction/data/model/debit_transactions_model.dart';
-import 'package:paisa/features/debit_transaction/domain/entities/debit_transaction_entity.dart';
+import 'package:paisa/features/debt_transaction/data/model/debt_transactions_model.dart';
+import 'package:paisa/features/debt_transaction/domain/entities/debit_transaction_entity.dart';
 import 'package:paisa/main.dart';
 
 class DebtItemWidget extends StatelessWidget {
@@ -20,9 +20,9 @@ class DebtItemWidget extends StatelessWidget {
     required this.debt,
   });
 
-  final DebitModel debt;
+  final DebtModel debt;
 
-  void addPayment(BuildContext context) {
+  void _addPayment(BuildContext context) {
     final controller = TextEditingController();
     DateTime? dateTime;
     showModalBottomSheet(
@@ -133,10 +133,10 @@ class DebtItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Box<DebitTransactionsModel>>(
-      valueListenable: getIt<Box<DebitTransactionsModel>>().listenable(),
+    return ValueListenableBuilder<Box<DebtTransactionsModel>>(
+      valueListenable: getIt<Box<DebtTransactionsModel>>().listenable(),
       builder: (context, value, child) {
-        final List<DebitTransactionEntity> transactions =
+        final List<DebtTransactionEntity> transactions =
             value.getTransactionsFromId(debt.superId ?? 0);
         final double amount = transactions.fold<double>(
             0, (previousValue, element) => previousValue + element.amount);
@@ -212,7 +212,7 @@ class DebtItemWidget extends StatelessWidget {
                           ),
                           style: TextButton.styleFrom(),
                           onPressed: () {
-                            addPayment(context);
+                            _addPayment(context);
                           },
                         ),
                       ),

@@ -1,17 +1,17 @@
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/adapters.dart';
 
-import 'package:paisa/features/debit_transaction/data/model/debit_transactions_model.dart';
-import 'package:paisa/features/debit_transaction/domain/entities/debit_transaction_entity.dart';
+import 'package:paisa/features/debt_transaction/data/model/debt_transactions_model.dart';
+import 'package:paisa/features/debt_transaction/domain/entities/debit_transaction_entity.dart';
 
-extension MappingOnTransactionsBox on Box<DebitTransactionsModel> {
-  List<DebitTransactionEntity> getTransactionsFromId(int parentId) {
+extension MappingOnTransactionsBox on Box<DebtTransactionsModel> {
+  List<DebtTransactionEntity> getTransactionsFromId(int parentId) {
     return values.where((element) => element.parentId == parentId).toEntities();
   }
 }
 
-extension MappingOnTransaction on DebitTransactionsModel {
-  DebitTransactionEntity toEntity() => DebitTransactionEntity(
+extension MappingOnTransaction on DebtTransactionsModel {
+  DebtTransactionEntity toEntity() => DebtTransactionEntity(
         amount: amount,
         now: now,
         parentId: parentId,
@@ -19,8 +19,8 @@ extension MappingOnTransaction on DebitTransactionsModel {
       );
 }
 
-extension MappingOnTransactions on Iterable<DebitTransactionsModel> {
-  List<DebitTransactionEntity> toEntities() => map((e) => e.toEntity())
+extension MappingOnTransactions on Iterable<DebtTransactionsModel> {
+  List<DebtTransactionEntity> toEntities() => map((e) => e.toEntity())
       .sorted((a, b) => b.now.compareTo(a.now))
       .toList();
   List<Map<String, dynamic>> toJson() {

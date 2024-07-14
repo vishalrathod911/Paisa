@@ -17,6 +17,8 @@ class DebitTypeAdapter extends TypeAdapter<DebitType> {
         return DebitType.debit;
       case 2:
         return DebitType.credit;
+      case 3:
+        return DebitType.goal;
       default:
         return DebitType.debit;
     }
@@ -30,6 +32,9 @@ class DebitTypeAdapter extends TypeAdapter<DebitType> {
         break;
       case DebitType.credit:
         writer.writeByte(2);
+        break;
+      case DebitType.goal:
+        writer.writeByte(3);
         break;
     }
   }

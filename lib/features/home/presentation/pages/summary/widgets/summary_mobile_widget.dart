@@ -31,9 +31,7 @@ class SummaryMobileWidget extends StatelessWidget {
             [
               const WelcomeNameWidget(),
               TransactionTotalWidget(transactions: transactions),
-              AccountSummaryWidget(
-                expenses: transactions,
-              ),
+              AccountSummaryWidget(expenses: transactions),
               // const CategorySection(),
               ListTile(
                 title: Text(

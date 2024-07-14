@@ -1,6 +1,6 @@
 import 'package:paisa/features/category/domain/entities/category.dart';
 
-abstract class CategoryRepository {
+abstract interface class CategoryRepository {
   Future<void> add({
     required String name,
     required int icon,

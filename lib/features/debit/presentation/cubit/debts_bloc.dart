@@ -8,12 +8,12 @@ import 'package:injectable/injectable.dart';
 
 import 'package:paisa/core/enum/debt_type.dart';
 import 'package:paisa/features/debit/data/models/debit_model.dart';
-import 'package:paisa/features/debit/domain/entities/debit.dart';
+import 'package:paisa/features/debit/domain/entities/debit_entity.dart';
 import 'package:paisa/features/debit/domain/use_case/debit_use_case.dart';
-import 'package:paisa/features/debit_transaction/domain/use_case/add_debit_transaction_use_case.dart';
-import 'package:paisa/features/debit_transaction/domain/use_case/delete_debit_transaction_use_case.dart';
-import 'package:paisa/features/debit_transaction/domain/use_case/delete_debit_transactions_by_debit_id_use_case.dart';
-import 'package:paisa/features/debit_transaction/domain/use_case/get_debit_transactions_use_case.dart';
+import 'package:paisa/features/debt_transaction/domain/use_case/add_debit_transaction_use_case.dart';
+import 'package:paisa/features/debt_transaction/domain/use_case/delete_debit_transaction_use_case.dart';
+import 'package:paisa/features/debt_transaction/domain/use_case/delete_debit_transactions_by_debit_id_use_case.dart';
+import 'package:paisa/features/debt_transaction/domain/use_case/get_debit_transactions_use_case.dart';
 
 part 'debts_event.dart';
 part 'debts_state.dart';
@@ -45,7 +45,7 @@ class DebitBloc extends Bloc<DebtsEvent, DebtsState> {
   final AddDebitUseCase addDebtUseCase;
   final AddDebitTransactionUseCase addTransactionUseCase;
   double? currentAmount;
-  DebitEntity? currentDebt;
+  DebtEntity? currentDebt;
   DebitType currentDebtType = DebitType.debit;
   String? currentDescription;
   String? currentName;
@@ -153,12 +153,12 @@ class DebitBloc extends Bloc<DebtsEvent, DebtsState> {
       return;
     }
 
-    final DebitEntity? debt = getDebtUseCase(GetDebitParams(debitId));
+    final DebtEntity? debt = getDebtUseCase(GetDebitParams(debitId));
     if (debt != null) {
       currentAmount = debt.amount;
       currentName = debt.name;
       currentDescription = debt.description;
-      startDateTime = debt.dateTime;
+      startDateTime = debt.startDateTime;
       endDateTime = debt.expiryDateTime;
       currentDebtType = debt.debtType;
       currentDebt = debt;

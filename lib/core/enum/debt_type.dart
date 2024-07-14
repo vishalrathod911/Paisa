@@ -7,5 +7,7 @@ enum DebitType {
   @HiveField(1)
   debit,
   @HiveField(2)
-  credit;
+  credit,
+  @HiveField(3)
+  goal;
 }

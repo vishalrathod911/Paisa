@@ -1,7 +1,7 @@
 part of 'category_bloc.dart';
 
 @immutable
-abstract class CategoryEvent extends Equatable {
+abstract interface class CategoryEvent extends Equatable {
   const CategoryEvent();
 
   @override

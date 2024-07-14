@@ -8,7 +8,7 @@ import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/domain/repository/account_repository.dart';
 
 @LazySingleton(as: AccountRepository)
-class AccountRepositoryImpl extends AccountRepository {
+class AccountRepositoryImpl implements AccountRepository {
   AccountRepositoryImpl({required this.dataSource});
 
   final AccountDataSource dataSource;

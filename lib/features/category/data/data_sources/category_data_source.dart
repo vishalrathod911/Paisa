@@ -5,7 +5,7 @@ import 'package:paisa/core/common.dart';
 
 import 'package:paisa/features/category/data/model/category_model.dart';
 
-abstract class CategoryDataSource {
+abstract interface class CategoryDataSource {
   Future<void> add(CategoryModel category);
 
   Future<void> delete(int key);

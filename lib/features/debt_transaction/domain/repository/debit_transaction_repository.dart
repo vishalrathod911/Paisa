@@ -1,7 +1,7 @@
-import 'package:paisa/features/debit_transaction/domain/entities/debit_transaction_entity.dart';
+import 'package:paisa/features/debt_transaction/domain/entities/debit_transaction_entity.dart';
 
-abstract class DebitTransactionRepository {
-  List<DebitTransactionEntity> fetchTransactionsFromId(int id);
+abstract interface class DebitTransactionRepository {
+  List<DebtTransactionEntity> fetchTransactionsFromId(int id);
 
   Future<void> deleteDebitTransactionsFromDebitId(int parentId);
 

@@ -7,20 +7,23 @@ part 'debit_model.g.dart';
 part 'debit_model.freezed.dart';
 
 @unfreezed
-class DebitModel extends HiveObject with _$DebitModel {
+class DebtModel extends HiveObject with _$DebtModel {
   @HiveType(typeId: 4, adapterName: 'DebitModelAdapter')
-  factory DebitModel({
-    @HiveField(2) required double amount,
-    @HiveField(3) required DateTime dateTime,
-    @HiveField(5) @Default(DebitType.debit) DebitType debtType,
+  factory DebtModel({
     @HiveField(1) required String description,
+    @HiveField(2) required double amount,
+    @HiveField(3) required DateTime startDateTime,
     @HiveField(4) required DateTime expiryDateTime,
-    @HiveField(7, defaultValue: '') required String name,
-    @HiveField(6, defaultValue: 0) int? superId,
+    @HiveField(5) @Default(DebitType.debit) DebitType debtType,
+    @HiveField(6) int? superId,
+    @HiveField(7) required String name,
+    @HiveField(8) @Default(0xf04b6) int? icon,
+    @HiveField(9) @Default(false) bool? isCompleted,
+    @HiveField(10) @Default(0xFF000000) int? color,
   }) = _DebitModel;
 
-  DebitModel._();
+  DebtModel._();
 
-  factory DebitModel.fromJson(Map<String, dynamic> json) =>
-      _$DebitModelFromJson(json);
+  factory DebtModel.fromJson(Map<String, dynamic> json) =>
+      _$DebtModelFromJson(json);
 }

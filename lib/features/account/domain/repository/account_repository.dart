@@ -1,7 +1,7 @@
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 
-abstract class AccountRepository {
+abstract interface class AccountRepository {
   Future<int> add({
     required String bankName,
     required String holderName,

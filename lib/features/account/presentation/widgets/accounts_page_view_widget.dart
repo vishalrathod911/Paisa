@@ -90,7 +90,7 @@ class AccountPageViewDotsIndicator extends StatelessWidget {
       width: 8,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: isActive ? context.primary : Theme.of(context).disabledColor,
+        color: isActive ? context.secondary : Theme.of(context).disabledColor,
       ),
     );
   }

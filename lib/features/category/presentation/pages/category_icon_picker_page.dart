@@ -25,6 +25,8 @@ class _CategoryIconPickerPageState extends State<CategoryIconPickerPage> {
         paisaIconMap().entries.toList();
     return PaisaScaffold(
       appBar: AppBar(
+        backgroundColor: context.surface,
+        scrolledUnderElevation: 0,
         leading: IconButton(
             onPressed: () {
               GoRouter.of(context).pop(selectedIcon);
@@ -72,7 +74,7 @@ class _CategoryIconPickerPageState extends State<CategoryIconPickerPage> {
                   title: Text(
                     iconData.key,
                     style: context.titleMedium?.copyWith(
-                      color: context.primary,
+                      color: context.secondary,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -94,7 +96,7 @@ class _CategoryIconPickerPageState extends State<CategoryIconPickerPage> {
                           ? BoxDecoration(
                               border: Border.all(
                                 width: 2,
-                                color: context.primary,
+                                color: context.secondary.withOpacity(0.5),
                               ),
                               borderRadius: BorderRadius.circular(32),
                             )
@@ -103,7 +105,7 @@ class _CategoryIconPickerPageState extends State<CategoryIconPickerPage> {
                         iconSize: 30,
                         key: ValueKey(iconData.value[index].hashCode),
                         color: isSelected
-                            ? context.primary
+                            ? context.secondary
                             : Theme.of(context).iconTheme.color,
                         onPressed: () {
                           setState(() {

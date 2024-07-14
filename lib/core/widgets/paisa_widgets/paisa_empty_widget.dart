@@ -30,7 +30,7 @@ class EmptyWidget extends StatelessWidget {
             Icon(
               icon,
               size: 96,
-              color: context.primary,
+              color: context.secondary,
             ),
             const SizedBox(
               height: 6,

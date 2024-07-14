@@ -15,31 +15,31 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$DebitTransactionEntity {
+mixin _$DebtTransactionEntity {
   double get amount => throw _privateConstructorUsedError;
   DateTime get now => throw _privateConstructorUsedError;
-  int? get parentId => throw _privateConstructorUsedError;
+  int get parentId => throw _privateConstructorUsedError;
   int? get superId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DebitTransactionEntityCopyWith<DebitTransactionEntity> get copyWith =>
+  $DebtTransactionEntityCopyWith<DebtTransactionEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DebitTransactionEntityCopyWith<$Res> {
-  factory $DebitTransactionEntityCopyWith(DebitTransactionEntity value,
-          $Res Function(DebitTransactionEntity) then) =
-      _$DebitTransactionEntityCopyWithImpl<$Res, DebitTransactionEntity>;
+abstract class $DebtTransactionEntityCopyWith<$Res> {
+  factory $DebtTransactionEntityCopyWith(DebtTransactionEntity value,
+          $Res Function(DebtTransactionEntity) then) =
+      _$DebtTransactionEntityCopyWithImpl<$Res, DebtTransactionEntity>;
   @useResult
-  $Res call({double amount, DateTime now, int? parentId, int? superId});
+  $Res call({double amount, DateTime now, int parentId, int? superId});
 }
 
 /// @nodoc
-class _$DebitTransactionEntityCopyWithImpl<$Res,
-        $Val extends DebitTransactionEntity>
-    implements $DebitTransactionEntityCopyWith<$Res> {
-  _$DebitTransactionEntityCopyWithImpl(this._value, this._then);
+class _$DebtTransactionEntityCopyWithImpl<$Res,
+        $Val extends DebtTransactionEntity>
+    implements $DebtTransactionEntityCopyWith<$Res> {
+  _$DebtTransactionEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -51,7 +51,7 @@ class _$DebitTransactionEntityCopyWithImpl<$Res,
   $Res call({
     Object? amount = null,
     Object? now = null,
-    Object? parentId = freezed,
+    Object? parentId = null,
     Object? superId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -63,10 +63,10 @@ class _$DebitTransactionEntityCopyWithImpl<$Res,
           ? _value.now
           : now // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      parentId: freezed == parentId
+      parentId: null == parentId
           ? _value.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       superId: freezed == superId
           ? _value.superId
           : superId // ignore: cast_nullable_to_non_nullable
@@ -76,25 +76,24 @@ class _$DebitTransactionEntityCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$DebitTransactionEntityImplCopyWith<$Res>
-    implements $DebitTransactionEntityCopyWith<$Res> {
-  factory _$$DebitTransactionEntityImplCopyWith(
-          _$DebitTransactionEntityImpl value,
-          $Res Function(_$DebitTransactionEntityImpl) then) =
-      __$$DebitTransactionEntityImplCopyWithImpl<$Res>;
+abstract class _$$DebtTransactionEntityImplCopyWith<$Res>
+    implements $DebtTransactionEntityCopyWith<$Res> {
+  factory _$$DebtTransactionEntityImplCopyWith(
+          _$DebtTransactionEntityImpl value,
+          $Res Function(_$DebtTransactionEntityImpl) then) =
+      __$$DebtTransactionEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double amount, DateTime now, int? parentId, int? superId});
+  $Res call({double amount, DateTime now, int parentId, int? superId});
 }
 
 /// @nodoc
-class __$$DebitTransactionEntityImplCopyWithImpl<$Res>
-    extends _$DebitTransactionEntityCopyWithImpl<$Res,
-        _$DebitTransactionEntityImpl>
-    implements _$$DebitTransactionEntityImplCopyWith<$Res> {
-  __$$DebitTransactionEntityImplCopyWithImpl(
-      _$DebitTransactionEntityImpl _value,
-      $Res Function(_$DebitTransactionEntityImpl) _then)
+class __$$DebtTransactionEntityImplCopyWithImpl<$Res>
+    extends _$DebtTransactionEntityCopyWithImpl<$Res,
+        _$DebtTransactionEntityImpl>
+    implements _$$DebtTransactionEntityImplCopyWith<$Res> {
+  __$$DebtTransactionEntityImplCopyWithImpl(_$DebtTransactionEntityImpl _value,
+      $Res Function(_$DebtTransactionEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,10 +101,10 @@ class __$$DebitTransactionEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? amount = null,
     Object? now = null,
-    Object? parentId = freezed,
+    Object? parentId = null,
     Object? superId = freezed,
   }) {
-    return _then(_$DebitTransactionEntityImpl(
+    return _then(_$DebtTransactionEntityImpl(
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -114,10 +113,10 @@ class __$$DebitTransactionEntityImplCopyWithImpl<$Res>
           ? _value.now
           : now // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      parentId: freezed == parentId
+      parentId: null == parentId
           ? _value.parentId
           : parentId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       superId: freezed == superId
           ? _value.superId
           : superId // ignore: cast_nullable_to_non_nullable
@@ -128,29 +127,32 @@ class __$$DebitTransactionEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DebitTransactionEntityImpl implements _DebitTransactionEntity {
-  const _$DebitTransactionEntityImpl(
-      {required this.amount, required this.now, this.parentId, this.superId});
+class _$DebtTransactionEntityImpl implements _DebtTransactionEntity {
+  const _$DebtTransactionEntityImpl(
+      {required this.amount,
+      required this.now,
+      required this.parentId,
+      this.superId});
 
   @override
   final double amount;
   @override
   final DateTime now;
   @override
-  final int? parentId;
+  final int parentId;
   @override
   final int? superId;
 
   @override
   String toString() {
-    return 'DebitTransactionEntity(amount: $amount, now: $now, parentId: $parentId, superId: $superId)';
+    return 'DebtTransactionEntity(amount: $amount, now: $now, parentId: $parentId, superId: $superId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DebitTransactionEntityImpl &&
+            other is _$DebtTransactionEntityImpl &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.now, now) || other.now == now) &&
             (identical(other.parentId, parentId) ||
@@ -164,28 +166,28 @@ class _$DebitTransactionEntityImpl implements _DebitTransactionEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DebitTransactionEntityImplCopyWith<_$DebitTransactionEntityImpl>
-      get copyWith => __$$DebitTransactionEntityImplCopyWithImpl<
-          _$DebitTransactionEntityImpl>(this, _$identity);
+  _$$DebtTransactionEntityImplCopyWith<_$DebtTransactionEntityImpl>
+      get copyWith => __$$DebtTransactionEntityImplCopyWithImpl<
+          _$DebtTransactionEntityImpl>(this, _$identity);
 }
 
-abstract class _DebitTransactionEntity implements DebitTransactionEntity {
-  const factory _DebitTransactionEntity(
+abstract class _DebtTransactionEntity implements DebtTransactionEntity {
+  const factory _DebtTransactionEntity(
       {required final double amount,
       required final DateTime now,
-      final int? parentId,
-      final int? superId}) = _$DebitTransactionEntityImpl;
+      required final int parentId,
+      final int? superId}) = _$DebtTransactionEntityImpl;
 
   @override
   double get amount;
   @override
   DateTime get now;
   @override
-  int? get parentId;
+  int get parentId;
   @override
   int? get superId;
   @override
   @JsonKey(ignore: true)
-  _$$DebitTransactionEntityImplCopyWith<_$DebitTransactionEntityImpl>
+  _$$DebtTransactionEntityImplCopyWith<_$DebtTransactionEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

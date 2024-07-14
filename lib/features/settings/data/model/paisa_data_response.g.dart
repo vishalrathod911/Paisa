@@ -22,12 +22,12 @@ _$PaisaDataResponseImpl _$$PaisaDataResponseImplFromJson(
               .toList() ??
           const [],
       debts: (json['debts'] as List<dynamic>?)
-              ?.map((e) => DebitModel.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => DebtModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       debitTransactions: (json['debitTransactions'] as List<dynamic>?)
               ?.map((e) =>
-                  DebitTransactionsModel.fromJson(e as Map<String, dynamic>))
+                  DebtTransactionsModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );

@@ -4,7 +4,7 @@ import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/core/error/failures.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 
-abstract class TransactionRepository {
+abstract interface class TransactionRepository {
   Future<Either<Failure, bool>> addExpense({
     required double amount,
     required int categoryId,

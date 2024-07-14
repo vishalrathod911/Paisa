@@ -1,6 +1,6 @@
 import 'package:paisa/features/recurring/data/model/recurring.dart';
 
-abstract class LocalRecurringDataManager {
+abstract interface class LocalRecurringDataManager {
   Future<void> addRecurringEvent(RecurringModel recurringModel);
 
   List<RecurringModel> recurringModels();

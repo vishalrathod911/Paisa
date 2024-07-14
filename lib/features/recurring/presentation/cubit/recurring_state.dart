@@ -1,6 +1,6 @@
 part of 'recurring_cubit.dart';
 
-abstract class RecurringState extends Equatable {
+abstract interface class RecurringState extends Equatable {
   const RecurringState();
 
   @override

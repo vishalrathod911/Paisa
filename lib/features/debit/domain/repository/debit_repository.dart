@@ -1,7 +1,7 @@
 import 'package:paisa/core/enum/debt_type.dart';
-import 'package:paisa/features/debit/domain/entities/debit.dart';
+import 'package:paisa/features/debit/domain/entities/debit_entity.dart';
 
-abstract class DebitRepository {
+abstract interface class DebitRepository {
   Future<void> addDebtOrCredit(
     String description,
     String name,
@@ -21,7 +21,7 @@ abstract class DebitRepository {
     required int key,
   });
 
-  DebitEntity? fetchDebtOrCreditFromId(int debtId);
+  DebtEntity? fetchDebtOrCreditFromId(int debtId);
 
   Future<void> deleteDebtOrCreditFromId(int debtId);
 }

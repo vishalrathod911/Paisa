@@ -31,7 +31,7 @@ class TransactionsHeaderWidget extends StatelessWidget {
       trailing: OutlinedButton.icon(
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-          foregroundColor: context.primary,
+          foregroundColor: context.secondary,
         ),
         label: ValueListenableBuilder<FilterExpense>(
           valueListenable: summaryController.accountTransactionsNotifier,

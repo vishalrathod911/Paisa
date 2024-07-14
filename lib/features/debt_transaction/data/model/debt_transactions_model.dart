@@ -13,9 +13,9 @@ enum TransactionModelType {
 }
 
 @unfreezed
-class DebitTransactionsModel extends HiveObject with _$DebitTransactionsModel {
+class DebtTransactionsModel extends HiveObject with _$DebtTransactionsModel {
   @HiveType(typeId: 3, adapterName: 'DebitTransactionsModelAdapter')
-  factory DebitTransactionsModel({
+  factory DebtTransactionsModel({
     @HiveField(1) required double amount,
     @HiveField(2) required DateTime now,
     @HiveField(4, defaultValue: -1) required int parentId,
@@ -25,8 +25,8 @@ class DebitTransactionsModel extends HiveObject with _$DebitTransactionsModel {
     TransactionModelType? type,
   }) = _DebitTransactionsModel;
 
-  DebitTransactionsModel._();
+  DebtTransactionsModel._();
 
-  factory DebitTransactionsModel.fromJson(Map<String, dynamic> json) =>
-      _$DebitTransactionsModelFromJson(json);
+  factory DebtTransactionsModel.fromJson(Map<String, dynamic> json) =>
+      _$DebtTransactionsModelFromJson(json);
 }

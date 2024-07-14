@@ -51,7 +51,6 @@ class SettingsPage extends StatelessWidget {
                 AppThemeWidget(),
                 PaisaDivider(),
                 JustBlackWidget(),
-                PaisaDivider(),
                 SettingsColorPickerWidget(),
               ],
             ),

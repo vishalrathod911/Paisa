@@ -1,7 +1,7 @@
-abstract class Export {
+abstract interface class Export {
   Future<String> export();
 }
 
-abstract class Import {
+abstract interface class Import {
   Future<bool> import();
 }

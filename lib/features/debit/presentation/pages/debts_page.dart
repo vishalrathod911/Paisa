@@ -54,8 +54,8 @@ class DebtsPage extends StatelessWidget {
             ),
           ),
         ),
-        body: ValueListenableBuilder<Box<DebitModel>>(
-          valueListenable: getIt<Box<DebitModel>>().listenable(),
+        body: ValueListenableBuilder<Box<DebtModel>>(
+          valueListenable: getIt<Box<DebtModel>>().listenable(),
           builder: (context, value, child) {
             final debts = value.values
                 .where((element) => element.debtType == DebitType.debit)

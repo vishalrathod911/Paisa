@@ -7,8 +7,7 @@ import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/debit/data/models/debit_model.dart';
-import 'package:paisa/features/debit_transaction/data/model/debit_transactions_model.dart';
-import 'package:paisa/features/goals/data/models/goal_model.dart';
+import 'package:paisa/features/debt_transaction/data/model/debt_transactions_model.dart';
 import 'package:paisa/features/intro/data/models/country_model.dart';
 import 'package:paisa/features/recurring/data/model/recurring.dart';
 import 'package:paisa/features/transaction/data/model/transaction_model.dart';
@@ -32,23 +31,18 @@ abstract class HiveBoxModule {
 
   @lazySingleton
   @preResolve
-  Future<Box<DebitModel>> debtsBox() =>
-      Hive.openBox<DebitModel>(BoxType.debts.name);
+  Future<Box<DebtModel>> debtsBox() =>
+      Hive.openBox<DebtModel>(BoxType.debts.name);
 
   @lazySingleton
   @preResolve
-  Future<Box<DebitTransactionsModel>> transactionsBox() =>
-      Hive.openBox<DebitTransactionsModel>(BoxType.transactions.name);
+  Future<Box<DebtTransactionsModel>> transactionsBox() =>
+      Hive.openBox<DebtTransactionsModel>(BoxType.transactions.name);
 
   @lazySingleton
   @preResolve
   Future<Box<RecurringModel>> recurringBox() =>
       Hive.openBox<RecurringModel>(BoxType.recurring.name);
-
-  @lazySingleton
-  @preResolve
-  Future<Box<GoalModel>> goalBox() =>
-      Hive.openBox<GoalModel>(BoxType.goal.name);
 
   @lazySingleton
   @preResolve
@@ -72,7 +66,6 @@ class HiveAdapters {
       ..registerAdapter(CardTypeAdapter())
       ..registerAdapter(RecurringTypeAdapter())
       ..registerAdapter(RecurringModelAdapter())
-      ..registerAdapter(GoalModelAdapter())
       ..registerAdapter(TransactionModelTypeAdapter())
       ..registerAdapter(FilterExpenseAdapter());
   }

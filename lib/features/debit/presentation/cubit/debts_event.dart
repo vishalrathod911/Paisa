@@ -1,7 +1,7 @@
 part of 'debts_bloc.dart';
 
 @immutable
-abstract class DebtsEvent extends Equatable {
+abstract interface class DebtsEvent extends Equatable {
   const DebtsEvent();
 
   @override
@@ -13,7 +13,7 @@ class AddTransactionToDebtEvent extends DebtsEvent {
 
   final double amount;
   final DateTime dateTime;
-  final DebitModel debt;
+  final DebtModel debt;
 
   @override
   List<Object?> get props => [debt, amount];

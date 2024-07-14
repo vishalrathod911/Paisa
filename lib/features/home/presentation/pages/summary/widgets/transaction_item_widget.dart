@@ -109,7 +109,11 @@ class TransactionItemWidget extends StatelessWidget {
         _deleteTransactionDialog(context);
       },
       onTap: () {
-        TransactionPageData(transactionId: transaction.superId).push(context);
+        TransactionPageData(
+          transactionId: transaction.superId,
+          accountId: account.superId,
+          categoryId: category.superId,
+        ).push(context);
       },
       title: Text(
         transaction.name,

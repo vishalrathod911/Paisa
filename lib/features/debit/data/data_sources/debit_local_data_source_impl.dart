@@ -4,16 +4,16 @@ import 'package:injectable/injectable.dart';
 
 import 'package:paisa/features/debit/data/models/debit_model.dart';
 
-abstract class DebtDataSource {
-  Future<void> addDebtOrCredit(DebitModel debt);
+abstract interface class DebtDataSource {
+  Future<void> add(DebtModel debt);
 
-  DebitModel? fetchDebtOrCreditFromId(int debtId);
+  DebtModel? fetchFromId(int debtId);
 
-  Future<void> update(DebitModel debtModel);
+  Future<void> update(DebtModel debtModel);
 
-  Future<void> deleteDebtOrCreditFromId(int debtId);
+  Future<void> deleteById(int debtId);
 
-  Iterable<DebitModel> export();
+  Iterable<DebtModel> export();
 
   Future<void> clear();
 }
@@ -24,10 +24,10 @@ class DebitDataSourceImpl extends DebtDataSource {
     required this.debtBox,
   });
 
-  final Box<DebitModel> debtBox;
+  final Box<DebtModel> debtBox;
 
   @override
-  Future<void> addDebtOrCredit(DebitModel debt) async {
+  Future<void> add(DebtModel debt) async {
     final int id = await debtBox.add(debt);
     debt.superId = id;
     return debt.save();
@@ -39,21 +39,21 @@ class DebitDataSourceImpl extends DebtDataSource {
   }
 
   @override
-  Future<void> deleteDebtOrCreditFromId(int debtId) {
+  Future<void> deleteById(int debtId) {
     return debtBox.delete(debtId);
   }
 
   @override
-  Iterable<DebitModel> export() {
+  Iterable<DebtModel> export() {
     return debtBox.values;
   }
 
   @override
-  DebitModel? fetchDebtOrCreditFromId(int debtId) =>
+  DebtModel? fetchFromId(int debtId) =>
       debtBox.values.firstWhereOrNull((element) => element.superId == debtId);
 
   @override
-  Future<void> update(DebitModel debtModel) {
+  Future<void> update(DebtModel debtModel) {
     return debtBox.put(debtModel.superId!, debtModel);
   }
 }

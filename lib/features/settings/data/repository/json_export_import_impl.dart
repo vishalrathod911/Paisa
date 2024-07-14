@@ -17,8 +17,8 @@ import 'package:paisa/features/category/data/data_sources/category_data_source.d
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/debit/data/data_sources/debit_local_data_source_impl.dart';
 import 'package:paisa/features/debit/data/models/debit_model.dart';
-import 'package:paisa/features/debit_transaction/data/data_source/debit_transactions_data_store.dart';
-import 'package:paisa/features/debit_transaction/data/model/debit_transactions_model.dart';
+import 'package:paisa/features/debt_transaction/data/data_source/debit_transactions_data_store.dart';
+import 'package:paisa/features/debt_transaction/data/model/debt_transactions_model.dart';
 import 'package:paisa/features/settings/data/model/paisa_data_response.dart';
 import 'package:paisa/features/settings/domain/repository/import_export.dart';
 import 'package:paisa/features/transaction/data/data_sources/local/transaction_data_manager.dart';
@@ -60,8 +60,8 @@ class JSONExportImpl implements Export {
     final Iterable<TransactionModel> expenses = expenseDataSource.export();
     final Iterable<AccountModel> accounts = accountDataSource.export();
     final Iterable<CategoryModel> categories = categoryDataSource.export();
-    final Iterable<DebitModel> debts = debtDataSource.export();
-    final Iterable<DebitTransactionsModel> debtTransactions =
+    final Iterable<DebtModel> debts = debtDataSource.export();
+    final Iterable<DebtTransactionsModel> debtTransactions =
         debtTransactionDataSource.export();
 
     final Map<String, dynamic> data = {

@@ -23,8 +23,8 @@ mixin _$PaisaDataResponse {
   List<TransactionModel> get expenses => throw _privateConstructorUsedError;
   List<AccountModel> get accounts => throw _privateConstructorUsedError;
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
-  List<DebitModel> get debts => throw _privateConstructorUsedError;
-  List<DebitTransactionsModel> get debitTransactions =>
+  List<DebtModel> get debts => throw _privateConstructorUsedError;
+  List<DebtTransactionsModel> get debitTransactions =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,8 +43,8 @@ abstract class $PaisaDataResponseCopyWith<$Res> {
       {List<TransactionModel> expenses,
       List<AccountModel> accounts,
       List<CategoryModel> categories,
-      List<DebitModel> debts,
-      List<DebitTransactionsModel> debitTransactions});
+      List<DebtModel> debts,
+      List<DebtTransactionsModel> debitTransactions});
 }
 
 /// @nodoc
@@ -82,11 +82,11 @@ class _$PaisaDataResponseCopyWithImpl<$Res, $Val extends PaisaDataResponse>
       debts: null == debts
           ? _value.debts
           : debts // ignore: cast_nullable_to_non_nullable
-              as List<DebitModel>,
+              as List<DebtModel>,
       debitTransactions: null == debitTransactions
           ? _value.debitTransactions
           : debitTransactions // ignore: cast_nullable_to_non_nullable
-              as List<DebitTransactionsModel>,
+              as List<DebtTransactionsModel>,
     ) as $Val);
   }
 }
@@ -103,8 +103,8 @@ abstract class _$$PaisaDataResponseImplCopyWith<$Res>
       {List<TransactionModel> expenses,
       List<AccountModel> accounts,
       List<CategoryModel> categories,
-      List<DebitModel> debts,
-      List<DebitTransactionsModel> debitTransactions});
+      List<DebtModel> debts,
+      List<DebtTransactionsModel> debitTransactions});
 }
 
 /// @nodoc
@@ -140,11 +140,11 @@ class __$$PaisaDataResponseImplCopyWithImpl<$Res>
       debts: null == debts
           ? _value._debts
           : debts // ignore: cast_nullable_to_non_nullable
-              as List<DebitModel>,
+              as List<DebtModel>,
       debitTransactions: null == debitTransactions
           ? _value._debitTransactions
           : debitTransactions // ignore: cast_nullable_to_non_nullable
-              as List<DebitTransactionsModel>,
+              as List<DebtTransactionsModel>,
     ));
   }
 }
@@ -156,8 +156,8 @@ class _$PaisaDataResponseImpl implements _PaisaDataResponse {
       {final List<TransactionModel> expenses = const [],
       final List<AccountModel> accounts = const [],
       final List<CategoryModel> categories = const [],
-      final List<DebitModel> debts = const [],
-      final List<DebitTransactionsModel> debitTransactions = const []})
+      final List<DebtModel> debts = const [],
+      final List<DebtTransactionsModel> debitTransactions = const []})
       : _expenses = expenses,
         _accounts = accounts,
         _categories = categories,
@@ -194,19 +194,19 @@ class _$PaisaDataResponseImpl implements _PaisaDataResponse {
     return EqualUnmodifiableListView(_categories);
   }
 
-  final List<DebitModel> _debts;
+  final List<DebtModel> _debts;
   @override
   @JsonKey()
-  List<DebitModel> get debts {
+  List<DebtModel> get debts {
     if (_debts is EqualUnmodifiableListView) return _debts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_debts);
   }
 
-  final List<DebitTransactionsModel> _debitTransactions;
+  final List<DebtTransactionsModel> _debitTransactions;
   @override
   @JsonKey()
-  List<DebitTransactionsModel> get debitTransactions {
+  List<DebtTransactionsModel> get debitTransactions {
     if (_debitTransactions is EqualUnmodifiableListView)
       return _debitTransactions;
     // ignore: implicit_dynamic_type
@@ -262,8 +262,8 @@ abstract class _PaisaDataResponse implements PaisaDataResponse {
           {final List<TransactionModel> expenses,
           final List<AccountModel> accounts,
           final List<CategoryModel> categories,
-          final List<DebitModel> debts,
-          final List<DebitTransactionsModel> debitTransactions}) =
+          final List<DebtModel> debts,
+          final List<DebtTransactionsModel> debitTransactions}) =
       _$PaisaDataResponseImpl;
 
   factory _PaisaDataResponse.fromJson(Map<String, dynamic> json) =
@@ -276,9 +276,9 @@ abstract class _PaisaDataResponse implements PaisaDataResponse {
   @override
   List<CategoryModel> get categories;
   @override
-  List<DebitModel> get debts;
+  List<DebtModel> get debts;
   @override
-  List<DebitTransactionsModel> get debitTransactions;
+  List<DebtTransactionsModel> get debitTransactions;
   @override
   @JsonKey(ignore: true)
   _$$PaisaDataResponseImplCopyWith<_$PaisaDataResponseImpl> get copyWith =>

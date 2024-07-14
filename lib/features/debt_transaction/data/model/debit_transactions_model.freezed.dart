@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'debit_transactions_model.dart';
+part of 'debt_transactions_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-DebitTransactionsModel _$DebitTransactionsModelFromJson(
+DebtTransactionsModel _$DebtTransactionsModelFromJson(
     Map<String, dynamic> json) {
   return _DebitTransactionsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DebitTransactionsModel {
+mixin _$DebtTransactionsModel {
   @HiveField(1)
   double get amount => throw _privateConstructorUsedError;
   @HiveField(1)
@@ -44,15 +44,15 @@ mixin _$DebitTransactionsModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DebitTransactionsModelCopyWith<DebitTransactionsModel> get copyWith =>
+  $DebtTransactionsModelCopyWith<DebtTransactionsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DebitTransactionsModelCopyWith<$Res> {
-  factory $DebitTransactionsModelCopyWith(DebitTransactionsModel value,
-          $Res Function(DebitTransactionsModel) then) =
-      _$DebitTransactionsModelCopyWithImpl<$Res, DebitTransactionsModel>;
+abstract class $DebtTransactionsModelCopyWith<$Res> {
+  factory $DebtTransactionsModelCopyWith(DebtTransactionsModel value,
+          $Res Function(DebtTransactionsModel) then) =
+      _$DebtTransactionsModelCopyWithImpl<$Res, DebtTransactionsModel>;
   @useResult
   $Res call(
       {@HiveField(1) double amount,
@@ -63,10 +63,10 @@ abstract class $DebitTransactionsModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DebitTransactionsModelCopyWithImpl<$Res,
-        $Val extends DebitTransactionsModel>
-    implements $DebitTransactionsModelCopyWith<$Res> {
-  _$DebitTransactionsModelCopyWithImpl(this._value, this._then);
+class _$DebtTransactionsModelCopyWithImpl<$Res,
+        $Val extends DebtTransactionsModel>
+    implements $DebtTransactionsModelCopyWith<$Res> {
+  _$DebtTransactionsModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -109,7 +109,7 @@ class _$DebitTransactionsModelCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$DebitTransactionsModelImplCopyWith<$Res>
-    implements $DebitTransactionsModelCopyWith<$Res> {
+    implements $DebtTransactionsModelCopyWith<$Res> {
   factory _$$DebitTransactionsModelImplCopyWith(
           _$DebitTransactionsModelImpl value,
           $Res Function(_$DebitTransactionsModelImpl) then) =
@@ -126,7 +126,7 @@ abstract class _$$DebitTransactionsModelImplCopyWith<$Res>
 
 /// @nodoc
 class __$$DebitTransactionsModelImplCopyWithImpl<$Res>
-    extends _$DebitTransactionsModelCopyWithImpl<$Res,
+    extends _$DebtTransactionsModelCopyWithImpl<$Res,
         _$DebitTransactionsModelImpl>
     implements _$$DebitTransactionsModelImplCopyWith<$Res> {
   __$$DebitTransactionsModelImplCopyWithImpl(
@@ -202,7 +202,7 @@ class _$DebitTransactionsModelImpl extends _DebitTransactionsModel {
 
   @override
   String toString() {
-    return 'DebitTransactionsModel(amount: $amount, now: $now, parentId: $parentId, superId: $superId, type: $type)';
+    return 'DebtTransactionsModel(amount: $amount, now: $now, parentId: $parentId, superId: $superId, type: $type)';
   }
 
   @JsonKey(ignore: true)
@@ -220,7 +220,7 @@ class _$DebitTransactionsModelImpl extends _DebitTransactionsModel {
   }
 }
 
-abstract class _DebitTransactionsModel extends DebitTransactionsModel {
+abstract class _DebitTransactionsModel extends DebtTransactionsModel {
   factory _DebitTransactionsModel(
       {@HiveField(1) required double amount,
       @HiveField(2) required DateTime now,

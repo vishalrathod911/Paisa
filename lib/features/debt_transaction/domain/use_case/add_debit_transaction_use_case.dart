@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:paisa/core/use_case/use_case.dart';
-import 'package:paisa/features/debit_transaction/domain/repository/debit_transaction_repository.dart';
+import 'package:paisa/features/debt_transaction/domain/repository/debit_transaction_repository.dart';
 
 part 'add_debit_transaction_use_case.freezed.dart';
 

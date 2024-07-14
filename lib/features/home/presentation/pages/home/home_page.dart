@@ -64,7 +64,7 @@ final destinations = [
     icon: Icon(MdiIcons.cashSync),
     selectedIcon: Icon(MdiIcons.cashSync),
   ),
-  /*  Destination(
+  /* Destination(
     pageType: PageType.goals,
     icon: Icon(MdiIcons.cashSync),
     selectedIcon: Icon(MdiIcons.cashSync),

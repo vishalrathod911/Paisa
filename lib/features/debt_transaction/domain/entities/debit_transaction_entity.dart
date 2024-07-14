@@ -3,11 +3,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'debit_transaction_entity.freezed.dart';
 
 @freezed
-class DebitTransactionEntity with _$DebitTransactionEntity {
-  const factory DebitTransactionEntity({
+class DebtTransactionEntity with _$DebtTransactionEntity {
+  const factory DebtTransactionEntity({
     required double amount,
     required DateTime now,
-    int? parentId,
+    required int parentId,
     int? superId,
-  }) = _DebitTransactionEntity;
+  }) = _DebtTransactionEntity;
 }

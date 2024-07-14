@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'debit.dart';
+part of 'debit_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,40 +15,46 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$DebitEntity {
+mixin _$DebtEntity {
   String get description => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
-  DateTime get dateTime => throw _privateConstructorUsedError;
+  DateTime get startDateTime => throw _privateConstructorUsedError;
   DateTime get expiryDateTime => throw _privateConstructorUsedError;
-  DebitType get debtType => throw _privateConstructorUsedError;
   int get superId => throw _privateConstructorUsedError;
+  int get icon => throw _privateConstructorUsedError;
+  int get color => throw _privateConstructorUsedError;
+  DebitType get debtType => throw _privateConstructorUsedError;
+  bool get isCompleted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $DebitEntityCopyWith<DebitEntity> get copyWith =>
+  $DebtEntityCopyWith<DebtEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DebitEntityCopyWith<$Res> {
-  factory $DebitEntityCopyWith(
-          DebitEntity value, $Res Function(DebitEntity) then) =
-      _$DebitEntityCopyWithImpl<$Res, DebitEntity>;
+abstract class $DebtEntityCopyWith<$Res> {
+  factory $DebtEntityCopyWith(
+          DebtEntity value, $Res Function(DebtEntity) then) =
+      _$DebtEntityCopyWithImpl<$Res, DebtEntity>;
   @useResult
   $Res call(
       {String description,
       String name,
       double amount,
-      DateTime dateTime,
+      DateTime startDateTime,
       DateTime expiryDateTime,
+      int superId,
+      int icon,
+      int color,
       DebitType debtType,
-      int superId});
+      bool isCompleted});
 }
 
 /// @nodoc
-class _$DebitEntityCopyWithImpl<$Res, $Val extends DebitEntity>
-    implements $DebitEntityCopyWith<$Res> {
-  _$DebitEntityCopyWithImpl(this._value, this._then);
+class _$DebtEntityCopyWithImpl<$Res, $Val extends DebtEntity>
+    implements $DebtEntityCopyWith<$Res> {
+  _$DebtEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -61,10 +67,13 @@ class _$DebitEntityCopyWithImpl<$Res, $Val extends DebitEntity>
     Object? description = null,
     Object? name = null,
     Object? amount = null,
-    Object? dateTime = null,
+    Object? startDateTime = null,
     Object? expiryDateTime = null,
-    Object? debtType = null,
     Object? superId = null,
+    Object? icon = null,
+    Object? color = null,
+    Object? debtType = null,
+    Object? isCompleted = null,
   }) {
     return _then(_value.copyWith(
       description: null == description
@@ -79,29 +88,41 @@ class _$DebitEntityCopyWithImpl<$Res, $Val extends DebitEntity>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
+      startDateTime: null == startDateTime
+          ? _value.startDateTime
+          : startDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
       expiryDateTime: null == expiryDateTime
           ? _value.expiryDateTime
           : expiryDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      debtType: null == debtType
-          ? _value.debtType
-          : debtType // ignore: cast_nullable_to_non_nullable
-              as DebitType,
       superId: null == superId
           ? _value.superId
           : superId // ignore: cast_nullable_to_non_nullable
               as int,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as int,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as int,
+      debtType: null == debtType
+          ? _value.debtType
+          : debtType // ignore: cast_nullable_to_non_nullable
+              as DebitType,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$DebitEntityImplCopyWith<$Res>
-    implements $DebitEntityCopyWith<$Res> {
+    implements $DebtEntityCopyWith<$Res> {
   factory _$$DebitEntityImplCopyWith(
           _$DebitEntityImpl value, $Res Function(_$DebitEntityImpl) then) =
       __$$DebitEntityImplCopyWithImpl<$Res>;
@@ -111,15 +132,18 @@ abstract class _$$DebitEntityImplCopyWith<$Res>
       {String description,
       String name,
       double amount,
-      DateTime dateTime,
+      DateTime startDateTime,
       DateTime expiryDateTime,
+      int superId,
+      int icon,
+      int color,
       DebitType debtType,
-      int superId});
+      bool isCompleted});
 }
 
 /// @nodoc
 class __$$DebitEntityImplCopyWithImpl<$Res>
-    extends _$DebitEntityCopyWithImpl<$Res, _$DebitEntityImpl>
+    extends _$DebtEntityCopyWithImpl<$Res, _$DebitEntityImpl>
     implements _$$DebitEntityImplCopyWith<$Res> {
   __$$DebitEntityImplCopyWithImpl(
       _$DebitEntityImpl _value, $Res Function(_$DebitEntityImpl) _then)
@@ -131,10 +155,13 @@ class __$$DebitEntityImplCopyWithImpl<$Res>
     Object? description = null,
     Object? name = null,
     Object? amount = null,
-    Object? dateTime = null,
+    Object? startDateTime = null,
     Object? expiryDateTime = null,
-    Object? debtType = null,
     Object? superId = null,
+    Object? icon = null,
+    Object? color = null,
+    Object? debtType = null,
+    Object? isCompleted = null,
   }) {
     return _then(_$DebitEntityImpl(
       description: null == description
@@ -149,22 +176,34 @@ class __$$DebitEntityImplCopyWithImpl<$Res>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as double,
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
+      startDateTime: null == startDateTime
+          ? _value.startDateTime
+          : startDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
       expiryDateTime: null == expiryDateTime
           ? _value.expiryDateTime
           : expiryDateTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      debtType: null == debtType
-          ? _value.debtType
-          : debtType // ignore: cast_nullable_to_non_nullable
-              as DebitType,
       superId: null == superId
           ? _value.superId
           : superId // ignore: cast_nullable_to_non_nullable
               as int,
+      icon: null == icon
+          ? _value.icon
+          : icon // ignore: cast_nullable_to_non_nullable
+              as int,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as int,
+      debtType: null == debtType
+          ? _value.debtType
+          : debtType // ignore: cast_nullable_to_non_nullable
+              as DebitType,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -176,10 +215,13 @@ class _$DebitEntityImpl implements _DebitEntity {
       {required this.description,
       required this.name,
       required this.amount,
-      required this.dateTime,
+      required this.startDateTime,
       required this.expiryDateTime,
+      required this.superId,
+      required this.icon,
+      required this.color,
       this.debtType = DebitType.credit,
-      required this.superId});
+      this.isCompleted = false});
 
   @override
   final String description;
@@ -188,18 +230,25 @@ class _$DebitEntityImpl implements _DebitEntity {
   @override
   final double amount;
   @override
-  final DateTime dateTime;
+  final DateTime startDateTime;
   @override
   final DateTime expiryDateTime;
+  @override
+  final int superId;
+  @override
+  final int icon;
+  @override
+  final int color;
   @override
   @JsonKey()
   final DebitType debtType;
   @override
-  final int superId;
+  @JsonKey()
+  final bool isCompleted;
 
   @override
   String toString() {
-    return 'DebitEntity(description: $description, name: $name, amount: $amount, dateTime: $dateTime, expiryDateTime: $expiryDateTime, debtType: $debtType, superId: $superId)';
+    return 'DebtEntity(description: $description, name: $name, amount: $amount, startDateTime: $startDateTime, expiryDateTime: $expiryDateTime, superId: $superId, icon: $icon, color: $color, debtType: $debtType, isCompleted: $isCompleted)';
   }
 
   @override
@@ -211,18 +260,32 @@ class _$DebitEntityImpl implements _DebitEntity {
                 other.description == description) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.amount, amount) || other.amount == amount) &&
-            (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime) &&
+            (identical(other.startDateTime, startDateTime) ||
+                other.startDateTime == startDateTime) &&
             (identical(other.expiryDateTime, expiryDateTime) ||
                 other.expiryDateTime == expiryDateTime) &&
+            (identical(other.superId, superId) || other.superId == superId) &&
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.color, color) || other.color == color) &&
             (identical(other.debtType, debtType) ||
                 other.debtType == debtType) &&
-            (identical(other.superId, superId) || other.superId == superId));
+            (identical(other.isCompleted, isCompleted) ||
+                other.isCompleted == isCompleted));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, description, name, amount,
-      dateTime, expiryDateTime, debtType, superId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      description,
+      name,
+      amount,
+      startDateTime,
+      expiryDateTime,
+      superId,
+      icon,
+      color,
+      debtType,
+      isCompleted);
 
   @JsonKey(ignore: true)
   @override
@@ -231,15 +294,18 @@ class _$DebitEntityImpl implements _DebitEntity {
       __$$DebitEntityImplCopyWithImpl<_$DebitEntityImpl>(this, _$identity);
 }
 
-abstract class _DebitEntity implements DebitEntity {
+abstract class _DebitEntity implements DebtEntity {
   const factory _DebitEntity(
       {required final String description,
       required final String name,
       required final double amount,
-      required final DateTime dateTime,
+      required final DateTime startDateTime,
       required final DateTime expiryDateTime,
+      required final int superId,
+      required final int icon,
+      required final int color,
       final DebitType debtType,
-      required final int superId}) = _$DebitEntityImpl;
+      final bool isCompleted}) = _$DebitEntityImpl;
 
   @override
   String get description;
@@ -248,13 +314,19 @@ abstract class _DebitEntity implements DebitEntity {
   @override
   double get amount;
   @override
-  DateTime get dateTime;
+  DateTime get startDateTime;
   @override
   DateTime get expiryDateTime;
   @override
+  int get superId;
+  @override
+  int get icon;
+  @override
+  int get color;
+  @override
   DebitType get debtType;
   @override
-  int get superId;
+  bool get isCompleted;
   @override
   @JsonKey(ignore: true)
   _$$DebitEntityImplCopyWith<_$DebitEntityImpl> get copyWith =>

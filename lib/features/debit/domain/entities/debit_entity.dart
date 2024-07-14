@@ -1,18 +1,20 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:paisa/core/common_enum.dart';
 
-part 'debit.freezed.dart';
+part 'debit_entity.freezed.dart';
 
 @freezed
-class DebitEntity with _$DebitEntity {
-  const factory DebitEntity({
+class DebtEntity with _$DebtEntity {
+  const factory DebtEntity({
     required String description,
     required String name,
     required double amount,
-    required DateTime dateTime,
+    required DateTime startDateTime,
     required DateTime expiryDateTime,
-    @Default(DebitType.credit) DebitType debtType,
     required int superId,
+    required int icon,
+    required int color,
+    @Default(DebitType.credit) DebitType debtType,
+    @Default(false) bool isCompleted,
   }) = _DebitEntity;
 }

@@ -8,7 +8,7 @@ import 'package:paisa/features/category/domain/repository/category_repository.da
 import 'package:paisa/features/transaction/data/data_sources/local/transaction_data_manager.dart';
 
 @LazySingleton(as: CategoryRepository)
-class CategoryRepositoryImpl extends CategoryRepository {
+class CategoryRepositoryImpl implements CategoryRepository {
   CategoryRepositoryImpl({
     required this.dataSources,
     required this.expenseDataManager,

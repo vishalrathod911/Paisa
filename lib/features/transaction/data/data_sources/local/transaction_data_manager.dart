@@ -8,7 +8,7 @@ import 'package:paisa/core/common.dart';
 import 'package:paisa/features/transaction/data/model/search_query.dart';
 import 'package:paisa/features/transaction/data/model/transaction_model.dart';
 
-abstract class TransactionDataSource {
+abstract interface class TransactionDataSource {
   Future<int> add(TransactionModel transaction);
 
   Future<List<TransactionModel>> filteredExpenses(DateTimeRange dateTimeRange);

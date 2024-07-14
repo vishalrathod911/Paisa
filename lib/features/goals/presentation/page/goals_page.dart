@@ -1,152 +1,141 @@
 import 'package:flutter/material.dart';
-
 import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-
 import 'package:paisa/core/common.dart';
-import 'package:paisa/core/extensions/goal_extension.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
-import 'package:paisa/features/category/domain/entities/category.dart';
-import 'package:paisa/features/goals/data/models/goal_model.dart';
-import 'package:paisa/features/goals/domain/entity/goal_entity.dart';
-import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
+import 'package:paisa/features/debit/data/models/debit_model.dart';
+import 'package:paisa/features/debit/domain/entities/debit_entity.dart';
+import 'package:paisa/features/debt_transaction/data/model/debt_transactions_model.dart';
+import 'package:paisa/features/debt_transaction/domain/entities/debit_transaction_entity.dart';
 import 'package:paisa/main.dart';
 
 class GoalsPage extends StatelessWidget {
-  const GoalsPage({
-    super.key,
-  });
+  const GoalsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return PaisaAnnotatedRegionWidget(
-      color: context.background,
-      child: ValueListenableBuilder<Box<GoalModel>>(
-        valueListenable: getIt<Box<GoalModel>>().listenable(),
-        builder: (_, value, child) {
-          final Iterable<GoalEntity> goals = value.values.toEntities();
-          if (goals.isEmpty) {
-            return EmptyWidget(
-              icon: MdiIcons.timetable,
-              title: context.loc.emptyBudgetMessageTitle,
-              description: context.loc.emptyBudgetMessageSubTitle,
+    return ValueListenableBuilder<Box<DebtTransactionsModel>>(
+      valueListenable: getIt<Box<DebtTransactionsModel>>().listenable(),
+      builder: (context, value, child) {
+        final List<DebtTransactionEntity> transactions =
+            value.values.toEntities();
+        return ValueListenableBuilder<Box<DebtModel>>(
+          valueListenable: getIt<Box<DebtModel>>().listenable(),
+          builder: (_, value, child) {
+            final List<DebtEntity> goals = value.values.toEntities();
+            if (goals.isEmpty) {
+              return EmptyWidget(
+                icon: MdiIcons.timetable,
+                title: context.loc.emptyBudgetMessageTitle,
+                description: context.loc.emptyBudgetMessageSubTitle,
+              );
+            }
+            return ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: goals.length,
+              itemBuilder: (context, index) {
+                final DebtEntity goalEntity = goals[index];
+                final List<DebtTransactionEntity> transactionsFiltered =
+                    transactions.where((element) {
+                  return element.parentId == goalEntity.superId;
+                }).toList();
+                return GoalItemWidget(
+                  goalEntity: goalEntity,
+                  transactions: transactionsFiltered,
+                );
+              },
             );
-          }
-          return ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            itemCount: goals.length,
-            itemBuilder: (context, index) {
-              return const SizedBox.shrink();
-              /* final GoalEntity goalEntity = goales[index];
-              final List<TransactionEntity> expenses = context
-                  .read<HomeCubit>()
-                  .fetchExpensesFromCategoryId(goalEntity.superId!)
-                  .thisMonthExpensesList;
-              return BudgetItem(category: goalEntity, expenses: expenses); */
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
-          );
-        },
-      ),
+          },
+        );
+      },
     );
   }
 }
 
-class BudgetItem extends StatelessWidget {
-  const BudgetItem({
+class GoalItemWidget extends StatelessWidget {
+  const GoalItemWidget({
     super.key,
-    required this.category,
-    required this.expenses,
+    required this.goalEntity,
+    required this.transactions,
   });
 
-  final CategoryEntity category;
-  final List<TransactionEntity> expenses;
-
+  final DebtEntity goalEntity;
+  final List<DebtTransactionEntity> transactions;
   @override
   Widget build(BuildContext context) {
-    final double totalExpenses = expenses.totalExpense;
-    final double totalBudget =
-        (category.finalBudget == 0.0 ? 1 : category.finalBudget);
-    double difference = category.finalBudget - totalExpenses;
-
-    return ListTile(
-      isThreeLine: true,
-      leading: CircleAvatar(
-        backgroundColor: category.backgroundColor,
-        child: Icon(
-          IconData(
-            category.icon,
-            fontFamily: fontFamilyName,
-            fontPackage: fontFamilyPackageName,
-          ),
-          color: category.foregroundColor,
-        ),
-      ),
-      title: Text(category.name),
-      subtitle: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+    final double amount = transactions.fold<double>(
+        20554, (previousValue, element) => previousValue + element.amount);
+    final percentage = amount / goalEntity.amount;
+    return PaisaCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Color(
+                goalEntity.color,
+              ).withOpacity(0.3),
+              child: Icon(
+                IconData(
+                  goalEntity.icon,
+                  fontFamily: fontFamilyName,
+                  fontPackage: fontFamilyPackageName,
+                ),
+                color: Color(
+                  goalEntity.color,
+                ),
+              ),
+            ),
+            title: Text(
+              goalEntity.name,
+              style: context.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            trailing: Stack(
               children: [
-                RichText(
-                  text: TextSpan(
-                    text: 'Limit: ',
-                    style: context.bodyMedium?.copyWith(
-                      color: context.bodySmall?.color,
-                    ),
-                    children: [
-                      TextSpan(
-                        text:
-                            ' ${category.finalBudget.toFormateCurrency(context)}',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ],
+                CircularProgressIndicator(
+                  value: percentage,
+                  backgroundColor: context.onSurfaceVariant.withOpacity(0.1),
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Color(goalEntity.color),
                   ),
                 ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Spent: ',
-                    style: context.bodyMedium?.copyWith(
-                      color: context.bodySmall?.color,
+                Positioned.fill(
+                  child: Center(
+                    child: Text(
+                      '${(percentage * 100).toStringAsFixed(0)}%',
+                      textAlign: TextAlign.center,
                     ),
-                    children: [
-                      TextSpan(
-                        text: ' ${totalExpenses.toFormateCurrency(context)}',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: 'Remaining: ',
-                    style: context.bodyMedium?.copyWith(
-                      color: context.bodySmall?.color,
-                    ),
-                    children: [
-                      TextSpan(
-                        text:
-                            ' ${(difference < 0 ? 0.0 : difference).toFormateCurrency(context)}',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ],
                   ),
                 ),
               ],
             ),
+            subtitle: Text(goalEntity.description),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: LinearProgressIndicator(
-              value: totalExpenses / totalBudget,
-              color: category.foregroundColor,
-              backgroundColor: category.backgroundColor,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: LinearProgressIndicator(
+                value: percentage,
+                minHeight: 10,
+                backgroundColor: context.onSurfaceVariant.withOpacity(0.1),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Color(goalEntity.color),
+                ),
+              ),
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              '${amount.toFormateCurrency(context)}/ ${goalEntity.amount.toFormateCurrency(context)}',
+              style: context.bodyMedium?.copyWith(
+                color: context.onSurfaceVariant.withOpacity(0.75),
+              ),
+            ),
+          ),
         ],
       ),
     );

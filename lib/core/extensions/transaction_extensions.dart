@@ -106,10 +106,13 @@ extension ExpensesHelper on Iterable<TransactionEntity> {
           .where((element) => element.type == transactionType)
           .toList();
 
-  List<TransactionEntity> sortByTime() =>
+  List<TransactionEntity> sortByTimeDesc() =>
       sorted((a, b) => b.time.compareTo(a.time));
 
-  List<TransactionEntity> get expenses => sortByTime();
+  List<TransactionEntity> sortByTimeAsc() =>
+      sorted((a, b) => a.time.compareTo(b.time));
+
+  List<TransactionEntity> get expenses => sortByTimeDesc();
 
   List<TransactionEntity> get expenseList =>
       where((element) => element.type == TransactionType.expense).toList();
@@ -152,8 +155,10 @@ extension ExpensesHelper on Iterable<TransactionEntity> {
               element.time.year == DateTime.now().year)
           .toList();
 
-  List<double> get expenseDoubleList =>
-      thisMonthExpensesList.map((element) => (element.currency)).toList();
+  List<double> get expenseDoubleList => thisMonthExpensesList
+      .sortByTimeAsc()
+      .map((element) => (element.currency))
+      .toList();
 
   double get thisMonthIncome => thisMonthIncomeList
       .map((e) => e.currency)
@@ -170,8 +175,10 @@ extension ExpensesHelper on Iterable<TransactionEntity> {
       element.time.month == DateTime.now().month &&
       element.time.year == DateTime.now().year).toList();
 
-  List<double> get incomeDoubleList =>
-      thisMonthIncomeList.map((element) => (element.currency)).toList();
+  List<double> get incomeDoubleList => thisMonthIncomeList
+      .sortByTimeAsc()
+      .map((element) => (element.currency))
+      .toList();
 
   double totalAccountExpense(int? accountId) {
     return fold(0, (previousValue, element) {

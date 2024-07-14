@@ -1,6 +1,6 @@
 part of 'settings_cubit.dart';
 
-abstract class SettingsState extends Equatable {
+abstract interface class SettingsState extends Equatable {
   const SettingsState();
 
   @override

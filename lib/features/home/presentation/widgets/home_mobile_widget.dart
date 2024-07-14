@@ -79,7 +79,10 @@ class HomeMobileWidget extends StatelessWidget {
         buildWhen: (previous, current) => current is CurrentIndexState,
         builder: (context, state) {
           if (state is CurrentIndexState &&
-              (state.index == 4 || state.index == 6 || state.index == 5)) {
+              (state.index == 4 ||
+                  state.index == 6 ||
+                  state.index == 7 ||
+                  state.index == 5)) {
             return const SizedBox.shrink();
           }
           return Theme(

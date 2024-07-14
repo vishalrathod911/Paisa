@@ -1,3 +1,3 @@
-abstract class SuperId {
+abstract interface class SuperId {
   int? superId;
 }

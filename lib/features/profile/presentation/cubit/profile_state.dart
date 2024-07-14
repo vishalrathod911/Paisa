@@ -1,6 +1,6 @@
 part of 'profile_cubit.dart';
 
-abstract class ProfileState extends Equatable {
+abstract interface class ProfileState extends Equatable {
   const ProfileState();
 
   @override

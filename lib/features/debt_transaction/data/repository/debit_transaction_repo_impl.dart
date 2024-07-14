@@ -1,10 +1,10 @@
 import 'package:injectable/injectable.dart';
 
 import 'package:paisa/core/common.dart';
-import 'package:paisa/features/debit_transaction/data/data_source/debit_transactions_data_store.dart';
-import 'package:paisa/features/debit_transaction/data/model/debit_transactions_model.dart';
-import 'package:paisa/features/debit_transaction/domain/entities/debit_transaction_entity.dart';
-import 'package:paisa/features/debit_transaction/domain/repository/debit_transaction_repository.dart';
+import 'package:paisa/features/debt_transaction/data/data_source/debit_transactions_data_store.dart';
+import 'package:paisa/features/debt_transaction/data/model/debt_transactions_model.dart';
+import 'package:paisa/features/debt_transaction/domain/entities/debit_transaction_entity.dart';
+import 'package:paisa/features/debt_transaction/domain/repository/debit_transaction_repository.dart';
 
 @LazySingleton(as: DebitTransactionRepository)
 class DebitTransactionRepoImpl implements DebitTransactionRepository {
@@ -18,7 +18,7 @@ class DebitTransactionRepoImpl implements DebitTransactionRepository {
     DateTime currentDateTime,
     int parentId,
   ) {
-    return dataStore.addTransaction(DebitTransactionsModel(
+    return dataStore.addTransaction(DebtTransactionsModel(
       amount: amount,
       now: currentDateTime,
       parentId: parentId,
@@ -36,7 +36,7 @@ class DebitTransactionRepoImpl implements DebitTransactionRepository {
   }
 
   @override
-  List<DebitTransactionEntity> fetchTransactionsFromId(int id) {
+  List<DebtTransactionEntity> fetchTransactionsFromId(int id) {
     return dataStore.getTransactionsFromId(id).toEntities();
   }
 }

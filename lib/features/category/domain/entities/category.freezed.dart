@@ -31,7 +31,7 @@ mixin _$CategoryEntity {
 }
 
 /// @nodoc
-abstract class $CategoryEntityCopyWith<$Res> {
+abstract interface class $CategoryEntityCopyWith<$Res> {
   factory $CategoryEntityCopyWith(
           CategoryEntity value, $Res Function(CategoryEntity) then) =
       _$CategoryEntityCopyWithImpl<$Res, CategoryEntity>;
@@ -107,7 +107,7 @@ class _$CategoryEntityCopyWithImpl<$Res, $Val extends CategoryEntity>
 }
 
 /// @nodoc
-abstract class _$$CategoryEntityImplCopyWith<$Res>
+abstract interface class _$$CategoryEntityImplCopyWith<$Res>
     implements $CategoryEntityCopyWith<$Res> {
   factory _$$CategoryEntityImplCopyWith(_$CategoryEntityImpl value,
           $Res Function(_$CategoryEntityImpl) then) =
@@ -249,7 +249,7 @@ class _$CategoryEntityImpl implements _CategoryEntity {
           this, _$identity);
 }
 
-abstract class _CategoryEntity implements CategoryEntity {
+abstract interface class _CategoryEntity implements CategoryEntity {
   const factory _CategoryEntity(
       {final double? budget,
       required final int color,

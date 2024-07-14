@@ -13,7 +13,7 @@ import 'package:paisa/features/transaction/domain/entities/transaction_entity.da
 import 'package:paisa/features/transaction/domain/repository/transaction_repository.dart';
 
 @LazySingleton(as: TransactionRepository)
-class ExpenseRepositoryImpl extends TransactionRepository {
+class ExpenseRepositoryImpl implements TransactionRepository {
   ExpenseRepositoryImpl({
     required this.dataSource,
   });

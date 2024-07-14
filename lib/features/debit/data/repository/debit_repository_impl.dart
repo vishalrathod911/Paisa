@@ -4,11 +4,11 @@ import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/debt_type.dart';
 import 'package:paisa/features/debit/data/data_sources/debit_local_data_source_impl.dart';
 import 'package:paisa/features/debit/data/models/debit_model.dart';
-import 'package:paisa/features/debit/domain/entities/debit.dart';
+import 'package:paisa/features/debit/domain/entities/debit_entity.dart';
 import 'package:paisa/features/debit/domain/repository/debit_repository.dart';
 
 @LazySingleton(as: DebitRepository)
-class DebtRepositoryImpl extends DebitRepository {
+class DebtRepositoryImpl implements DebitRepository {
   DebtRepositoryImpl({required this.dataSource});
 
   final DebtDataSource dataSource;
@@ -22,11 +22,11 @@ class DebtRepositoryImpl extends DebitRepository {
     DateTime dueDateTime,
     DebitType debtType,
   ) {
-    return dataSource.addDebtOrCredit(
-      DebitModel(
+    return dataSource.add(
+      DebtModel(
         description: description,
         amount: amount,
-        dateTime: currentDateTime,
+        startDateTime: currentDateTime,
         expiryDateTime: dueDateTime,
         debtType: debtType,
         name: name,
@@ -36,12 +36,12 @@ class DebtRepositoryImpl extends DebitRepository {
 
   @override
   Future<void> deleteDebtOrCreditFromId(int debtId) {
-    return dataSource.deleteDebtOrCreditFromId(debtId);
+    return dataSource.deleteById(debtId);
   }
 
   @override
-  DebitEntity? fetchDebtOrCreditFromId(int debtId) =>
-      dataSource.fetchDebtOrCreditFromId(debtId)?.toEntity();
+  DebtEntity? fetchDebtOrCreditFromId(int debtId) =>
+      dataSource.fetchFromId(debtId)?.toEntity();
 
   @override
   Future<void> updateDebt({
@@ -53,11 +53,11 @@ class DebtRepositoryImpl extends DebitRepository {
     required DebitType debtType,
     required int key,
   }) {
-    return dataSource.update(DebitModel(
+    return dataSource.update(DebtModel(
       description: description,
       name: name,
       amount: amount,
-      dateTime: currentDateTime,
+      startDateTime: currentDateTime,
       expiryDateTime: dueDateTime,
       debtType: debtType,
       superId: key,

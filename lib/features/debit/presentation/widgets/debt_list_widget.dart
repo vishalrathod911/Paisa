@@ -9,7 +9,7 @@ class DebtsListWidget extends StatelessWidget {
     required this.debts,
   });
 
-  final List<DebitModel> debts;
+  final List<DebtModel> debts;
 
   @override
   Widget build(BuildContext context) {

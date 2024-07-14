@@ -11,8 +11,8 @@ import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/debit/presentation/cubit/debts_bloc.dart';
 import 'package:paisa/features/debit/presentation/widgets/debt_toggle_buttons_widget.dart';
-import 'package:paisa/features/debit_transaction/data/model/debit_transactions_model.dart';
-import 'package:paisa/features/debit_transaction/domain/entities/debit_transaction_entity.dart';
+import 'package:paisa/features/debt_transaction/data/model/debt_transactions_model.dart';
+import 'package:paisa/features/debt_transaction/domain/entities/debit_transaction_entity.dart';
 import 'package:paisa/main.dart';
 
 class DebitPage extends StatefulWidget {
@@ -144,13 +144,13 @@ class _DebitPageState extends State<DebitPage> {
                             ?.copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    ValueListenableBuilder<Box<DebitTransactionsModel>>(
+                    ValueListenableBuilder<Box<DebtTransactionsModel>>(
                       valueListenable:
-                          getIt<Box<DebitTransactionsModel>>().listenable(),
+                          getIt<Box<DebtTransactionsModel>>().listenable(),
                       builder: (context, value, child) {
                         final int? parentId = widget.debtId;
                         if (parentId == null) return const SizedBox.shrink();
-                        final List<DebitTransactionEntity> transactions =
+                        final List<DebtTransactionEntity> transactions =
                             value.getTransactionsFromId(parentId);
 
                         return ListView.builder(
@@ -158,7 +158,7 @@ class _DebitPageState extends State<DebitPage> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: transactions.length,
                           itemBuilder: (_, index) {
-                            final DebitTransactionEntity transaction =
+                            final DebtTransactionEntity transaction =
                                 transactions[index];
                             return ListTile(
                               leading: IconButton(

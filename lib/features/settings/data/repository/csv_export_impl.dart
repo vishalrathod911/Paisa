@@ -15,7 +15,7 @@ import 'package:paisa/features/transaction/data/model/transaction_model.dart';
 
 @Named('csv')
 @LazySingleton(as: Export)
-class CSVExport extends Export {
+class CSVExport implements Export {
   CSVExport(
     this.deviceInfo,
     this.accountDataManager,

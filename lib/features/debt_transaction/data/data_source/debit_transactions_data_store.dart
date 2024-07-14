@@ -1,32 +1,32 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:paisa/features/debit_transaction/data/model/debit_transactions_model.dart';
+import 'package:paisa/features/debt_transaction/data/model/debt_transactions_model.dart';
 
-abstract class DebtTransactionDataSource {
-  Future<void> addTransaction(DebitTransactionsModel debitTransactionsModel);
+abstract interface class DebtTransactionDataSource {
+  Future<void> addTransaction(DebtTransactionsModel debitTransactionsModel);
 
   Future<void> deleteDebitTransactionsFromDebitId(int parentId);
 
   Future<void> deleteDebitTransactionFromId(int transactionId);
 
-  Iterable<DebitTransactionsModel> getTransactionsFromId(int? id);
+  Iterable<DebtTransactionsModel> getTransactionsFromId(int? id);
 
-  Iterable<DebitTransactionsModel> export();
+  Iterable<DebtTransactionsModel> export();
 
   Future<void> clear();
 
-  Future<void> update(DebitTransactionsModel debtModel);
+  Future<void> update(DebtTransactionsModel debtModel);
 }
 
 @LazySingleton(as: DebtTransactionDataSource)
 class DebitTransactionDataStoreImpl implements DebtTransactionDataSource {
   DebitTransactionDataStoreImpl({required this.transactionsBox});
 
-  final Box<DebitTransactionsModel> transactionsBox;
+  final Box<DebtTransactionsModel> transactionsBox;
 
   @override
-  Future<void> addTransaction(DebitTransactionsModel transactionsModel) async {
+  Future<void> addTransaction(DebtTransactionsModel transactionsModel) async {
     final int id = await transactionsBox.add(transactionsModel);
     transactionsModel.superId = id;
     return transactionsModel.save();
@@ -51,17 +51,17 @@ class DebitTransactionDataStoreImpl implements DebtTransactionDataSource {
   }
 
   @override
-  Iterable<DebitTransactionsModel> export() {
+  Iterable<DebtTransactionsModel> export() {
     return transactionsBox.values;
   }
 
   @override
-  Iterable<DebitTransactionsModel> getTransactionsFromId(int? id) {
+  Iterable<DebtTransactionsModel> getTransactionsFromId(int? id) {
     return transactionsBox.values.where((element) => element.parentId == id);
   }
 
   @override
-  Future<void> update(DebitTransactionsModel debtModel) {
+  Future<void> update(DebtTransactionsModel debtModel) {
     return transactionsBox.put(debtModel.superId, debtModel);
   }
 }

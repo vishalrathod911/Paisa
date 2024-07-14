@@ -26,8 +26,6 @@ Future<IconData> paisaIconPicker({
                 iconKeys: iconKeys,
                 selectedIcon: selectedIcon,
                 onSelectedIcon: (icon) {
-                  //onSelectedIcon.call(icon);
-                  // Navigator.of(context).pop();
                   selectedIcon = icon;
                 },
               ),
@@ -90,14 +88,17 @@ class _IconPickerWidgetState extends State<_IconPickerWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
       child: Column(
         children: [
           ListTile(
-            leading: Icon(selectedIcon),
+            leading: Icon(
+              selectedIcon,
+              color: context.secondary,
+            ),
             title: Text(
               context.loc.selectIconTitle,
-              style: context.titleMedium,
+              style: context.titleLarge,
             ),
           ),
           TextField(
@@ -127,7 +128,7 @@ class _IconPickerWidgetState extends State<_IconPickerWidget> {
                       ? BoxDecoration(
                           border: Border.all(
                             width: 2,
-                            color: context.primary,
+                            color: context.secondary,
                           ),
                           borderRadius: BorderRadius.circular(32),
                         )
@@ -135,7 +136,7 @@ class _IconPickerWidgetState extends State<_IconPickerWidget> {
                   child: IconButton(
                     key: ValueKey(iconKeys[index].hashCode),
                     color: isSelected
-                        ? context.primary
+                        ? context.secondary
                         : Theme.of(context).disabledColor,
                     onPressed: () {
                       setState(() {

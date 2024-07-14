@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'debit_transactions_model.dart';
+part of 'debt_transactions_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

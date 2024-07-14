@@ -1,6 +1,6 @@
 import 'package:paisa/core/common_enum.dart';
 
-abstract class RecurringRepository {
+abstract interface class RecurringRepository {
   Future<void> checkForRecurring();
 
   Future<void> addRecurringEvent(

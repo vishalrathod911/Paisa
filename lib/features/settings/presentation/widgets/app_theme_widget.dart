@@ -25,11 +25,15 @@ class _AppThemeWidgetState extends State<AppThemeWidget> {
             final ThemeMode currentTheme = ThemeMode.values[index];
             return CurrentTheme(
               currentTheme: currentTheme,
-              isSelected: currentTheme == selectedTheme,
+              isSelected: currentTheme.index == selectedTheme.index,
               onTap: () {
                 setState(() {
                   selectedTheme = currentTheme;
-                  settings.put(themeModeKey, index);
+                  if (selectedTheme == ThemeMode.light ||
+                      selectedTheme == ThemeMode.system) {
+                    settings.put(blackThemeKey, false);
+                  }
+                  settings.put(themeModeKey, selectedTheme.index);
                 });
               },
             );
