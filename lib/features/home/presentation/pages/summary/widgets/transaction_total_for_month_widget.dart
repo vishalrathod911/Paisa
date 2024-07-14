@@ -27,15 +27,23 @@ class TransactionTotalForMonthWidget extends StatelessWidget {
                 children: [
                   RichText(
                     text: TextSpan(
-                      text: '▼',
-                      style: context.bodySmall?.copyWith(
-                        color:
-                            Theme.of(context).extension<CustomColors>()!.green,
-                      ),
                       children: [
+                        WidgetSpan(
+                          alignment: PlaceholderAlignment.middle,
+                          child: Transform.rotate(
+                            angle: -55,
+                            child: Icon(
+                              Icons.play_arrow,
+                              size: 16.h,
+                              color: Theme.of(context)
+                                  .extension<CustomColors>()!
+                                  .green,
+                            ),
+                          ),
+                        ),
                         TextSpan(
                           text: context.loc.income,
-                          style: context.bodySmall?.copyWith(
+                          style: context.bodyMedium?.copyWith(
                             color: context.onPrimaryContainer,
                           ),
                         )
@@ -58,14 +66,23 @@ class TransactionTotalForMonthWidget extends StatelessWidget {
                 children: [
                   RichText(
                     text: TextSpan(
-                      text: '▲',
-                      style: context.bodySmall?.copyWith(
-                        color: Theme.of(context).extension<CustomColors>()!.red,
-                      ),
                       children: [
+                        WidgetSpan(
+                          alignment: PlaceholderAlignment.middle,
+                          child: Transform.rotate(
+                            angle: 55,
+                            child: Icon(
+                              Icons.play_arrow,
+                              size: 16.h,
+                              color: Theme.of(context)
+                                  .extension<CustomColors>()!
+                                  .red,
+                            ),
+                          ),
+                        ),
                         TextSpan(
                           text: context.loc.expense,
-                          style: context.bodySmall?.copyWith(
+                          style: context.bodyMedium?.copyWith(
                             color: context.onPrimaryContainer,
                           ),
                         )

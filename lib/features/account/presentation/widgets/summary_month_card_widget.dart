@@ -37,7 +37,7 @@ class SummaryMonthCardWidget extends StatelessWidget {
                           maxRadius: 16,
                           backgroundColor: green.withOpacity(0.3),
                           child: Icon(
-                            MdiIcons.arrowBottomLeft,
+                            Icons.trending_up,
                             color: green,
                           ),
                         ),
@@ -75,7 +75,7 @@ class SummaryMonthCardWidget extends StatelessWidget {
                           maxRadius: 16,
                           backgroundColor: red.withOpacity(0.3),
                           child: Icon(
-                            MdiIcons.arrowTopRight,
+                            Icons.trending_down,
                             color: red,
                           ),
                         ),
