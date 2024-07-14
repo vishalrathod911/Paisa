@@ -62,7 +62,7 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
       - name: Build iOS Release
-        run: flutter build ipa --release --no-codesign
+        run: flutter build ipa --release --no-codesign --flavor prod --no-tree-shake-icons
       - name: Upload iOS Release
         uses: actions/upload-artifact@v4
         with:
