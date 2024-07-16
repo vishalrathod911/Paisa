@@ -137,4 +137,9 @@ class ExpenseRepositoryImpl implements TransactionRepository {
       ),
     );
   }
+
+  @override
+  Future<void> clear() {
+    return dataSource.clear();
+  }
 }

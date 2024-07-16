@@ -5,7 +5,10 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "be": [
@@ -36,7 +39,10 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "cs": [
@@ -50,12 +56,18 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "de": [
     "pickColorAccountDesc",
-    "emptyRecommendedAccountsInfo"
+    "emptyRecommendedAccountsInfo",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "es": [
@@ -64,7 +76,10 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "fr": [
@@ -87,14 +102,20 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "gu": [
     "emptyRecommendedAccountsInfo",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "it": [
@@ -131,7 +152,10 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "kn": [
@@ -160,7 +184,16 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
+  ],
+
+  "ml": [
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "ne": [
@@ -174,7 +207,10 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "pl": [
@@ -198,7 +234,16 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
+  ],
+
+  "pt": [
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "ru": [
@@ -229,7 +274,10 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "ta": [
@@ -244,7 +292,10 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "tr": [
@@ -287,7 +338,10 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "uk": [
@@ -301,7 +355,10 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "vi": [
@@ -309,14 +366,20 @@
     "emptyRecommendedAccountsInfo",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "zh": [
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ],
 
   "zh_TW": [
@@ -340,6 +403,9 @@
     "customize",
     "statistics",
     "welcomeAppTitle",
-    "welcomeAppSubTitle"
+    "welcomeAppSubTitle",
+    "clearData",
+    "clearDataDesc",
+    "clear"
   ]
 }

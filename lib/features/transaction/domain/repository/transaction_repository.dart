@@ -19,6 +19,8 @@ abstract interface class TransactionRepository {
 
   Future<void> clearExpense(int expenseId);
 
+  Future<void> clear();
+
   TransactionEntity? fetchExpenseFromId(int expenseId);
 
   List<TransactionEntity> transactions({int? accountId});

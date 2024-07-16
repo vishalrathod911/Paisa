@@ -1,15 +1,14 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:paisa/core/widgets/paisa_scaffold.dart';
-
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:paisa/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:paisa/features/settings/presentation/widgets/accounts_style_widget.dart';
 import 'package:paisa/features/settings/presentation/widgets/app_theme_widget.dart';
 import 'package:paisa/features/settings/presentation/widgets/choose_calendar_format_widget.dart';
 import 'package:paisa/features/settings/presentation/widgets/true_black_widget_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/calendar_formats.dart';
@@ -109,6 +108,37 @@ class SettingsPage extends StatelessWidget {
                 ),
               ],
             ),
+            SettingsGroup(title: context.loc.clearData, options: [
+              SettingsOption(
+                icon: MdiIcons.delete,
+                title: context.loc.clearData,
+                subtitle: context.loc.clearDataDesc,
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) => AlertDialog(
+                      title: Text(context.loc.clearData),
+                      content: Text(context.loc.clearDataDesc),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(context.loc.cancel),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            context.read<SettingCubit>().clearData();
+                            Navigator.of(context).pop();
+                          },
+                          child: Text(context.loc.clear),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ]),
             SettingsGroup(
               title: context.loc.socialLinks,
               options: [

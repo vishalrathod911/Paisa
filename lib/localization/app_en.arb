@@ -1089,5 +1089,20 @@
     "@welcomeAppSubTitle": {
         "description": "Subtitle text shown on the welcome page",
         "type": "text"
+    },
+    "clearData": "Clear data",
+    "@clearData": {
+        "description": "Text shown on the setting page for clear data",
+        "type": "text"
+    },
+    "clearDataDesc": "Clear all data and start fresh",
+    "@clearDataDesc": {
+        "description": "Text shown on the setting page for clear data",
+        "type": "text"
+    },
+    "clear": "Clear",
+    "@clear": {
+        "description": "Text shown on the setting page for clear data",
+        "type": "text"
     }
 }

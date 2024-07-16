@@ -27,5 +27,5 @@ abstract interface class AccountRepository {
 
   List<AccountEntity> all();
 
-  Future<void> clearAll();
+  Future<void> clear();
 }

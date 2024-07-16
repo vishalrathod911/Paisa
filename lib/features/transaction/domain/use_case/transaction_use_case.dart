@@ -7,3 +7,4 @@ export 'get_transactions_by_category_id_use_case.dart';
 export 'get_transaction_use_case.dart';
 export 'get_transactions_use_case.dart';
 export 'update_expense_use_case.dart';
+export 'clear_transactions_use_case.dart';

@@ -165,7 +165,7 @@ void addDummyData() async {
     );
   }
 
-  for (int i = 0; i < 100; i++) {
+  for (int i = 0; i < 1000; i++) {
     final TransactionType type = [
       TransactionType.expense,
       TransactionType.income,

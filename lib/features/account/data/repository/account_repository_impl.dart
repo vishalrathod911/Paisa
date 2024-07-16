@@ -38,7 +38,7 @@ class AccountRepositoryImpl implements AccountRepository {
   }
 
   @override
-  Future<void> clearAll() {
+  Future<void> clear() {
     return dataSource.clear();
   }
 
