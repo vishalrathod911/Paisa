@@ -131,7 +131,7 @@ class TransactionToggleButtons extends StatelessWidget {
               itemBuilder: (context, index) {
                 final TransactionType transactionType = filters[index];
                 return PaisaPillChip(
-                  title: transactionType.stringName(context),
+                  title: transactionType.stringValue(context),
                   isSelected: context.read<RecurringCubit>().transactionType ==
                       transactionType,
                   onPressed: () => _update(context, transactionType),

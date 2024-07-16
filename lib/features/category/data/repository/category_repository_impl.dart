@@ -1,21 +1,17 @@
 import 'package:injectable/injectable.dart';
 
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/enum/category_type.dart';
 import 'package:paisa/features/category/data/data_sources/category_data_source.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/category/domain/repository/category_repository.dart';
-import 'package:paisa/features/transaction/data/data_sources/local/transaction_data_manager.dart';
 
 @LazySingleton(as: CategoryRepository)
 class CategoryRepositoryImpl implements CategoryRepository {
-  CategoryRepositoryImpl({
-    required this.dataSources,
-    required this.expenseDataManager,
-  });
+  CategoryRepositoryImpl({required this.dataSources});
 
   final CategoryDataSource dataSources;
-  final TransactionDataSource expenseDataManager;
 
   @override
   Future<void> add({
@@ -26,6 +22,7 @@ class CategoryRepositoryImpl implements CategoryRepository {
     bool isBudget = false,
     required double? budget,
     bool isDefault = false,
+    CategoryType categoryType = CategoryType.income,
   }) {
     return dataSources.add(CategoryModel(
       description: desc ?? '',
@@ -35,6 +32,7 @@ class CategoryRepositoryImpl implements CategoryRepository {
       isBudget: isBudget,
       color: color,
       isTransferCategory: isDefault,
+      categoryType: categoryType,
     ));
   }
 
@@ -63,6 +61,7 @@ class CategoryRepositoryImpl implements CategoryRepository {
     bool isBudget = false,
     required double? budget,
     bool isDefault = false,
+    CategoryType categoryType = CategoryType.income,
   }) {
     return dataSources.update(CategoryModel(
       description: desc,
@@ -73,6 +72,7 @@ class CategoryRepositoryImpl implements CategoryRepository {
       isTransferCategory: isDefault,
       color: color,
       superId: key,
+      categoryType: categoryType,
     ));
   }
 }

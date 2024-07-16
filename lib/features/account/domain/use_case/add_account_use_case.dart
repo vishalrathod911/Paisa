@@ -32,7 +32,7 @@ class AddAccountParams with _$AddAccountParams {
     required String bankName,
     required String holderName,
     @Default(0.0) double amount,
-    @Default(CardType.cash) CardType cardType,
+    @Default(AccountType.cash) AccountType cardType,
     @Default(0xFFFFFFFF) int color,
     @Default(false) bool isAccountExcluded,
   }) = _AddAccountParams;

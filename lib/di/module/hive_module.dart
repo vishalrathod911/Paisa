@@ -4,6 +4,8 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:paisa/core/common_enum.dart';
+import 'package:paisa/core/enum/account_type.dart';
+import 'package:paisa/core/enum/category_type.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/debit/data/models/debit_model.dart';
@@ -56,14 +58,15 @@ class HiveAdapters {
     await Hive.initFlutter(hivePath);
     Hive
       ..registerAdapter(TransactionModelAdapter())
-      ..registerAdapter(CategoryModelAdapter())
-      ..registerAdapter(CountryModelAdapter())
-      ..registerAdapter(AccountModelAdapter())
       ..registerAdapter(TransactionTypeAdapter())
+      ..registerAdapter(AccountModelAdapter())
+      ..registerAdapter(AccountTypeAdapter())
+      ..registerAdapter(CategoryModelAdapter())
+      ..registerAdapter(CategoryTypeAdapter())
       ..registerAdapter(DebitModelAdapter())
       ..registerAdapter(DebitTypeAdapter())
+      ..registerAdapter(CountryModelAdapter())
       ..registerAdapter(DebitTransactionsModelAdapter())
-      ..registerAdapter(CardTypeAdapter())
       ..registerAdapter(RecurringTypeAdapter())
       ..registerAdapter(RecurringModelAdapter())
       ..registerAdapter(TransactionModelTypeAdapter())

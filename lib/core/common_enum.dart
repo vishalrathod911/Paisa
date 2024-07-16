@@ -1,5 +1,6 @@
 export 'enum/box_types.dart';
-export 'enum/card_type.dart';
+export 'enum/account_type.dart';
+export 'enum/category_type.dart';
 export 'enum/debt_type.dart';
 export 'enum/filter_expense.dart';
 export 'enum/page_type.dart';

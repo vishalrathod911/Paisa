@@ -25,13 +25,14 @@ class CategoryModelAdapter extends TypeAdapter<_$CategoryModelImpl> {
       budget: fields[6] == null ? 0 : fields[6] as double?,
       isBudget: fields[7] == null ? false : fields[7] as bool,
       color: fields[8] == null ? 4294951175 : fields[8] as int?,
+      categoryType: fields[9] as CategoryType?,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$CategoryModelImpl obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class CategoryModelAdapter extends TypeAdapter<_$CategoryModelImpl> {
       ..writeByte(7)
       ..write(obj.isBudget)
       ..writeByte(8)
-      ..write(obj.color);
+      ..write(obj.color)
+      ..writeByte(9)
+      ..write(obj.categoryType);
   }
 
   @override
@@ -75,6 +78,9 @@ _$CategoryModelImpl _$$CategoryModelImplFromJson(Map<String, dynamic> json) =>
       budget: (json['budget'] as num?)?.toDouble(),
       isBudget: json['isBudget'] as bool? ?? false,
       color: (json['color'] as num?)?.toInt(),
+      categoryType:
+          $enumDecodeNullable(_$CategoryTypeEnumMap, json['categoryType']) ??
+              CategoryType.income,
     );
 
 Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
@@ -87,4 +93,10 @@ Map<String, dynamic> _$$CategoryModelImplToJson(_$CategoryModelImpl instance) =>
       'budget': instance.budget,
       'isBudget': instance.isBudget,
       'color': instance.color,
+      'categoryType': _$CategoryTypeEnumMap[instance.categoryType],
     };
+
+const _$CategoryTypeEnumMap = {
+  CategoryType.income: 'income',
+  CategoryType.expense: 'expense',
+};

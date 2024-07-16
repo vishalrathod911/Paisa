@@ -1,14 +1,13 @@
 import 'dart:math';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:paisa/core/common.dart';
+import 'package:paisa/core/widgets/mult_value_listenable_builder.dart';
 import 'package:paisa/features/account/data/model/account_model.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/category/data/model/category_model.dart';
@@ -18,7 +17,6 @@ import 'package:paisa/features/transaction/data/model/transaction_model.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/home/presentation/pages/home/home_cubit.dart';
@@ -64,11 +62,12 @@ final destinations = [
     icon: Icon(MdiIcons.cashSync),
     selectedIcon: Icon(MdiIcons.cashSync),
   ),
-  /* Destination(
-    pageType: PageType.goals,
-    icon: Icon(MdiIcons.cashSync),
-    selectedIcon: Icon(MdiIcons.cashSync),
-  ), */
+  if (kDebugMode)
+    Destination(
+      pageType: PageType.goals,
+      icon: Icon(MdiIcons.cashSync),
+      selectedIcon: Icon(MdiIcons.cashSync),
+    ),
 ];
 
 class HomePage extends StatelessWidget {
@@ -82,7 +81,7 @@ class HomePage extends StatelessWidget {
       summaryController: getIt<SummaryController>(),
     );
     return MultiValueListenableBuilder(
-      valueListenables: [
+      valueListenable: [
         getIt<Box<TransactionModel>>().listenable(),
         getIt<Box<AccountModel>>().listenable(),
         getIt<Box<CategoryModel>>().listenable()
@@ -149,40 +148,6 @@ class Destination {
   final Icon icon;
   final PageType pageType;
   final Icon selectedIcon;
-}
-
-class MultiValueListenableBuilder extends StatelessWidget {
-  /// List of [ValueListenable]s to listen to.
-  final List<ValueListenable> valueListenables;
-
-  /// The builder function to be called when value of any of the [ValueListenable] changes.
-  /// The order of values list will be same as [valueListenables] list.
-  final Widget Function(
-      BuildContext context, List<dynamic> values, Widget? child) builder;
-
-  /// An optional child widget which will be avaliable as child parameter in [builder].
-  final Widget? child;
-
-  // The const constructor.
-  const MultiValueListenableBuilder({
-    Key? key,
-    required this.valueListenables,
-    required this.builder,
-    this.child,
-  })  : assert(valueListenables.length != 0),
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: Listenable.merge(valueListenables),
-      builder: (context, child) {
-        final list = valueListenables.map((listenable) => listenable.value);
-        return builder(context, List<dynamic>.unmodifiable(list), child);
-      },
-      child: child,
-    );
-  }
 }
 
 Future<void> _updateHomeScreenWidget(
@@ -304,7 +269,7 @@ Future<void> _updateHomeScreenWidget(
       ),
     ),
   );
-  var path = await HomeWidget.renderFlutterWidget(
+  await HomeWidget.renderFlutterWidget(
     lineChart,
     key: 'lineChart',
     logicalSize: const Size(520, 550),

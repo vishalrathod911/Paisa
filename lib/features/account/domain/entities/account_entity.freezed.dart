@@ -19,7 +19,7 @@ mixin _$AccountEntity {
   String get bankName => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
-  CardType get cardType => throw _privateConstructorUsedError;
+  AccountType get cardType => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
   int? get superId => throw _privateConstructorUsedError;
   bool get isAccountExcluded => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $AccountEntityCopyWith<$Res> {
       {String bankName,
       String name,
       double amount,
-      CardType cardType,
+      AccountType cardType,
       int color,
       int? superId,
       bool isAccountExcluded});
@@ -82,7 +82,7 @@ class _$AccountEntityCopyWithImpl<$Res, $Val extends AccountEntity>
       cardType: null == cardType
           ? _value.cardType
           : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
+              as AccountType,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -111,7 +111,7 @@ abstract class _$$AccountEntityImplCopyWith<$Res>
       {String bankName,
       String name,
       double amount,
-      CardType cardType,
+      AccountType cardType,
       int color,
       int? superId,
       bool isAccountExcluded});
@@ -152,7 +152,7 @@ class __$$AccountEntityImplCopyWithImpl<$Res>
       cardType: null == cardType
           ? _value.cardType
           : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
+              as AccountType,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -176,7 +176,7 @@ class _$AccountEntityImpl implements _AccountEntity {
       {required this.bankName,
       required this.name,
       this.amount = 0.0,
-      this.cardType = CardType.bank,
+      this.cardType = AccountType.bank,
       this.color = 0xFFFFFFFF,
       this.superId,
       this.isAccountExcluded = false});
@@ -190,7 +190,7 @@ class _$AccountEntityImpl implements _AccountEntity {
   final double amount;
   @override
   @JsonKey()
-  final CardType cardType;
+  final AccountType cardType;
   @override
   @JsonKey()
   final int color;
@@ -238,7 +238,7 @@ abstract class _AccountEntity implements AccountEntity {
       {required final String bankName,
       required final String name,
       final double amount,
-      final CardType cardType,
+      final AccountType cardType,
       final int color,
       final int? superId,
       final bool isAccountExcluded}) = _$AccountEntityImpl;
@@ -250,7 +250,7 @@ abstract class _AccountEntity implements AccountEntity {
   @override
   double get amount;
   @override
-  CardType get cardType;
+  AccountType get cardType;
   @override
   int get color;
   @override

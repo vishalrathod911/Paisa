@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/error/account_error.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-
-import 'package:paisa/core/common.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:paisa/core/common.dart';
 import 'package:paisa/features/account/presentation/bloc/accounts_bloc.dart';
-import 'package:paisa/features/account/presentation/widgets/card_type_drop_down.dart';
 import 'package:paisa/features/settings/presentation/cubit/settings_cubit.dart';
 import 'package:paisa/main.dart';
 
@@ -176,7 +174,7 @@ class AccountPageState extends State<AccountPage> {
                           horizontal: 16,
                           vertical: 8,
                         ),
-                        child: CardTypeButtons(),
+                        child: AccountToggleButtons(),
                       ),
                       Form(
                         key: _form,
@@ -273,7 +271,7 @@ class AccountPageState extends State<AccountPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                const CardTypeButtons(),
+                                const AccountToggleButtons(),
                                 const SizedBox(height: 16),
                                 AccountCardHolderNameWidget(
                                   controller: accountHolderController,
@@ -344,6 +342,35 @@ class AccountColorPickerWidget extends StatelessWidget {
                   Colors.red.value),
             ),
           ),
+        );
+      },
+    );
+  }
+}
+
+class AccountToggleButtons extends StatelessWidget {
+  const AccountToggleButtons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AccountBloc, AccountState>(
+      buildWhen: (previous, current) => current is UpdateCardTypeState,
+      builder: (context, state) {
+        return PaisaToggleButtons<AccountType>(
+          filters: const [
+            AccountType.cash,
+            AccountType.bank,
+            AccountType.wallet,
+          ],
+          onFilterSelected: (AccountType type) {
+            context.read<AccountBloc>().add(UpdateCardTypeEvent(type));
+          },
+          title: (AccountType type) {
+            return type.stringValue(context);
+          },
+          isSelected: (AccountType type) {
+            return context.read<AccountBloc>().selectedType == type;
+          },
         );
       },
     );

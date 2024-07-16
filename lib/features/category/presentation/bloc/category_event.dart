@@ -1,68 +1,18 @@
 part of 'category_bloc.dart';
 
-@immutable
-abstract interface class CategoryEvent extends Equatable {
-  const CategoryEvent();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AddOrUpdateCategoryEvent extends CategoryEvent {
-  const AddOrUpdateCategoryEvent(this.isAddOrUpdate);
-
-  final bool isAddOrUpdate;
-
-  @override
-  List<Object?> get props => [isAddOrUpdate];
-}
-
-class CategoryDeleteEvent extends CategoryEvent {
-  const CategoryDeleteEvent(this.categoryId);
-
-  final int categoryId;
-
-  @override
-  List<Object?> get props => [categoryId];
-}
-
-class FetchCategoryFromIdEvent extends CategoryEvent {
-  const FetchCategoryFromIdEvent(this.categoryId);
-
-  final int? categoryId;
-
-  @override
-  List<Object?> get props => [categoryId];
-
-  FetchCategoryFromIdEvent copyWith({
-    int? categoryId,
-  }) =>
-      FetchCategoryFromIdEvent(categoryId ?? this.categoryId);
-}
-
-class CategoryIconSelectedEvent extends CategoryEvent {
-  const CategoryIconSelectedEvent(this.categoryIcon);
-
-  final int categoryIcon;
-
-  @override
-  List<Object?> get props => [categoryIcon];
-}
-
-class CategoryColorSelectedEvent extends CategoryEvent {
-  const CategoryColorSelectedEvent(this.categoryColor);
-
-  final int categoryColor;
-
-  @override
-  List<Object?> get props => [categoryColor];
-}
-
-class UpdateCategoryBudgetEvent extends CategoryEvent {
-  const UpdateCategoryBudgetEvent(this.isBudget);
-
-  final bool isBudget;
-
-  @override
-  List<Object?> get props => [isBudget];
+@freezed
+class CategoryEvent with _$CategoryEvent {
+  const factory CategoryEvent.fetchFromId(int? categoryId) =
+      FetchCategoryFromIdEvent;
+  const factory CategoryEvent.addOrUpdate(bool isAddOrUpdate) =
+      AddOrUpdateCategoryEvent;
+  const factory CategoryEvent.delete(int categoryId) = CategoryDeleteEvent;
+  const factory CategoryEvent.iconSelected(int categoryIcon) =
+      CategoryIconSelectedEvent;
+  const factory CategoryEvent.updateBudget(bool isBudget) =
+      UpdateCategoryBudgetEvent;
+  const factory CategoryEvent.colorSelected(int categoryColor) =
+      CategoryColorSelectedEvent;
+  const factory CategoryEvent.updateType(CategoryType categoryType) =
+      UpdateCategoryTypeEvent;
 }

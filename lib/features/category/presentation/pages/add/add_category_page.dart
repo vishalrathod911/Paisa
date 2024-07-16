@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paisa/core/enum/category_type.dart';
 import 'package:paisa/core/widgets/paisa_scaffold.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,9 +23,11 @@ class CategoryPage extends StatefulWidget {
   const CategoryPage({
     super.key,
     this.categoryId,
+    this.categoryType = CategoryType.income,
   });
 
   final int? categoryId;
+  final CategoryType? categoryType;
 
   @override
   State<CategoryPage> createState() => _CategoryPageState();
@@ -49,6 +52,9 @@ class _CategoryPageState extends State<CategoryPage> {
   void initState() {
     super.initState();
     categoryBloc.add(FetchCategoryFromIdEvent(widget.categoryId));
+    categoryBloc.add(
+      UpdateCategoryTypeEvent(widget.categoryType ?? CategoryType.income),
+    );
   }
 
   @override
@@ -118,6 +124,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
+                            const CategoryToggleButtons(),
                             const SizedBox(height: 16),
                             CategoryNameWidget(controller: categoryController),
                             const SizedBox(height: 16),
@@ -201,6 +208,7 @@ class _CategoryPageState extends State<CategoryPage> {
                           CategoryDescriptionWidget(controller: descController),
                           const SizedBox(height: 16),
                           const TransferCategoryWidget(),
+                          const SizedBox(height: 16),
                         ],
                       ),
                     ),
@@ -384,6 +392,27 @@ class CategoryDescriptionWidget extends StatelessWidget {
       hintText: context.loc.enterDescription,
       keyboardType: TextInputType.name,
       onChanged: (value) => context.read<CategoryBloc>().categoryDesc = value,
+    );
+  }
+}
+
+class CategoryToggleButtons extends StatelessWidget {
+  const CategoryToggleButtons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CategoryBloc, CategoryState>(
+      builder: (context, state) {
+        return PaisaToggleButtons<CategoryType>(
+          filters: CategoryType.values,
+          isSelected: (type) =>
+              context.read<CategoryBloc>().categoryType == type,
+          onFilterSelected: (type) {
+            context.read<CategoryBloc>().add(UpdateCategoryTypeEvent(type));
+          },
+          title: (type) => type.stringValue(context),
+        );
+      },
     );
   }
 }

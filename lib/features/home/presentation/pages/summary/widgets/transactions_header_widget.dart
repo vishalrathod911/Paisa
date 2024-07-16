@@ -55,7 +55,7 @@ class TransactionsHeaderWidget extends StatelessWidget {
               ),
             ),
             builder: (context) {
-              return FilterHomeExpensesWidget(
+              return FilterAccountTransactionsWidget(
                   summaryController: summaryController);
             },
           );

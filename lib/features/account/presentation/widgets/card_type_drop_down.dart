@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:paisa/core/common.dart';
-import 'package:paisa/core/enum/card_type.dart';
+import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/account/presentation/bloc/accounts_bloc.dart';
 
 class CardTypeButtons extends StatelessWidget {
   const CardTypeButtons({super.key});
 
-  void _update(BuildContext context, CardType type) {
+  void _update(BuildContext context, AccountType type) {
     context.read<AccountBloc>().add(UpdateCardTypeEvent(type));
   }
 
@@ -24,7 +22,7 @@ class CardTypeButtons extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              final CardType type = CardType.values[index];
+              final AccountType type = AccountType.values[index];
               return PaisaPillChip(
                 title: type.stringValue(context),
                 isSelected: context.read<AccountBloc>().selectedType == type,
@@ -34,7 +32,7 @@ class CardTypeButtons extends StatelessWidget {
             separatorBuilder: (context, index) => const SizedBox(
               width: 8,
             ),
-            itemCount: CardType.values.length,
+            itemCount: AccountType.values.length,
           ),
         );
       },

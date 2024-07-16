@@ -4,27 +4,27 @@ import 'package:paisa/core/common.dart';
 import 'package:paisa/core/common_enum.dart';
 
 extension CardTypeMap on String {
-  CardType get type {
+  AccountType get type {
     switch (this) {
       case 'Cash':
-        return CardType.cash;
+        return AccountType.cash;
       case 'Bank':
-        return CardType.bank;
+        return AccountType.bank;
       case 'Wallet':
-        return CardType.wallet;
+        return AccountType.wallet;
     }
-    return CardType.bank;
+    return AccountType.bank;
   }
 }
 
-extension CardTypeHelper on CardType {
+extension CardTypeHelper on AccountType {
   String stringValue(BuildContext context) {
     switch (this) {
-      case CardType.cash:
+      case AccountType.cash:
         return context.loc.cash;
-      case CardType.bank:
+      case AccountType.bank:
         return context.loc.bank;
-      case CardType.wallet:
+      case AccountType.wallet:
         return context.loc.wallet;
     }
   }

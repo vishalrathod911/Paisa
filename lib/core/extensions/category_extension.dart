@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:paisa/core/enum/category_type.dart';
 
 import 'package:paisa/features/category/data/model/category_model.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
+
+extension BoxCategoryModelHelper on Box<CategoryModel> {
+  List<CategoryEntity> get filterDefault {
+    return values
+        .where((element) => !element.isTransferCategory)
+        .sort()
+        .toEntities();
+  }
+}
 
 extension CategoryModelHelper on CategoryModel {
   CategoryEntity toEntity() {
@@ -16,6 +27,7 @@ extension CategoryModelHelper on CategoryModel {
       isBudget: isBudget,
       superId: superId,
       isDefault: isTransferCategory,
+      categoryType: categoryType ?? CategoryType.income,
     );
   }
 }

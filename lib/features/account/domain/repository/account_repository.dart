@@ -5,7 +5,7 @@ abstract interface class AccountRepository {
   Future<int> add({
     required String bankName,
     required String holderName,
-    required CardType cardType,
+    required AccountType cardType,
     double amount = 0,
     int color = 0xFFFFC107,
     bool isAccountExcluded = false,
@@ -15,7 +15,7 @@ abstract interface class AccountRepository {
     required int key,
     required String bankName,
     required String holderName,
-    required CardType cardType,
+    required AccountType cardType,
     double amount = 0,
     int color = 0xFFFFC107,
     bool isAccountExcluded = false,

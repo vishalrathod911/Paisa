@@ -19,7 +19,7 @@ class SummaryPage extends StatelessWidget {
         Provider.of<List<TransactionEntity>>(context);
     return ScreenTypeLayout.builder(
       mobile: (p0) => SummaryMobileWidget(transactions: transactions),
-      tablet: (p0) => SummaryTabletWidget(expenses: transactions),
+      tablet: (p0) => SummaryTabletWidget(transactions: transactions),
       desktop: (p0) => SummaryDesktopWidget(expenses: transactions),
     );
   }

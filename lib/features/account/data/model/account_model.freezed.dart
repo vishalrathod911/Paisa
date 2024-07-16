@@ -28,10 +28,10 @@ mixin _$AccountModel {
   String get bankName => throw _privateConstructorUsedError;
   @HiveField(3)
   set bankName(String value) => throw _privateConstructorUsedError;
-  @HiveField(6, defaultValue: CardType.bank)
-  CardType get cardType => throw _privateConstructorUsedError;
-  @HiveField(6, defaultValue: CardType.bank)
-  set cardType(CardType value) => throw _privateConstructorUsedError;
+  @HiveField(6, defaultValue: AccountType.bank)
+  AccountType get cardType => throw _privateConstructorUsedError;
+  @HiveField(6, defaultValue: AccountType.bank)
+  set cardType(AccountType value) => throw _privateConstructorUsedError;
   @HiveField(7)
   int? get superId => throw _privateConstructorUsedError;
   @HiveField(7)
@@ -64,7 +64,7 @@ abstract class $AccountModelCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String name,
       @HiveField(3) String bankName,
-      @HiveField(6, defaultValue: CardType.bank) CardType cardType,
+      @HiveField(6, defaultValue: AccountType.bank) AccountType cardType,
       @HiveField(7) int? superId,
       @HiveField(8, defaultValue: 0) double? amount,
       @HiveField(9, defaultValue: 0xFFFFC107) int color,
@@ -104,7 +104,7 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
       cardType: null == cardType
           ? _value.cardType
           : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
+              as AccountType,
       superId: freezed == superId
           ? _value.superId
           : superId // ignore: cast_nullable_to_non_nullable
@@ -136,7 +136,7 @@ abstract class _$$AccountModelImplCopyWith<$Res>
   $Res call(
       {@HiveField(0) String name,
       @HiveField(3) String bankName,
-      @HiveField(6, defaultValue: CardType.bank) CardType cardType,
+      @HiveField(6, defaultValue: AccountType.bank) AccountType cardType,
       @HiveField(7) int? superId,
       @HiveField(8, defaultValue: 0) double? amount,
       @HiveField(9, defaultValue: 0xFFFFC107) int color,
@@ -174,7 +174,7 @@ class __$$AccountModelImplCopyWithImpl<$Res>
       cardType: null == cardType
           ? _value.cardType
           : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
+              as AccountType,
       superId: freezed == superId
           ? _value.superId
           : superId // ignore: cast_nullable_to_non_nullable
@@ -202,7 +202,8 @@ class _$AccountModelImpl extends _AccountModel {
   _$AccountModelImpl(
       {@HiveField(0) required this.name,
       @HiveField(3) required this.bankName,
-      @HiveField(6, defaultValue: CardType.bank) this.cardType = CardType.bank,
+      @HiveField(6, defaultValue: AccountType.bank)
+      this.cardType = AccountType.bank,
       @HiveField(7) this.superId,
       @HiveField(8, defaultValue: 0) this.amount = 0.0,
       @HiveField(9, defaultValue: 0xFFFFC107) this.color = 0xFFFFC107,
@@ -220,8 +221,8 @@ class _$AccountModelImpl extends _AccountModel {
   String bankName;
   @override
   @JsonKey()
-  @HiveField(6, defaultValue: CardType.bank)
-  CardType cardType;
+  @HiveField(6, defaultValue: AccountType.bank)
+  AccountType cardType;
   @override
   @HiveField(7)
   int? superId;
@@ -261,7 +262,7 @@ abstract class _AccountModel extends AccountModel {
   factory _AccountModel(
           {@HiveField(0) required String name,
           @HiveField(3) required String bankName,
-          @HiveField(6, defaultValue: CardType.bank) CardType cardType,
+          @HiveField(6, defaultValue: AccountType.bank) AccountType cardType,
           @HiveField(7) int? superId,
           @HiveField(8, defaultValue: 0) double? amount,
           @HiveField(9, defaultValue: 0xFFFFC107) int color,
@@ -283,10 +284,10 @@ abstract class _AccountModel extends AccountModel {
   @HiveField(3)
   set bankName(String value);
   @override
-  @HiveField(6, defaultValue: CardType.bank)
-  CardType get cardType;
-  @HiveField(6, defaultValue: CardType.bank)
-  set cardType(CardType value);
+  @HiveField(6, defaultValue: AccountType.bank)
+  AccountType get cardType;
+  @HiveField(6, defaultValue: AccountType.bank)
+  set cardType(AccountType value);
   @override
   @HiveField(7)
   int? get superId;

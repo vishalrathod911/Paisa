@@ -455,12 +455,17 @@ extension $CategoryPageDataExtension on CategoryPageData {
   static CategoryPageData _fromState(GoRouterState state) => CategoryPageData(
         categoryId: _$convertMapValue(
             'category-id', state.uri.queryParameters, int.parse),
+        categoryType: _$convertMapValue('category-type',
+                state.uri.queryParameters, _$CategoryTypeEnumMap._$fromName) ??
+            CategoryType.income,
       );
 
   String get location => GoRouteData.$location(
         '/landing/category',
         queryParams: {
           if (categoryId != null) 'category-id': categoryId!.toString(),
+          if (categoryType != CategoryType.income)
+            'category-type': _$CategoryTypeEnumMap[categoryType],
         },
       );
 
@@ -473,6 +478,11 @@ extension $CategoryPageDataExtension on CategoryPageData {
 
   void replace(BuildContext context) => context.replace(location);
 }
+
+const _$CategoryTypeEnumMap = {
+  CategoryType.income: 'income',
+  CategoryType.expense: 'expense',
+};
 
 extension $CategoryIconPickerPageDataExtension on CategoryIconPickerPageData {
   static CategoryIconPickerPageData _fromState(GoRouterState state) =>

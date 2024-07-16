@@ -280,13 +280,20 @@ class AccountPageData extends GoRouteData {
 }
 
 class CategoryPageData extends GoRouteData {
-  const CategoryPageData({this.categoryId});
+  const CategoryPageData({
+    this.categoryId,
+    this.categoryType = CategoryType.income,
+  });
 
   final int? categoryId;
+  final CategoryType categoryType;
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return CategoryPage(categoryId: categoryId);
+    return CategoryPage(
+      categoryId: categoryId,
+      categoryType: categoryType,
+    );
   }
 }
 

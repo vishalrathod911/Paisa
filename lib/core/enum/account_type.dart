@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-part 'card_type.g.dart';
+part 'account_type.g.dart';
 
 @HiveType(typeId: 12)
-enum CardType {
+enum AccountType {
   @HiveField(0)
   cash,
   @HiveField(1)
@@ -15,14 +15,14 @@ enum CardType {
   wallet;
 }
 
-extension CardTypeHelper on CardType {
+extension AccountTypeHelper on AccountType {
   IconData get icon {
     switch (this) {
-      case CardType.bank:
+      case AccountType.bank:
         return MdiIcons.creditCard;
-      case CardType.wallet:
+      case AccountType.wallet:
         return MdiIcons.walletBifold;
-      case CardType.cash:
+      case AccountType.cash:
         return MdiIcons.cashMultiple;
     }
   }

@@ -89,21 +89,52 @@ class HomeMobileWidget extends StatelessWidget {
             data: Theme.of(context).copyWith(
               splashFactory: NoSplash.splashFactory,
             ),
-            child: NavigationBar(
-              elevation: 1,
-              indicatorColor: context.secondaryContainer,
-              backgroundColor: context.surfaceContainer,
-              selectedIndex: context.read<HomeCubit>().state.index,
-              onDestinationSelected: (index) =>
-                  context.read<HomeCubit>().setCurrentIndex(index),
-              destinations: destinations
-                  .sublist(0, 4)
-                  .map((e) => NavigationDestination(
-                        icon: e.icon,
-                        selectedIcon: e.selectedIcon,
-                        label: e.pageType.name(context),
-                      ))
-                  .toList(),
+            child: NavigationBarTheme(
+              data: NavigationBarThemeData(
+                labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+                labelTextStyle: WidgetStateProperty.resolveWith((states) {
+                  if (states.contains(WidgetState.selected)) {
+                    return context.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: context.onSecondaryContainer,
+                    );
+                  } else {
+                    return context.bodyLarge?.copyWith(
+                      color: context.onSecondaryContainer.withOpacity(0.75),
+                    );
+                  }
+                }),
+                iconTheme: WidgetStateProperty.resolveWith(
+                  (states) {
+                    if (states.contains(WidgetState.selected)) {
+                      return IconThemeData(
+                        color: context.onSecondary,
+                      );
+                    } else {
+                      return IconThemeData(
+                        color: context.onSecondaryContainer.withOpacity(0.75),
+                      );
+                    }
+                  },
+                ),
+              ),
+              child: NavigationBar(
+                elevation: 1,
+                surfaceTintColor: context.secondaryContainer,
+                indicatorColor: context.primary,
+                backgroundColor: context.surfaceContainer,
+                selectedIndex: context.read<HomeCubit>().state.index,
+                onDestinationSelected: (index) =>
+                    context.read<HomeCubit>().setCurrentIndex(index),
+                destinations: destinations
+                    .sublist(0, 4)
+                    .map((e) => NavigationDestination(
+                          icon: e.icon,
+                          selectedIcon: e.selectedIcon,
+                          label: e.pageType.name(context),
+                        ))
+                    .toList(),
+              ),
             ),
           );
         },

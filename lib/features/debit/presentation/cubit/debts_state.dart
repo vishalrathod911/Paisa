@@ -1,70 +1,17 @@
 part of 'debts_bloc.dart';
 
-abstract interface class DebtsState extends Equatable {
-  const DebtsState();
-
-  @override
-  List<Object> get props => [];
+@freezed
+class DebtsState with _$DebtsState {
+  const factory DebtsState.initial() = DebtsInitial;
+  const factory DebtsState.added({@Default(false) bool isUpdate}) = DebtsAdded;
+  const factory DebtsState.tabState(DebitType debtType) = DebtsTabState;
+  const factory DebtsState.success(DebtEntity debt) = DebtsSuccessState;
+  const factory DebtsState.error(String errorString) = DebtErrorState;
+  const factory DebtsState.transactionAdded() = TransactionAddedState;
+  const factory DebtsState.selectedEndDate(DateTime endDateTime) =
+      SelectedEndDateState;
+  const factory DebtsState.selectedStartDate(DateTime startDateTime) =
+      SelectedStartDateState;
+  const factory DebtsState.deleteDebts() = DeleteDebtsState;
+  const factory DebtsState.deleteTransaction() = DeleteTransactionState;
 }
-
-class DebtsInitial extends DebtsState {}
-
-class DebtsAdded extends DebtsState {
-  const DebtsAdded({this.isUpdate = false});
-
-  final bool isUpdate;
-
-  @override
-  List<Object> get props => [isUpdate];
-}
-
-class DebtsTabState extends DebtsState {
-  const DebtsTabState(this.debtType);
-
-  final DebitType debtType;
-
-  @override
-  List<Object> get props => [debtType];
-}
-
-class DebtsSuccessState extends DebtsState {
-  const DebtsSuccessState(this.debt);
-
-  final DebtEntity debt;
-
-  @override
-  List<Object> get props => [debt];
-}
-
-class DebtErrorState extends DebtsState {
-  const DebtErrorState(this.errorString);
-
-  final String errorString;
-
-  @override
-  List<Object> get props => [errorString];
-}
-
-class TransactionAddedState extends DebtsState {}
-
-class SelectedEndDateState extends DebtsState {
-  const SelectedEndDateState(this.endDateTime);
-
-  final DateTime endDateTime;
-
-  @override
-  List<Object> get props => [endDateTime];
-}
-
-class SelectedStartDateState extends DebtsState {
-  const SelectedStartDateState(this.startDateTime);
-
-  final DateTime startDateTime;
-
-  @override
-  List<Object> get props => [startDateTime];
-}
-
-class DeleteDebtsState extends DebtsState {}
-
-class DeleteTransactionState extends DebtsState {}

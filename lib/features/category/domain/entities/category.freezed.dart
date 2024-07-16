@@ -23,6 +23,7 @@ mixin _$CategoryEntity {
   bool get isBudget => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  CategoryType get categoryType => throw _privateConstructorUsedError;
   int? get superId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,7 @@ mixin _$CategoryEntity {
 }
 
 /// @nodoc
-abstract interface class $CategoryEntityCopyWith<$Res> {
+abstract class $CategoryEntityCopyWith<$Res> {
   factory $CategoryEntityCopyWith(
           CategoryEntity value, $Res Function(CategoryEntity) then) =
       _$CategoryEntityCopyWithImpl<$Res, CategoryEntity>;
@@ -44,6 +45,7 @@ abstract interface class $CategoryEntityCopyWith<$Res> {
       bool isBudget,
       bool isDefault,
       String name,
+      CategoryType categoryType,
       int? superId});
 }
 
@@ -67,6 +69,7 @@ class _$CategoryEntityCopyWithImpl<$Res, $Val extends CategoryEntity>
     Object? isBudget = null,
     Object? isDefault = null,
     Object? name = null,
+    Object? categoryType = null,
     Object? superId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -98,6 +101,10 @@ class _$CategoryEntityCopyWithImpl<$Res, $Val extends CategoryEntity>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      categoryType: null == categoryType
+          ? _value.categoryType
+          : categoryType // ignore: cast_nullable_to_non_nullable
+              as CategoryType,
       superId: freezed == superId
           ? _value.superId
           : superId // ignore: cast_nullable_to_non_nullable
@@ -107,7 +114,7 @@ class _$CategoryEntityCopyWithImpl<$Res, $Val extends CategoryEntity>
 }
 
 /// @nodoc
-abstract interface class _$$CategoryEntityImplCopyWith<$Res>
+abstract class _$$CategoryEntityImplCopyWith<$Res>
     implements $CategoryEntityCopyWith<$Res> {
   factory _$$CategoryEntityImplCopyWith(_$CategoryEntityImpl value,
           $Res Function(_$CategoryEntityImpl) then) =
@@ -122,6 +129,7 @@ abstract interface class _$$CategoryEntityImplCopyWith<$Res>
       bool isBudget,
       bool isDefault,
       String name,
+      CategoryType categoryType,
       int? superId});
 }
 
@@ -143,6 +151,7 @@ class __$$CategoryEntityImplCopyWithImpl<$Res>
     Object? isBudget = null,
     Object? isDefault = null,
     Object? name = null,
+    Object? categoryType = null,
     Object? superId = freezed,
   }) {
     return _then(_$CategoryEntityImpl(
@@ -174,6 +183,10 @@ class __$$CategoryEntityImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      categoryType: null == categoryType
+          ? _value.categoryType
+          : categoryType // ignore: cast_nullable_to_non_nullable
+              as CategoryType,
       superId: freezed == superId
           ? _value.superId
           : superId // ignore: cast_nullable_to_non_nullable
@@ -193,6 +206,7 @@ class _$CategoryEntityImpl implements _CategoryEntity {
       this.isBudget = false,
       this.isDefault = false,
       required this.name,
+      this.categoryType = CategoryType.income,
       this.superId});
 
   @override
@@ -212,11 +226,14 @@ class _$CategoryEntityImpl implements _CategoryEntity {
   @override
   final String name;
   @override
+  @JsonKey()
+  final CategoryType categoryType;
+  @override
   final int? superId;
 
   @override
   String toString() {
-    return 'CategoryEntity(budget: $budget, color: $color, description: $description, icon: $icon, isBudget: $isBudget, isDefault: $isDefault, name: $name, superId: $superId)';
+    return 'CategoryEntity(budget: $budget, color: $color, description: $description, icon: $icon, isBudget: $isBudget, isDefault: $isDefault, name: $name, categoryType: $categoryType, superId: $superId)';
   }
 
   @override
@@ -234,12 +251,14 @@ class _$CategoryEntityImpl implements _CategoryEntity {
             (identical(other.isDefault, isDefault) ||
                 other.isDefault == isDefault) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.categoryType, categoryType) ||
+                other.categoryType == categoryType) &&
             (identical(other.superId, superId) || other.superId == superId));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, budget, color, description, icon,
-      isBudget, isDefault, name, superId);
+      isBudget, isDefault, name, categoryType, superId);
 
   @JsonKey(ignore: true)
   @override
@@ -249,7 +268,7 @@ class _$CategoryEntityImpl implements _CategoryEntity {
           this, _$identity);
 }
 
-abstract interface class _CategoryEntity implements CategoryEntity {
+abstract class _CategoryEntity implements CategoryEntity {
   const factory _CategoryEntity(
       {final double? budget,
       required final int color,
@@ -258,6 +277,7 @@ abstract interface class _CategoryEntity implements CategoryEntity {
       final bool isBudget,
       final bool isDefault,
       required final String name,
+      final CategoryType categoryType,
       final int? superId}) = _$CategoryEntityImpl;
 
   @override
@@ -274,6 +294,8 @@ abstract interface class _CategoryEntity implements CategoryEntity {
   bool get isDefault;
   @override
   String get name;
+  @override
+  CategoryType get categoryType;
   @override
   int? get superId;
   @override

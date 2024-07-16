@@ -1,3 +1,4 @@
+import 'package:paisa/core/enum/category_type.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 
 abstract interface class CategoryRepository {
@@ -9,6 +10,7 @@ abstract interface class CategoryRepository {
     bool isBudget = false,
     required double? budget,
     bool isDefault = false,
+    CategoryType categoryType = CategoryType.income,
   });
 
   Future<void> delete(int key);
@@ -24,6 +26,7 @@ abstract interface class CategoryRepository {
     bool isBudget = false,
     required double? budget,
     bool isDefault = false,
+    CategoryType categoryType = CategoryType.income,
   });
 
   Future<void> clear();

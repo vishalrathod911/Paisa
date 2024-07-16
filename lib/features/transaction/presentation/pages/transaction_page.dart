@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:paisa/core/widgets/paisa_scaffold.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
 import 'package:paisa/core/common.dart';
 import 'package:paisa/core/enum/transaction_type.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
@@ -19,7 +17,6 @@ import 'package:paisa/features/transaction/presentation/widgets/transaction_date
 import 'package:paisa/features/transaction/presentation/widgets/transaction_delete_widget.dart';
 import 'package:paisa/features/transaction/presentation/widgets/transaction_description_widget.dart';
 import 'package:paisa/features/transaction/presentation/widgets/transaction_name_widget.dart';
-import 'package:paisa/features/transaction/presentation/widgets/transaction_toggle_buttons_widget.dart';
 import 'package:paisa/features/transaction/presentation/widgets/transfer_widget.dart';
 
 class TransactionPage extends StatefulWidget {
@@ -262,6 +259,34 @@ class _TransactionPageState extends State<TransactionPage> {
           },
         ),
       ),
+    );
+  }
+}
+
+class TransactionToggleButtons extends StatelessWidget {
+  const TransactionToggleButtons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<TransactionBloc, TransactionState>(
+      buildWhen: (previous, current) => current is ChangeTransactionTypeState,
+      builder: (context, state) {
+        return PaisaToggleButtons<TransactionType>(
+          filters: const [
+            TransactionType.expense,
+            TransactionType.income,
+            TransactionType.transfer,
+          ],
+          onFilterSelected: (type) {
+            context.read<TransactionBloc>().add(
+                  TransactionEvent.changeTransactionType(type),
+                );
+          },
+          title: (type) => type.stringValue(context),
+          isSelected: (type) =>
+              context.read<TransactionBloc>().transactionType == type,
+        );
+      },
     );
   }
 }

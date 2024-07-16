@@ -1,83 +1,19 @@
 part of 'debts_bloc.dart';
 
-@immutable
-abstract interface class DebtsEvent extends Equatable {
-  const DebtsEvent();
-
-  @override
-  List<Object?> get props => [];
-}
-
-class AddTransactionToDebtEvent extends DebtsEvent {
-  const AddTransactionToDebtEvent(this.debt, this.amount, this.dateTime);
-
-  final double amount;
-  final DateTime dateTime;
-  final DebtModel debt;
-
-  @override
-  List<Object?> get props => [debt, amount];
-}
-
-class FetchDebtOrCreditFromIdEvent extends DebtsEvent {
-  const FetchDebtOrCreditFromIdEvent(this.id);
-
-  final int? id;
-
-  @override
-  List<Object?> get props => [id];
-}
-
-class AddOrUpdateEvent extends DebtsEvent {
-  const AddOrUpdateEvent(this.isUpdate);
-
-  final bool isUpdate;
-
-  @override
-  List<Object?> get props => [isUpdate];
-}
-
-class ChangeDebtTypeEvent extends DebtsEvent {
-  const ChangeDebtTypeEvent(this.debtType);
-
-  final DebitType debtType;
-
-  @override
-  List<Object?> get props => [debtType];
-}
-
-class SelectedEndDateEvent extends DebtsEvent {
-  const SelectedEndDateEvent(this.endDateTime);
-
-  final DateTime endDateTime;
-
-  @override
-  List<Object> get props => [endDateTime];
-}
-
-class SelectedStartDateEvent extends DebtsEvent {
-  const SelectedStartDateEvent(this.startDateTime);
-
-  final DateTime startDateTime;
-
-  @override
-  List<Object> get props => [startDateTime];
-}
-
-class DeleteDebtEvent extends DebtsEvent {
-  const DeleteDebtEvent(this.id);
-
-  final int id;
-
-  @override
-  List<Object?> get props => [id];
-}
-
-class DeleteTransactionEvent extends DebtsEvent {
-  const DeleteTransactionEvent(this.id);
-
-  final int id;
-
-  @override
-  List<Object?> get props => [id];
+@freezed
+class DebtsEvent with _$DebtsEvent {
+  const factory DebtsEvent.addTransactionToDebt(
+          DebtModel debt, double amount, DateTime dateTime) =
+      AddTransactionToDebtEvent;
+  const factory DebtsEvent.fetchDebtOrCreditFromId(int? id) =
+      FetchDebtOrCreditFromIdEvent;
+  const factory DebtsEvent.addOrUpdate(bool isUpdate) = AddOrUpdateEvent;
+  const factory DebtsEvent.changeDebtType(DebitType debtType) =
+      ChangeDebtTypeEvent;
+  const factory DebtsEvent.selectedEndDate(DateTime endDateTime) =
+      SelectedEndDateEvent;
+  const factory DebtsEvent.selectedStartDate(DateTime startDateTime) =
+      SelectedStartDateEvent;
+  const factory DebtsEvent.deleteDebt(int id) = DeleteDebtEvent;
+  const factory DebtsEvent.deleteTransaction(int id) = DeleteTransactionEvent;
 }

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:paisa/core/enum/category_type.dart';
 
 import 'package:paisa/core/use_case/use_case.dart';
 import 'package:paisa/features/category/domain/repository/category_repository.dart';
@@ -22,6 +23,7 @@ class AddCategoryUseCase implements UseCase<void, AddCategoryParams> {
       isBudget: params.isBudget,
       color: params.color,
       isDefault: params.isDefault,
+      categoryType: params.categoryType,
     );
   }
 }
@@ -36,5 +38,6 @@ class AddCategoryParams with _$AddCategoryParams {
     required int icon,
     @Default(false) bool isBudget,
     @Default(false) bool isDefault,
+    @Default(CategoryType.income) CategoryType categoryType,
   }) = _AddCategoryParams;
 }

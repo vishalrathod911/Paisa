@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:paisa/core/common.dart';
+import 'package:paisa/core/enum/filter_expense.dart';
+import 'package:paisa/core/widgets/paisa_widgets/paisa_divider.dart';
+import 'package:paisa/core/widgets/section_list_view/sectioned_list_view.dart';
+import 'package:paisa/features/account/presentation/widgets/account_summary_widget.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
 
@@ -7,14 +12,15 @@ import 'package:paisa/features/home/presentation/pages/summary/widgets/welcome_n
 import 'package:paisa/features/overview/presentation/widgets/filter_tabs_widget.dart';
 import 'package:paisa/features/transaction/domain/entities/transaction_entity.dart';
 import 'package:paisa/main.dart';
+import 'package:provider/provider.dart';
 
 class SummaryTabletWidget extends StatelessWidget {
   const SummaryTabletWidget({
     super.key,
-    required this.expenses,
+    required this.transactions,
   });
 
-  final List<TransactionEntity> expenses;
+  final List<TransactionEntity> transactions;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,8 @@ class SummaryTabletWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const WelcomeNameWidget(),
-              TransactionTotalWidget(transactions: expenses),
+              TransactionTotalWidget(transactions: transactions),
+              AccountSummaryWidget(expenses: transactions),
             ],
           ),
         ),
@@ -47,12 +54,45 @@ class SummaryTabletWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              SliverList.builder(
-                itemCount: expenses.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final TransactionEntity transaction = expenses[index];
-                  return TransactionItemWidget(transaction: transaction);
+              ValueListenableBuilder<FilterExpense>(
+                valueListenable:
+                    Provider.of<SummaryController>(context).notifyFilterExpense,
+                builder: (context, value, child) {
+                  return SliverGroupedListView<TransactionEntity, String>(
+                    elements: transactions,
+                    groupBy: (element) => element.time.formatted(value),
+                    separator: const PaisaDivider(),
+                    sort: false,
+                    groupSeparatorBuilder: (value, groupTotal) {
+                      return ListTile(
+                        title: Text(
+                          value,
+                          style: context.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: context.onBackground,
+                          ),
+                        ),
+                        trailing: Text(
+                          groupTotal.toFormateCurrency(context),
+                          style: context.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: context.onBackground,
+                          ),
+                        ),
+                      );
+                    },
+                    groupTotalCalculator:
+                        (List<TransactionEntity> groupElements) {
+                      return groupElements.filterTotal;
+                    },
+                    itemBuilder: (context, transaction) {
+                      return TransactionItemWidget(transaction: transaction);
+                    },
+                  );
                 },
+              ),
+              const SliverPadding(
+                padding: EdgeInsets.only(bottom: 196),
               ),
             ],
           ),

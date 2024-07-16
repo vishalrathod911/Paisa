@@ -219,7 +219,7 @@ class PaisaButton extends StatelessWidget {
       case ButtonSize.medium:
         return 18.h;
       case ButtonSize.large:
-        return 20.h;
+        return 24.h;
     }
   }
 

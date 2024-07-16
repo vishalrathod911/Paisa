@@ -1,9 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/data/super_id.dart';
-
 part 'transaction_model.g.dart';
 part 'transaction_model.freezed.dart';
 

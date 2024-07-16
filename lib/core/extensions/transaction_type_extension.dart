@@ -17,7 +17,7 @@ extension TransactionTypeHelper on TransactionType {
           ? Theme.of(context).extension<CustomColors>()!.red
           : Theme.of(context).extension<CustomColors>()!.green;
 
-  String stringName(BuildContext context) {
+  String stringValue(BuildContext context) {
     switch (this) {
       case TransactionType.income:
         return context.loc.income;

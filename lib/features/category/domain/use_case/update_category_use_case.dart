@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:paisa/core/enum/category_type.dart';
 
 import 'package:paisa/core/use_case/use_case.dart';
 import 'package:paisa/features/category/domain/repository/category_repository.dart';
@@ -24,6 +25,7 @@ class UpdateCategoryUseCase
       desc: params.description,
       isBudget: params.isBudget,
       isDefault: params.isDefault,
+      categoryType: params.categoryType,
     );
   }
 }
@@ -38,6 +40,8 @@ class UpdateCategoryParams with _$UpdateCategoryParams {
     required int icon,
     @Default(false) bool isBudget,
     @Default(false) bool isDefault,
+    @Default(false) bool isIncomeOrExpense,
     required String name,
+    @Default(CategoryType.income) CategoryType categoryType,
   }) = _UpdateCategoryParams;
 }

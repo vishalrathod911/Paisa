@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UpdateAccountParams {
   double get amount => throw _privateConstructorUsedError;
   String get bankName => throw _privateConstructorUsedError;
-  CardType get cardType => throw _privateConstructorUsedError;
+  AccountType get cardType => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
   String get holderName => throw _privateConstructorUsedError;
   int get key => throw _privateConstructorUsedError;
@@ -37,7 +37,7 @@ abstract class $UpdateAccountParamsCopyWith<$Res> {
   $Res call(
       {double amount,
       String bankName,
-      CardType cardType,
+      AccountType cardType,
       int color,
       String holderName,
       int key});
@@ -75,7 +75,7 @@ class _$UpdateAccountParamsCopyWithImpl<$Res, $Val extends UpdateAccountParams>
       cardType: null == cardType
           ? _value.cardType
           : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
+              as AccountType,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -103,7 +103,7 @@ abstract class _$$UpdateAccountParamsImplCopyWith<$Res>
   $Res call(
       {double amount,
       String bankName,
-      CardType cardType,
+      AccountType cardType,
       int color,
       String holderName,
       int key});
@@ -139,7 +139,7 @@ class __$$UpdateAccountParamsImplCopyWithImpl<$Res>
       cardType: null == cardType
           ? _value.cardType
           : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
+              as AccountType,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$UpdateAccountParamsImpl implements _UpdateAccountParams {
   const _$UpdateAccountParamsImpl(
       {required this.amount,
       required this.bankName,
-      this.cardType = CardType.cash,
+      this.cardType = AccountType.cash,
       required this.color,
       required this.holderName,
       required this.key});
@@ -173,7 +173,7 @@ class _$UpdateAccountParamsImpl implements _UpdateAccountParams {
   final String bankName;
   @override
   @JsonKey()
-  final CardType cardType;
+  final AccountType cardType;
   @override
   final int color;
   @override
@@ -218,7 +218,7 @@ abstract class _UpdateAccountParams implements UpdateAccountParams {
   const factory _UpdateAccountParams(
       {required final double amount,
       required final String bankName,
-      final CardType cardType,
+      final AccountType cardType,
       required final int color,
       required final String holderName,
       required final int key}) = _$UpdateAccountParamsImpl;
@@ -228,7 +228,7 @@ abstract class _UpdateAccountParams implements UpdateAccountParams {
   @override
   String get bankName;
   @override
-  CardType get cardType;
+  AccountType get cardType;
   @override
   int get color;
   @override

@@ -1,6 +1,45 @@
 import 'package:flutter/material.dart';
-
 import 'package:paisa/core/common.dart';
+
+import 'package:paisa/core/widgets/paisa_widgets/paisa_pill_chip.dart';
+
+class PaisaToggleButtons<T> extends StatelessWidget {
+  const PaisaToggleButtons({
+    super.key,
+    required this.filters,
+    required this.onFilterSelected,
+    required this.title,
+    required this.isSelected,
+  });
+  final Function(T type) onFilterSelected;
+  final List<T> filters;
+  final String Function(T type) title;
+  final bool Function(T type) isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: SizedBox(
+        height: 56,
+        child: ListView.separated(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          separatorBuilder: (context, index) => const SizedBox(width: 6),
+          itemCount: filters.length,
+          itemBuilder: (context, index) {
+            final T filter = filters[index];
+            return PaisaPillChip(
+              title: title(filter),
+              isSelected: isSelected(filter),
+              onPressed: () => onFilterSelected(filter),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
 
 enum ItemIndex { first, middle, last }
 

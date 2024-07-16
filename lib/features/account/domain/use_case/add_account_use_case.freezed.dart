@@ -19,7 +19,7 @@ mixin _$AddAccountParams {
   String get bankName => throw _privateConstructorUsedError;
   String get holderName => throw _privateConstructorUsedError;
   double get amount => throw _privateConstructorUsedError;
-  CardType get cardType => throw _privateConstructorUsedError;
+  AccountType get cardType => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
   bool get isAccountExcluded => throw _privateConstructorUsedError;
 
@@ -38,7 +38,7 @@ abstract class $AddAccountParamsCopyWith<$Res> {
       {String bankName,
       String holderName,
       double amount,
-      CardType cardType,
+      AccountType cardType,
       int color,
       bool isAccountExcluded});
 }
@@ -79,7 +79,7 @@ class _$AddAccountParamsCopyWithImpl<$Res, $Val extends AddAccountParams>
       cardType: null == cardType
           ? _value.cardType
           : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
+              as AccountType,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -104,7 +104,7 @@ abstract class _$$AddAccountParamsImplCopyWith<$Res>
       {String bankName,
       String holderName,
       double amount,
-      CardType cardType,
+      AccountType cardType,
       int color,
       bool isAccountExcluded});
 }
@@ -143,7 +143,7 @@ class __$$AddAccountParamsImplCopyWithImpl<$Res>
       cardType: null == cardType
           ? _value.cardType
           : cardType // ignore: cast_nullable_to_non_nullable
-              as CardType,
+              as AccountType,
       color: null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ class _$AddAccountParamsImpl implements _AddAccountParams {
       {required this.bankName,
       required this.holderName,
       this.amount = 0.0,
-      this.cardType = CardType.cash,
+      this.cardType = AccountType.cash,
       this.color = 0xFFFFFFFF,
       this.isAccountExcluded = false});
 
@@ -176,7 +176,7 @@ class _$AddAccountParamsImpl implements _AddAccountParams {
   final double amount;
   @override
   @JsonKey()
-  final CardType cardType;
+  final AccountType cardType;
   @override
   @JsonKey()
   final int color;
@@ -223,7 +223,7 @@ abstract class _AddAccountParams implements AddAccountParams {
       {required final String bankName,
       required final String holderName,
       final double amount,
-      final CardType cardType,
+      final AccountType cardType,
       final int color,
       final bool isAccountExcluded}) = _$AddAccountParamsImpl;
 
@@ -234,7 +234,7 @@ abstract class _AddAccountParams implements AddAccountParams {
   @override
   double get amount;
   @override
-  CardType get cardType;
+  AccountType get cardType;
   @override
   int get color;
   @override

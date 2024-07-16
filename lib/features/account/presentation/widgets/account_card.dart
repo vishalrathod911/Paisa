@@ -198,7 +198,7 @@ class AccountCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final String bankName = account.bankName;
     final String cardHolder = account.name;
-    final CardType cardType = account.cardType;
+    final AccountType cardType = account.cardType;
     final double totalExpense =
         transactions.totalAccountExpense(account.superId!);
     final double totalIncome =
@@ -257,7 +257,7 @@ class MobileAccountCard extends StatelessWidget {
 
   final String bankName;
   final String cardHolder;
-  final CardType cardType;
+  final AccountType cardType;
   final String income, expense;
   final VoidCallback? onDelete;
   final VoidCallback? onTap;
@@ -397,7 +397,7 @@ class TabletAccountCard extends StatelessWidget {
   final String bankName;
   final String cardHolder;
   final String cardNumber;
-  final CardType cardType;
+  final AccountType cardType;
   final String income, expense;
   final VoidCallback? onDelete;
   final VoidCallback? onTap;
@@ -552,7 +552,7 @@ class DesktopAccountCard extends StatelessWidget {
   final String bankName;
   final String cardHolder;
   final String cardNumber;
-  final CardType cardType;
+  final AccountType cardType;
   final String income, expense;
   final VoidCallback? onDelete;
   final VoidCallback? onTap;

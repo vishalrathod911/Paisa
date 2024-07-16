@@ -31,7 +31,7 @@ class UpdateAccountParams with _$UpdateAccountParams {
   const factory UpdateAccountParams({
     required double amount,
     required String bankName,
-    @Default(CardType.cash) CardType cardType,
+    @Default(AccountType.cash) AccountType cardType,
     required int color,
     required String holderName,
     required int key,

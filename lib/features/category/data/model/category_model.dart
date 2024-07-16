@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/adapters.dart';
 
 import 'package:paisa/core/data/super_id.dart';
+import 'package:paisa/core/enum/category_type.dart';
 
 part 'category_model.g.dart';
 part 'category_model.freezed.dart';
@@ -21,6 +22,7 @@ class CategoryModel extends HiveObject with _$CategoryModel implements SuperId {
     @HiveField(6, defaultValue: 0) double? budget,
     @HiveField(7, defaultValue: false) @Default(false) bool isBudget,
     @HiveField(8, defaultValue: 0xFFFFC107) int? color,
+    @HiveField(9) @Default(CategoryType.income) CategoryType? categoryType,
   }) = _CategoryModel;
 
   CategoryModel._();

@@ -5,7 +5,6 @@ import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/core/widgets/section_list_view/sectioned_list_view.dart';
 import 'package:paisa/features/account/presentation/widgets/account_summary_widget.dart';
 import 'package:paisa/features/home/presentation/controller/summary_controller.dart';
-import 'package:paisa/features/home/presentation/pages/summary/widgets/category_section.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_item_widget.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/transaction_total_widget.dart';
 import 'package:paisa/features/home/presentation/pages/summary/widgets/welcome_name_widget.dart';
@@ -87,7 +86,10 @@ class SummaryMobileWidget extends StatelessWidget {
               },
             );
           },
-        )
+        ),
+        const SliverPadding(
+          padding: EdgeInsets.only(bottom: 128),
+        ),
       ],
     );
   }

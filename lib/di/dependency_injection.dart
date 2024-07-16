@@ -115,7 +115,7 @@ void addDummyData() async {
       AccountModel(
         bankName: 'Bank Name $i',
         name: 'Holder name $i',
-        cardType: CardType.values[Random().nextInt(3)],
+        cardType: AccountType.values[Random().nextInt(3)],
         color:
             Colors.primaries[Random().nextInt(Colors.primaries.length)].value,
       ),
@@ -128,6 +128,7 @@ void addDummyData() async {
             Colors.primaries[Random().nextInt(Colors.primaries.length)].value,
         icon: MdiIcons.getIcons()[Random().nextInt(MdiIcons.getIcons().length)]
             .codePoint,
+        categoryType: CategoryType.values[Random().nextInt(2)],
       ),
     );
   }
@@ -135,9 +136,15 @@ void addDummyData() async {
   final startDate = DateTime(2024);
   final endDate = DateTime.now();
   List<String> goals = [
-    'Buy Card',
-    'Home',
+    'Buy Car',
     'Travel Europe',
+    'Buy Bike',
+    'Buy House',
+    'Buy Laptop',
+    'Buy Phone',
+    'Buy Camera',
+    'Buy TV',
+    'Buy AC'
   ];
   for (int i = 0; i < goals.length; i++) {
     await debtDataSource.add(
@@ -158,9 +165,21 @@ void addDummyData() async {
     );
   }
 
-  for (int i = 0; i < 1000; i++) {
+  for (int i = 0; i < 100; i++) {
+    final TransactionType type = [
+      TransactionType.expense,
+      TransactionType.income,
+    ][Random().nextInt(2)];
     int accountId = Random().nextInt(10);
-    int categoryId = Random().nextInt(10);
+    final result = categoryDataSource.categories().where((element) {
+      if (type == TransactionType.income) {
+        return element.categoryType == CategoryType.income;
+      } else {
+        return element.categoryType == CategoryType.expense;
+      }
+    });
+    int categoryId = Random().nextInt(result.length);
+
     final difference = endDate.difference(startDate).inDays;
     final randomDay = random.nextInt(difference);
     final randomDate = startDate.add(Duration(days: randomDay));
@@ -168,9 +187,9 @@ void addDummyData() async {
       name: names[Random().nextInt(names.length)],
       time: randomDate,
       accountId: accountId,
-      categoryId: categoryId,
+      categoryId: result.elementAt(categoryId).superId!,
       currency: Random().nextDouble() * 100000,
-      type: TransactionType.values[Random().nextInt(2)],
+      type: type,
     ));
   }
 }

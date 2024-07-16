@@ -52,6 +52,10 @@ mixin _$CategoryModel {
   int? get color => throw _privateConstructorUsedError;
   @HiveField(8, defaultValue: 0xFFFFC107)
   set color(int? value) => throw _privateConstructorUsedError;
+  @HiveField(9)
+  CategoryType? get categoryType => throw _privateConstructorUsedError;
+  @HiveField(9)
+  set categoryType(CategoryType? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,7 +77,8 @@ abstract class $CategoryModelCopyWith<$Res> {
       @HiveField(4, defaultValue: 0) int? superId,
       @HiveField(6, defaultValue: 0) double? budget,
       @HiveField(7, defaultValue: false) bool isBudget,
-      @HiveField(8, defaultValue: 0xFFFFC107) int? color});
+      @HiveField(8, defaultValue: 0xFFFFC107) int? color,
+      @HiveField(9) CategoryType? categoryType});
 }
 
 /// @nodoc
@@ -97,6 +102,7 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
     Object? budget = freezed,
     Object? isBudget = null,
     Object? color = freezed,
+    Object? categoryType = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -131,6 +137,10 @@ class _$CategoryModelCopyWithImpl<$Res, $Val extends CategoryModel>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int?,
+      categoryType: freezed == categoryType
+          ? _value.categoryType
+          : categoryType // ignore: cast_nullable_to_non_nullable
+              as CategoryType?,
     ) as $Val);
   }
 }
@@ -151,7 +161,8 @@ abstract class _$$CategoryModelImplCopyWith<$Res>
       @HiveField(4, defaultValue: 0) int? superId,
       @HiveField(6, defaultValue: 0) double? budget,
       @HiveField(7, defaultValue: false) bool isBudget,
-      @HiveField(8, defaultValue: 0xFFFFC107) int? color});
+      @HiveField(8, defaultValue: 0xFFFFC107) int? color,
+      @HiveField(9) CategoryType? categoryType});
 }
 
 /// @nodoc
@@ -173,6 +184,7 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
     Object? budget = freezed,
     Object? isBudget = null,
     Object? color = freezed,
+    Object? categoryType = freezed,
   }) {
     return _then(_$CategoryModelImpl(
       name: null == name
@@ -207,6 +219,10 @@ class __$$CategoryModelImplCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int?,
+      categoryType: freezed == categoryType
+          ? _value.categoryType
+          : categoryType // ignore: cast_nullable_to_non_nullable
+              as CategoryType?,
     ));
   }
 }
@@ -223,7 +239,8 @@ class _$CategoryModelImpl extends _CategoryModel {
       @HiveField(4, defaultValue: 0) this.superId,
       @HiveField(6, defaultValue: 0) this.budget,
       @HiveField(7, defaultValue: false) this.isBudget = false,
-      @HiveField(8, defaultValue: 0xFFFFC107) this.color})
+      @HiveField(8, defaultValue: 0xFFFFC107) this.color,
+      @HiveField(9) this.categoryType = CategoryType.income})
       : super._();
 
   factory _$CategoryModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -255,10 +272,14 @@ class _$CategoryModelImpl extends _CategoryModel {
   @override
   @HiveField(8, defaultValue: 0xFFFFC107)
   int? color;
+  @override
+  @JsonKey()
+  @HiveField(9)
+  CategoryType? categoryType;
 
   @override
   String toString() {
-    return 'CategoryModel(name: $name, description: $description, icon: $icon, isTransferCategory: $isTransferCategory, superId: $superId, budget: $budget, isBudget: $isBudget, color: $color)';
+    return 'CategoryModel(name: $name, description: $description, icon: $icon, isTransferCategory: $isTransferCategory, superId: $superId, budget: $budget, isBudget: $isBudget, color: $color, categoryType: $categoryType)';
   }
 
   @JsonKey(ignore: true)
@@ -277,15 +298,15 @@ class _$CategoryModelImpl extends _CategoryModel {
 
 abstract class _CategoryModel extends CategoryModel {
   factory _CategoryModel(
-          {@HiveField(0) required String name,
-          @HiveField(1) String? description,
-          @HiveField(2) required int icon,
-          @HiveField(3, defaultValue: false) bool isTransferCategory,
-          @HiveField(4, defaultValue: 0) int? superId,
-          @HiveField(6, defaultValue: 0) double? budget,
-          @HiveField(7, defaultValue: false) bool isBudget,
-          @HiveField(8, defaultValue: 0xFFFFC107) int? color}) =
-      _$CategoryModelImpl;
+      {@HiveField(0) required String name,
+      @HiveField(1) String? description,
+      @HiveField(2) required int icon,
+      @HiveField(3, defaultValue: false) bool isTransferCategory,
+      @HiveField(4, defaultValue: 0) int? superId,
+      @HiveField(6, defaultValue: 0) double? budget,
+      @HiveField(7, defaultValue: false) bool isBudget,
+      @HiveField(8, defaultValue: 0xFFFFC107) int? color,
+      @HiveField(9) CategoryType? categoryType}) = _$CategoryModelImpl;
   _CategoryModel._() : super._();
 
   factory _CategoryModel.fromJson(Map<String, dynamic> json) =
@@ -331,6 +352,11 @@ abstract class _CategoryModel extends CategoryModel {
   int? get color;
   @HiveField(8, defaultValue: 0xFFFFC107)
   set color(int? value);
+  @override
+  @HiveField(9)
+  CategoryType? get categoryType;
+  @HiveField(9)
+  set categoryType(CategoryType? value);
   @override
   @JsonKey(ignore: true)
   _$$CategoryModelImplCopyWith<_$CategoryModelImpl> get copyWith =>

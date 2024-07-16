@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/widgets/paisa_scaffold.dart';
-
 import 'package:collection/collection.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
 import 'package:paisa/config/routes.dart';
 import 'package:paisa/core/common.dart';
-import 'package:paisa/core/enum/card_type.dart';
 import 'package:paisa/core/widgets/paisa_widget.dart';
 import 'package:paisa/features/account/data/data_sources/account_data_source.dart';
 import 'package:paisa/features/account/data/data_sources/default_account.dart';

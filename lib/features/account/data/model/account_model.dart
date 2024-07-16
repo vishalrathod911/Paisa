@@ -13,9 +13,9 @@ class AccountModel extends HiveObject with _$AccountModel implements SuperId {
   factory AccountModel({
     @HiveField(0) required String name,
     @HiveField(3) required String bankName,
-    @HiveField(6, defaultValue: CardType.bank)
-    @Default(CardType.bank)
-    CardType cardType,
+    @HiveField(6, defaultValue: AccountType.bank)
+    @Default(AccountType.bank)
+    AccountType cardType,
     @HiveField(7) int? superId,
     @HiveField(8, defaultValue: 0) @Default(0.0) double? amount,
     @HiveField(9, defaultValue: 0xFFFFC107) @Default(0xFFFFC107) int color,

@@ -9,7 +9,7 @@ class AccountEntity with _$AccountEntity {
     required String bankName,
     required String name,
     @Default(0.0) double amount,
-    @Default(CardType.bank) CardType cardType,
+    @Default(AccountType.bank) AccountType cardType,
     @Default(0xFFFFFFFF) int color,
     int? superId,
     @Default(false) bool isAccountExcluded,

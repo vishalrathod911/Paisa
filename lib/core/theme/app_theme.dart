@@ -22,10 +22,6 @@ ThemeData appTheme(
     appBarTheme: appBarTheme(systemUiOverlayStyle),
     scaffoldBackgroundColor: colorScheme.surface,
     dialogBackgroundColor: colorScheme.surface,
-    navigationBarTheme: navigationBarThemeData(
-      colorScheme,
-      textTheme,
-    ),
     navigationDrawerTheme: navigationDrawerThemeData(
       colorScheme,
       textTheme,

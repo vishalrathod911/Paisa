@@ -28,6 +28,6 @@ class AccountState with _$AccountState {
     @Default(false) bool isAccountExcluded,
   }) = UpdateAccountExcludeState;
 
-  const factory AccountState.updateCardType(CardType cardType) =
+  const factory AccountState.updateCardType(AccountType cardType) =
       UpdateCardTypeState;
 }

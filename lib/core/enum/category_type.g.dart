@@ -1,40 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'card_type.dart';
+part of 'category_type.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CardTypeAdapter extends TypeAdapter<CardType> {
+class CategoryTypeAdapter extends TypeAdapter<CategoryType> {
   @override
-  final int typeId = 12;
+  final int typeId = 24;
 
   @override
-  CardType read(BinaryReader reader) {
+  CategoryType read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return CardType.cash;
+        return CategoryType.income;
       case 1:
-        return CardType.bank;
-      case 2:
-        return CardType.wallet;
+        return CategoryType.expense;
       default:
-        return CardType.cash;
+        return CategoryType.income;
     }
   }
 
   @override
-  void write(BinaryWriter writer, CardType obj) {
+  void write(BinaryWriter writer, CategoryType obj) {
     switch (obj) {
-      case CardType.cash:
+      case CategoryType.income:
         writer.writeByte(0);
         break;
-      case CardType.bank:
+      case CategoryType.expense:
         writer.writeByte(1);
-        break;
-      case CardType.wallet:
-        writer.writeByte(2);
         break;
     }
   }
@@ -45,7 +40,7 @@ class CardTypeAdapter extends TypeAdapter<CardType> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CardTypeAdapter &&
+      other is CategoryTypeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

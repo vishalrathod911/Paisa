@@ -1,17 +1,14 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
-import 'package:paisa/core/enum/card_type.dart';
+import 'package:paisa/core/common_enum.dart';
 import 'package:paisa/core/error/account_error.dart';
 import 'package:paisa/features/account/domain/entities/account_entity.dart';
 import 'package:paisa/features/account/domain/use_case/account_use_case.dart';
 import 'package:paisa/features/category/domain/use_case/get_category_use_case.dart';
 import 'package:paisa/features/intro/domain/entities/country_entity.dart';
 import 'package:paisa/features/transaction/domain/use_case/transaction_use_case.dart';
-
 part 'accounts_bloc.freezed.dart';
 part 'accounts_event.dart';
 part 'accounts_state.dart';
@@ -47,7 +44,7 @@ class AccountBloc extends Bloc<AccountsEvent, AccountState> {
   int? selectedColor;
   bool isAccountDefault = false;
   bool isAccountExcluded = false;
-  CardType selectedType = CardType.cash;
+  AccountType selectedType = AccountType.cash;
   final UpdateAccountUseCase updateAccountUseCase;
 
   Future<void> _fetchAccountFromId(
@@ -79,7 +76,7 @@ class AccountBloc extends Bloc<AccountsEvent, AccountState> {
   ) async {
     final String? bankName = accountName;
     final String? holderName = accountHolderName;
-    final CardType cardType = selectedType;
+    final AccountType cardType = selectedType;
     final double? amount = initialAmount;
     final int? color = selectedColor;
     if (bankName == null) {

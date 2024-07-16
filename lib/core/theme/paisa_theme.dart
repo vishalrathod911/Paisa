@@ -33,28 +33,6 @@ InputDecorationTheme get inputDecorationTheme {
   );
 }
 
-NavigationBarThemeData navigationBarThemeData(
-  ColorScheme colorScheme,
-  TextTheme? textTheme,
-) {
-  return NavigationBarThemeData(
-    backgroundColor: colorScheme.surface,
-    labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-    labelTextStyle: WidgetStateProperty.resolveWith((states) {
-      if (states.contains(WidgetState.selected)) {
-        return textTheme?.bodyLarge?.copyWith(
-          fontWeight: FontWeight.bold,
-          color: colorScheme.onSurface,
-        );
-      } else {
-        return textTheme?.bodyLarge?.copyWith(
-          color: colorScheme.onSurface.withOpacity(0.75),
-        );
-      }
-    }),
-  );
-}
-
 NavigationDrawerThemeData navigationDrawerThemeData(
   ColorScheme colorScheme,
   TextTheme? textTheme,

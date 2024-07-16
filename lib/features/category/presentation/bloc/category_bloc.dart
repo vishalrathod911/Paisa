@@ -1,16 +1,13 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
-
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
-import 'package:paisa/features/category/data/model/category_model.dart';
+import 'package:paisa/core/enum/category_type.dart';
 import 'package:paisa/features/category/domain/entities/category.dart';
 import 'package:paisa/features/category/domain/use_case/category_use_case.dart';
 import 'package:paisa/features/transaction/domain/use_case/transaction_use_case.dart';
 
+part 'category_bloc.freezed.dart';
 part 'category_event.dart';
 part 'category_state.dart';
 
@@ -22,37 +19,43 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     required this.deleteCategoryUseCase,
     required this.deleteExpensesFromCategoryIdUseCase,
     required this.updateCategoryUseCase,
-  }) : super(AddCategoryInitial()) {
-    on<CategoryEvent>((event, emit) {});
-    on<FetchCategoryFromIdEvent>(_fetchCategoryFromId);
-    on<AddOrUpdateCategoryEvent>(_addOrUpdateCategory);
-    on<CategoryDeleteEvent>(_deleteCategory);
-    on<CategoryIconSelectedEvent>(_categoryIcon);
-    on<UpdateCategoryBudgetEvent>(_updateCategoryBudget);
-    on<CategoryColorSelectedEvent>(_updateCategoryColor);
+  }) : super(const CategoryState.initial()) {
+    on<CategoryEvent>((event, emit) {
+      event.when(
+        fetchFromId: (categoryId) => _fetchCategoryFromId(categoryId, emit),
+        addOrUpdate: (isAddOrUpdate) =>
+            _addOrUpdateCategory(isAddOrUpdate, emit),
+        delete: (categoryId) => _deleteCategory(categoryId, emit),
+        iconSelected: (categoryIcon) => _categoryIcon(categoryIcon, emit),
+        updateBudget: (isBudget) => _updateCategoryBudget(isBudget, emit),
+        colorSelected: (categoryColor) =>
+            _updateCategoryColor(categoryColor, emit),
+        updateType: (categoryType) => _updateCategoryType(categoryType, emit),
+      );
+    });
   }
 
   final AddCategoryUseCase addCategoryUseCase;
-  final DeleteCategoryUseCase deleteCategoryUseCase;
-  final DeleteTransactionsByCategoryIdUseCase
-      deleteExpensesFromCategoryIdUseCase;
-  final GetCategoryUseCase getCategoryUseCase;
-  final UpdateCategoryUseCase updateCategoryUseCase;
-
   double? categoryBudget;
   String? categoryDesc;
   String? categoryTitle;
+  CategoryType? categoryType = CategoryType.income;
   CategoryEntity? currentCategory;
+  final DeleteCategoryUseCase deleteCategoryUseCase;
+  final DeleteTransactionsByCategoryIdUseCase
+      deleteExpensesFromCategoryIdUseCase;
+
+  final GetCategoryUseCase getCategoryUseCase;
   bool? isBudgetSet = false;
   bool? isDefault = false;
   int? selectedColor;
   int? selectedIcon;
+  final UpdateCategoryUseCase updateCategoryUseCase;
 
   Future<void> _fetchCategoryFromId(
-    FetchCategoryFromIdEvent event,
+    int? categoryId,
     Emitter<CategoryState> emit,
   ) async {
-    final int? categoryId = event.categoryId;
     if (categoryId == null) return;
 
     final CategoryEntity? category = getCategoryUseCase(
@@ -67,31 +70,34 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       isBudgetSet = category.isBudget;
       selectedColor = category.color;
       isDefault = category.isDefault;
-      emit(CategorySuccessState(category));
+      categoryType = category.categoryType;
+      emit(CategoryState.success(category));
     }
   }
 
   FutureOr<void> _addOrUpdateCategory(
-    AddOrUpdateCategoryEvent event,
+    bool isAddOrUpdate,
     Emitter<CategoryState> emit,
   ) async {
     final String? title = categoryTitle;
     final String? description = categoryDesc;
     final int? icon = selectedIcon;
     final double? budget = categoryBudget;
+    final bool? isBudgetSet = this.isBudgetSet;
+    final bool? isDefault = this.isDefault;
 
     final int? color = selectedColor;
     if (icon == null) {
-      return emit(const CategoryErrorState('Select category icon'));
+      return emit(const CategoryState.error('Select category icon'));
     }
     if (title == null) {
-      return emit(const CategoryErrorState('Add category title'));
+      return emit(const CategoryState.error('Add category title'));
     }
 
     if (color == null) {
-      return emit(const CategoryErrorState('Select category color'));
+      return emit(const CategoryState.error('Select category color'));
     }
-    if (event.isAddOrUpdate) {
+    if (isAddOrUpdate) {
       await addCategoryUseCase(AddCategoryParams(
         icon: icon,
         description: description,
@@ -100,6 +106,7 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         isBudget: isBudgetSet ?? false,
         color: color,
         isDefault: isDefault ?? false,
+        categoryType: categoryType ?? CategoryType.income,
       ));
     } else {
       if (currentCategory == null) return;
@@ -112,45 +119,53 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
         icon: icon,
         isBudget: isBudgetSet ?? false,
         isDefault: isDefault ?? false,
+        categoryType: categoryType ?? CategoryType.income,
         name: title,
       ));
     }
-    emit(CategoryAddedState(isCategoryAddedOrUpdate: event.isAddOrUpdate));
+    emit(CategoryState.added(isCategoryAddedOrUpdate: isAddOrUpdate));
   }
 
   Future<void> _deleteCategory(
-    CategoryDeleteEvent event,
+    int categoryId,
     Emitter<CategoryState> emit,
   ) async {
-    final int categoryId = event.categoryId;
     await deleteCategoryUseCase(DeleteCategoryParams(categoryId));
     await deleteExpensesFromCategoryIdUseCase(
       DeleteTransactionsByCategoryIdParams(categoryId),
     );
-    emit(CategoryDeletedState());
+    emit(const CategoryState.deleted());
   }
 
-  FutureOr<void> _categoryIcon(
-    CategoryIconSelectedEvent event,
+  void _categoryIcon(
+    int categoryIcon,
     Emitter<CategoryState> emit,
   ) {
-    selectedIcon = event.categoryIcon;
-    emit(CategoryIconSelectedState(event.categoryIcon));
+    selectedIcon = categoryIcon;
+    emit(CategoryState.iconSelected(categoryIcon));
   }
 
-  FutureOr<void> _updateCategoryBudget(
-    UpdateCategoryBudgetEvent event,
+  void _updateCategoryType(
+    CategoryType categoryType,
     Emitter<CategoryState> emit,
   ) {
-    isBudgetSet = event.isBudget;
-    emit(UpdateCategoryBudgetState(event.isBudget));
+    this.categoryType = categoryType;
+    emit(CategoryState.updateType(categoryType));
   }
 
-  FutureOr<void> _updateCategoryColor(
-    CategoryColorSelectedEvent event,
+  void _updateCategoryBudget(
+    bool isBudget,
     Emitter<CategoryState> emit,
   ) {
-    selectedColor = event.categoryColor;
-    emit(CategoryColorSelectedState(event.categoryColor));
+    isBudgetSet = isBudget;
+    emit(CategoryState.updateBudget(isBudget));
+  }
+
+  void _updateCategoryColor(
+    int categoryColor,
+    Emitter<CategoryState> emit,
+  ) {
+    selectedColor = categoryColor;
+    emit(CategoryState.colorSelected(categoryColor));
   }
 }

@@ -19,7 +19,7 @@ class AccountModelAdapter extends TypeAdapter<_$AccountModelImpl> {
     return _$AccountModelImpl(
       name: fields[0] as String,
       bankName: fields[3] as String,
-      cardType: fields[6] == null ? CardType.bank : fields[6] as CardType,
+      cardType: fields[6] == null ? AccountType.bank : fields[6] as AccountType,
       superId: fields[7] as int?,
       amount: fields[8] == null ? 0 : fields[8] as double?,
       color: fields[9] == null ? 4294951175 : fields[9] as int,
@@ -66,8 +66,8 @@ _$AccountModelImpl _$$AccountModelImplFromJson(Map<String, dynamic> json) =>
     _$AccountModelImpl(
       name: json['name'] as String,
       bankName: json['bankName'] as String,
-      cardType: $enumDecodeNullable(_$CardTypeEnumMap, json['cardType']) ??
-          CardType.bank,
+      cardType: $enumDecodeNullable(_$AccountTypeEnumMap, json['cardType']) ??
+          AccountType.bank,
       superId: (json['superId'] as num?)?.toInt(),
       amount: (json['amount'] as num?)?.toDouble() ?? 0.0,
       color: (json['color'] as num?)?.toInt() ?? 0xFFFFC107,
@@ -78,15 +78,15 @@ Map<String, dynamic> _$$AccountModelImplToJson(_$AccountModelImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'bankName': instance.bankName,
-      'cardType': _$CardTypeEnumMap[instance.cardType]!,
+      'cardType': _$AccountTypeEnumMap[instance.cardType]!,
       'superId': instance.superId,
       'amount': instance.amount,
       'color': instance.color,
       'isAccountExcluded': instance.isAccountExcluded,
     };
 
-const _$CardTypeEnumMap = {
-  CardType.cash: 'cash',
-  CardType.bank: 'bank',
-  CardType.wallet: 'wallet',
+const _$AccountTypeEnumMap = {
+  AccountType.cash: 'cash',
+  AccountType.bank: 'bank',
+  AccountType.wallet: 'wallet',
 };

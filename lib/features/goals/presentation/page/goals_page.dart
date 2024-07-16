@@ -64,7 +64,7 @@ class GoalItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double amount = transactions.fold<double>(
-        20554, (previousValue, element) => previousValue + element.amount);
+        0, (previousValue, element) => previousValue + element.amount);
     final percentage = amount / goalEntity.amount;
     return PaisaCard(
       child: Column(
